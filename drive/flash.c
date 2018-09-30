@@ -8,6 +8,27 @@
 ********************************************************************/
 #include "my_register.h" //NOPָ������
 #include "AT24C01.h"
+
+extern vu8 b_type;
+extern vu8 buffer;
+extern vu16 year1;
+extern vu16 year2;
+extern vu16 year3;
+extern vu16 year4;
+extern vu8 month1;
+extern vu8 month2;
+extern vu8 day1;
+extern vu8 day2;
+extern vu8 code1;
+extern vu8 code2;
+extern vu8 code3;
+extern vu8 code4;
+extern vu8 code5;
+extern vu8 code6;
+extern vu8 code7;
+extern vu8 code8;
+
+
 //================================================================//
 extern struct bitDefine
 {
@@ -406,5 +427,182 @@ void EEPROM_READ_Coeff(void)
 	Polar3=EEPROM_READ_Byte(0x5C);
 	Polar4=EEPROM_READ_Byte(0x5D);
 	Polar5=EEPROM_READ_Byte(0x5E);
+    
+//     t_beep=EEPROM_READ_Byte(0x60);
+//     para_set4 = EEPROM_READ_Byte(0x7A);
+//     para_set2 = EEPROM_READ_Byte(0x7B);
+//     b_type = EEPROM_READ_Byte(0x78);
+//     buffer = EEPROM_READ_Byte(0x79);
+//     para_set1 = EEPROM_READ_Byte(0x61);
+//     year1 = EEPROM_READ_Byte(0x7C);
+//     year2 = EEPROM_READ_Byte(0x7D);
+//     year3 = EEPROM_READ_Byte(0x7E);
+//     year4 = EEPROM_READ_Byte(0x7F);
+//     month1 = EEPROM_READ_Byte(0x80);
+//     month2 = EEPROM_READ_Byte(0x81);
+//     day1 = EEPROM_READ_Byte(0x82);
+//     day2 = EEPROM_READ_Byte(0x83);
+//     code1 = EEPROM_READ_Byte(0x84);
+//     code2 = EEPROM_READ_Byte(0x85);
+//     code3 = EEPROM_READ_Byte(0x86);
+//     code4 = EEPROM_READ_Byte(0x87);
+//     code5 = EEPROM_READ_Byte(0x88);
+//     code6 = EEPROM_READ_Byte(0x89);
+//     code7 = EEPROM_READ_Byte(0x8A);
+//     code8 = EEPROM_READ_Byte(0x8B);
+//     flag_Load_CC = EEPROM_READ_Byte(0x8C);
+//     steptime = EEPROM_READ_Byte(0x8D);
+//     
+//     set_max_v=EEPROM_READ_Byte(0x62);
+// 	set_max_v=set_max_v<<8;
+// 	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
+// 	
+// 	set_min_v=EEPROM_READ_Byte(0x64);
+// 	set_min_v=set_min_v<<8;
+// 	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
+//     
+// 	set_max_r=EEPROM_READ_Byte(0x66);
+// 	set_max_r=set_max_r<<8;
+// 	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
+// 	
+// 	set_min_r=EEPROM_READ_Byte(0x68);
+// 	set_min_r=set_min_r<<8;
+// 	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
+
+//     set_max_c=EEPROM_READ_Byte(0x6A);
+// 	set_max_c=set_max_c<<8;
+// 	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
+// 	
+// 	set_min_c=EEPROM_READ_Byte(0x6C);
+// 	set_min_c=set_min_c<<8;
+// 	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
+//     
+//     SET_Voltage=EEPROM_READ_Byte(0x6E);
+// 	SET_Voltage=SET_Voltage<<8;
+// 	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
+// 	
+// 	SET_Current=EEPROM_READ_Byte(0x70);
+// 	SET_Current=SET_Current<<8;
+// 	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
+
+//     SET_Current_Laod=EEPROM_READ_Byte(0x72);
+// 	SET_Current_Laod=SET_Current_Laod<<8;
+// 	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
+//     
+//     set_init_c=EEPROM_READ_Byte(0x74);
+// 	set_init_c=set_init_c<<8;
+// 	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
+//     
+//     set_sbs_c=EEPROM_READ_Byte(0x76);
+// 	set_sbs_c=set_sbs_c<<8;
+// 	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
+}
+void Wrtite_Beep(void)//ѣզBEEP״ׁ̬FLASHא
+{
+	EEPROM_WriteByte(0x5F, Beep_Flag);
+	EEPROM_WriteByte(0x60, t_beep);
+}
+/*****************************************************************************/
+void Wrtite_S(void)//ѣզBEEP״ׁ̬FLASHא
+{
+	EEPROM_WriteByte(0x61, para_set1);
+}
+
+/******************************************************************************/
+void Wrtite_step(void)
+{
+	EEPROM_WriteByte(0x8D, steptime);
+}
+
+
+void Write_Limits(void)
+{
+    vu8 data_8bit;
+    
+	data_8bit = set_max_v >> 8;
+	EEPROM_WriteByte(0x62, data_8bit);
+	EEPROM_WriteByte(0x63, set_max_v);
+	
+	data_8bit = set_min_v >> 8;
+	EEPROM_WriteByte(0x64, data_8bit);
+	EEPROM_WriteByte(0x65, set_min_v);
+    
+    data_8bit = set_max_r >> 8;
+	EEPROM_WriteByte(0x66, data_8bit);
+	EEPROM_WriteByte(0x67, set_max_r);
+	
+	data_8bit = set_min_r >> 8;
+	EEPROM_WriteByte(0x68, data_8bit);
+	EEPROM_WriteByte(0x69, set_min_r);
+    
+    data_8bit = set_max_c >> 8;
+	EEPROM_WriteByte(0x6A, data_8bit);
+	EEPROM_WriteByte(0x6B, set_max_c);
+	
+	data_8bit = set_min_c >> 8;
+	EEPROM_WriteByte(0x6C, data_8bit);
+	EEPROM_WriteByte(0x6D, set_min_c);
+    
+	data_8bit = SET_Voltage >> 8;
+	EEPROM_WriteByte(0x6E, data_8bit);
+	EEPROM_WriteByte(0x6F, SET_Voltage);
+	
+	data_8bit = SET_Current >> 8;
+	EEPROM_WriteByte(0x70, data_8bit);
+	EEPROM_WriteByte(0x71, SET_Current);
+    
+    data_8bit = SET_Current_Laod >> 8;
+	EEPROM_WriteByte(0x72, data_8bit);
+	EEPROM_WriteByte(0x73, SET_Current_Laod);
+    
+    data_8bit = set_init_c >> 8;
+	EEPROM_WriteByte(0x74, data_8bit);
+	EEPROM_WriteByte(0x75, set_init_c);
+    
+    data_8bit = set_sbs_c >> 8;
+	EEPROM_WriteByte(0x76, data_8bit);
+	EEPROM_WriteByte(0x77, set_sbs_c);        
+}
+
+void Write_btype(void)
+{
+	EEPROM_WriteByte(0x78,b_type);
+    EEPROM_WriteByte(0x79,buffer);
+}
+/************************************************************************/
+void Write_alarm(void)
+{
+	EEPROM_WriteByte(0x7A,para_set4);
+}
+/************************************************************************/
+void Write_oct(void)
+{
+	EEPROM_WriteByte(0x7B,para_set2);
+}
+
+void Write_LOAD(void)
+{
+    EEPROM_WriteByte(0x8C,flag_Load_CC);
+}
+/************************************************************************/
+void Write_info(void)
+{
+	EEPROM_WriteByte(0x7C,year1);
+    EEPROM_WriteByte(0x7D,year2);
+    EEPROM_WriteByte(0x7E,year3);
+    EEPROM_WriteByte(0x7F,year4);
+    EEPROM_WriteByte(0x80,month1);
+    EEPROM_WriteByte(0x81,month2);
+    EEPROM_WriteByte(0x82,day1);
+    EEPROM_WriteByte(0x83,day2);
+    EEPROM_WriteByte(0x84,code1);
+    EEPROM_WriteByte(0x85,code2);
+    EEPROM_WriteByte(0x86,code3);
+    EEPROM_WriteByte(0x87,code4);
+    EEPROM_WriteByte(0x88,code5);
+    EEPROM_WriteByte(0x89,code6);
+    EEPROM_WriteByte(0x8A,code7);
+    EEPROM_WriteByte(0x8B,code8); 
 }
 /******************* (C) COPYRIGHT 2015 AVER *****END OF FILE*************************/
+

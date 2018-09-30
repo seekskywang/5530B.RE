@@ -64,3 +64,4 @@ void GPIO_Conf(void)
 	GPIO_SetBits(GPIOC,GPIO_Pin_6);//LCD复位完成
 	GPIO_SetBits(GPIOB,GPIO_Pin_13);//内阻测试为高档位
 }
+

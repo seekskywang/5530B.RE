@@ -24,6 +24,13 @@
 #include "tm1650.h"
 #include "dac8531.h"
 #include "tm7707.h"
+
+float DISS_Voltage;//负载电压
+float DISS_POW_Voltage;//稳压电源电压
+float DISS_Current;//负载电流
+float DISS_POW_Current;//稳压电源电流
+
+
 struct bitDefine
 {
     unsigned bit0: 1;
@@ -44,9 +51,12 @@ int main(void)
 	GPIO_Conf();
 	TIM1_PWM_Config();
 	TIM2_PWM_Config();
+    TIM4_Int_Init(2-1,8400-1);
+    TIM3_Int_Init(10000-1,8400-1);
 	TIM6_Config();
 	ADC1_DMA_Init();
 	USART_Configuration();
+    USART3_Configuration();
 	i2c_CfgGpio();//24C01引脚初始化
 	TM1650_GPIO_INT();		/*TM1650引脚初始化 */
 	TM7707_Initialize();

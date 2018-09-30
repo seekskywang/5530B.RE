@@ -11,7 +11,22 @@
 #ifndef __my_register_h__
 #define __my_register_h__
 //=============================================================================
-
+void Write_Limits(void);
+void Wrtite_step(void);
+void OC_ADD(void);
+void Wrtite_S(void);
+void Write_oct(void);
+void Write_alarm(void);
+void Write_btype(void);
+void Write_LOAD(void);
+void Write_info(void);
+void OC_CHECK(void);
+void INPUT_POW(char* num);  
+void INPUT_NUM(char* num); 
+void INPUT_CDC(char* num); 
+void INPUT_C(char* num);  
+void INPUT_LOAD(char* num);  
+void INPUT_INFO(vu8 num);
 //=============================================================================
 #define NOP   __nop();	  //��ָ��
 
@@ -131,23 +146,220 @@ extern  float DISS_POW_Voltage;
 extern float DISS_Current;
 extern float DISS_POW_Current;
 extern float DISS_R;
+extern vu16 steptime;
+extern vu8 r_stable;
+extern char set_limit[5];
+extern vu8 bit;
+extern vu8 bit1;
+extern vu8 dot_flag;
+extern vu8 page_sw;
+extern vu8 para_set1;
+extern vu8 para_set2;
+extern vu8 para_set3;
+extern vu8 para_set4;
+extern vu8 oct_sw;
+extern vu8 set_sw;
+extern vu8 charge_step;
+extern vu8 cutoff_flag;
+extern vu8 lang;
+extern vu8 r_raly;
+extern vu16 steptime;
+extern vu8 alert_flag;
+extern vu8 t_onoff;
+extern vu8 ocstop;
+extern float temp;
+extern vu8 mode_sw;
+extern vu16 stepcount;
+extern vu16 battery_c;
+extern float bc_raw;
+extern vu8 track;
+extern vu8 clear_flag1;
+extern vu8 clear_flag2;
+extern vu8 clear_flag3;
+extern vu8 pass;
+extern vu8 b_type;
+extern vu8 buffer;
+extern float clear_v;
+extern float clear_pv;
+extern float clear_lv;
+extern float temp;
 
-extern vu32 Run_Control[14];	
+extern vu32 Run_Control[37];	
 #define onoff_ch                    Run_Control[0]  //ON/OFF
-#define SET_Voltage 	    	        Run_Control[1]  //��Դ�趨��ѹ
-#define SET_Current	    	    		  Run_Control[2]  //��Դ�趨����
-#define SET_Voltage_Laod 					  Run_Control[3]  //�����趨��ѹ
-#define SET_Current_Laod					  Run_Control[4]  //�����趨����
+#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
+#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
+#define SET_Voltage_Laod 					  Run_Control[3]  //غ՘ʨ֧֨ѹ
+#define SET_Current_Laod					  Run_Control[4]  //غ՘ʨ֧֨·
 #define LOCK_KEY								    Run_Control[5]  //
 #define BEEP_KEY								    Run_Control[6]  //
 #define STRONG_KEY							    Run_Control[7]  //
 
 #define MODE_Woke							   	  Run_Control[8]  //
-#define POW_Voltage	    	          Run_Control[9]  //��Դ������ѹ
-#define Voltage	    	              Run_Control[10]  //���ز�����ѹ
-#define Current	    	    		      Run_Control[11]  //��Դ��������
-#define Laod_Current	    		      Run_Control[12]  //���ز�������
-#define R_VLUE											Run_Control[13]  //����ֵ
+#define POW_Voltage	    	            Run_Control[9]  //֧ԴӢ֧ѹ
+#define Voltage	    	                Run_Control[10]  //غ՘Ӣ֧ѹ
+#define Current	    	    		    Run_Control[11]  //֧ԴӢ֧·
+#define Laod_Current	    		    Run_Control[12]  //غ՘Ӣ֧·
+#define R_VLUE							Run_Control[13]  //Śبֵ
+#define set_max_v						Run_Control[14]  //设置测量电压上限
+#define set_min_v						Run_Control[15]  //设置测量电压下限
+#define set_max_r						Run_Control[16]  //设置测量内阻上限
+#define set_min_r						Run_Control[17]  //设置测量内阻下限
+#define set_max_c						Run_Control[18]  //设置测量电流上限
+#define set_min_c						Run_Control[19]  //设置测量电流西线
+#define set_output_v					Run_Control[20]  //设置测量输出电压
+#define set_output_c					Run_Control[21]  //设置测量输出电流
+#define set_init_c					    Run_Control[22]  //设置测量输出电压
+#define set_sbs_c					    Run_Control[23]  //设置测量输出电流
+#define set_add_c					    Run_Control[24]
+#define set_c_cutoff_v					Run_Control[25]
+#define set_c_cutoff_c					Run_Control[26]
+#define set_dc_cutoff_v					Run_Control[27]
+#define set_dc_cutoff_c					Run_Control[28]
+#define start_time					    Run_Control[29]
+#define end_time					    Run_Control[30]
+#define opv1    					    Run_Control[31]
+#define opv2    					    Run_Control[32]
+#define opv3    					    Run_Control[33]
+#define opc1    					    Run_Control[34]
+#define opc2    					    Run_Control[35]
+#define opc3    					    Run_Control[36]
+
+
+extern float coff[6];
+#define cov1    					    coff[0]
+#define cov2    					    coff[1]
+#define cov3    					    coff[2]
+#define coc1    					    coff[3]
+#define coc2    					    coff[4]
+#define coc3    					    coff[5]										 //����ֵ
+
+/*
+************************************************************************
+*						页面识别符
+************************************************************************
+*/
+
+#define face_graph      0
+#define face_cdc        1
+#define face_menu       2
+#define face_r          3
+#define face_load       4
+#define face_set        5
+#define face_starter    6
+#define face_sys_info   7
+/*
+************************************************************************
+*						设置选项识别符
+************************************************************************
+*/
+
+#define set_1           0
+#define set_2           1
+#define set_3           2
+#define set_4           3
+#define set_5           4
+#define set_6           5
+#define set_7           6
+#define set_8           7
+#define set_9           8
+#define set_10          9
+#define set_11          10
+#define set_12          11
+#define set_13          12
+#define set_14          13
+#define set_15          14
+#define set_16          15
+#define set_17          16
+#define set_18          17
+#define set_19          18
+#define set_20          19
+#define set_21          20
+#define set_22          21
+#define set_23          22
+#define set_24          23
+#define set_25          24
+#define set_26          25
+#define set_27          26
+#define set_28          27
+#define set_29          28
+#define set_30          29
+#define set_31          30
+#define set_32          31
+#define set_33          32
+#define set_34          33
+#define set_35          34
+#define set_36          35
+#define set_37          36
+#define set_38          37
+#define set_39          38
+#define set_40          39
+#define set_41          40
+#define set_42          41
+#define set_43          42
+#define set_44          43
+#define set_45          44
+#define set_46          45
+#define set_47          46
+#define set_48          47
+#define set_49          48
+#define set_50          49
+#define set_51          50
+#define set_52          51
+#define set_53          52
+#define set_54          53
+#define set_55          54
+#define set_56          55
+#define set_57          56
+#define set_58          57
+#define set_59          58
+#define set_60          59
+#define set_61          60
+#define set_62          61
+#define set_63          62
+#define set_64          63
+#define set_65          64
+#define set_66          65
+#define set_67          66
+#define set_68          67
+#define set_69          68
+#define set_70          69
+#define set_71          70
+/*
+************************************************************************
+*						参数设置识别符
+************************************************************************
+*/
+
+#define set_1_on            0xff
+#define set_1_off           0
+#define set_2_on            0xff
+#define set_2_off           0
+#define set_3_on            1
+#define set_3_off           0
+#define set_4_on            0xff
+#define set_4_off           0
+#define cdc_on              1
+#define cdc_off             0
+#define oct_on              1
+#define oct_off             0
+#define c_on                1
+#define c_off               0
+#define mode_r              1
+#define mode_load           2
+#define mode_pow            3
+#define load_on             1
+#define load_off            0
+#define pow_on              1
+#define pow_off             0
+#define Lion                1
+#define NiMH                2
+#define NiCd                3
+#define SLA                 4
+#define LiMH                5
+#define step1               0
+#define step2               1
+#define step3               2
+
 
 
 extern vu16 Contr_Voltage;//
@@ -204,3 +416,5 @@ extern vu8 UART_Buffer_Send[20];
 //=============================================================================
 #endif
 /******************* (C) COPYRIGHT 2015 KUNKIN *****END OF FILE*************************/
+
+

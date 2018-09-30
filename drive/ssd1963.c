@@ -1,9 +1,9 @@
 /******************************************************************/
-/* ���ƣH                                          					    */
-/* Ч����                                                        */
-/* ���ݣ� ssd1963��������																		    */
-/* ���ߣ�����                                                    */
-/* ��ϵ��ʽ��QQ:363116119                                        */
+/* ĻԆĈ                                          					    */
+/* Чڻú                                                        */
+/* Śɝú ssd1963Ƚ֯ԌѲ																		    */
+/* ط֟únֱ                                                    */
+/* jϵ׽ʽúQQ:363116119                                        */
 /******************************************************************/
 #include "stm32f4xx.h"
 #include <stdint.h>
@@ -129,14 +129,14 @@ void sLCD_GPIO_Config(void)
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource14 , GPIO_AF_FSMC);
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource15 , GPIO_AF_FSMC);
     /*
-        FSMC Data �ܽų�ʼ�� D0~D15
+        FSMC Data ڜޅԵʼۯ D0~D15
     */
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_15 | GPIO_Pin_8 | 
                                     GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_0 |
                                     GPIO_Pin_1 ;
     GPIO_InitStructure.GPIO_Speed =GPIO_Speed_100MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//�������
+		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//ΆάˤԶ
 		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
     GPIO_Init(GPIOD, &GPIO_InitStructure);
 
@@ -145,7 +145,7 @@ void sLCD_GPIO_Config(void)
                                     GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15 ;
 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//�������
+		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//ΆάˤԶ
 		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
     GPIO_Init(GPIOE, &GPIO_InitStructure);
 
@@ -246,85 +246,85 @@ static void sLCD_Init(void)
     DeviceCode = sLCD_Read_Data();    
     DeviceCode = sLCD_Read_Data();    
     DeviceCode = DeviceCode;
-    //  Step 2: PLL����
-    sLCD_WR_REG(0x00E2);     //0XE2������PLL �ļĴ�����
-    sLCD_WR_Data(0x001D);// (0x002C);//   //���ñ�Ƶ�� M   0x21D for 10M
-    sLCD_WR_Data(0x0002);    //���÷�Ƶ�� N
-    sLCD_WR_Data(0x0004);    //ʹ��MN   PLL = INCLK*(M+1) / (N+1)  PLL ��Ƶ��120M PLL=8*44/3=120M
+    //  Step 2: PLLʨ׃
+    sLCD_WR_REG(0x00E2);     //0XE2ˇʨ׃PLL ք݄զǷc
+    sLCD_WR_Data(0x001D);// (0x002C);//   //ʨ׃ѶƵ˽ M   0x21D for 10M
+    sLCD_WR_Data(0x0002);    //ʨ׃ؖƵ˽ N
+    sLCD_WR_Data(0x0004);    //ʹŜMN   PLL = INCLK*(M+1) / (N+1)  PLL ѶƵս120M PLL=8*44/3=120M
 
-    sLCD_WR_REG(0x00E0);     //0XE0��PLLʹ�ܼĴ���
-    sLCD_WR_Data(0x0001);    //�ȿ���PLL
+    sLCD_WR_REG(0x00E0);     //0XE0ˇPLLʹŜ݄զǷ
+    sLCD_WR_Data(0x0001);    //ЈߪǴPLL
     Delay_ms(10);
 	
-    sLCD_WR_REG(0x00E0);     //��Ҫһ��
-    sLCD_WR_Data(0x0003);    // ʹ�� PLL��Ϊʱ��
+    sLCD_WR_REG(0x00E0);     //۹ҪһՎ
+    sLCD_WR_Data(0x0003);    // ʹԃ PLLطΪʱד
     Delay_ms(10);
-    sLCD_WR_REG(0x0001);     // ������λ
+    sLCD_WR_REG(0x0001);     // ɭݾشλ
     Delay_ms(10);
 
-    //step 3 : ����PCLK��Ҳ��������ʱ��
-    sLCD_WR_REG(0xE6);        //�ţ�û�� 0XE6����������ʱ�ӵļĴ���  
-    sLCD_WR_Data(0x0001);//(0x01);//       //�ҵ���Ļ��4.3�磬���Ƶ�ʾͿ����ˣ������Ļ�Ƚϴ�����˸�Ļ��������ټӴ�
+    //step 3 : ʨ׃PCLKìҲߍˇб̘ʱד
+    sLCD_WR_REG(0xE6);        //ᅣ̓۴𜁘E6ˇʨ׃б̘ʱדք݄զǷ  
+    sLCD_WR_Data(0x0001);//(0x01);//       //ϒքǁĻˇ4.3էì֢ٶƵÊߍࠉӔìɧڻǁĻ҈ޏճìԐʁ˸ք۰ìࠉӔՙݓճ
     sLCD_WR_Data(0x0093);//(0x93);//
-    sLCD_WR_Data(0x0032);// ( 0xE0);//     //����˵�ˣ��Ĵ���ָ���8λ����ģ����������ʱ����Ҫ3���ֽ������ã���λ��ǰ
+    sLCD_WR_Data(0x0032);// ( 0xE0);//     //μ݇˵ì݄զǷָ®ּˇ8λԫˤքì֢oքб̘ʱדѨҪ3ٶؖޚ4ʨ׃ìٟλ՚ǰ
 
-    //step 4 : ����LCD����ʾģʽ����Ҫ������Ļ��С��LCD�ĵ�·���Ʒ�����ƥ�䣬
-    sLCD_WR_REG(0x00B0);        //����LCD��ʾģʽ���ֱ���
-    sLCD_WR_Data(0x0020);//(0x0018);        // ʹ��FRC 0X0018 18bit LCD���� 
+    //step 4 : ʨ׃LCDքДʾģʽìѨҪٹߝǁĻճСۍLCDք֧·࠘׆׽רРƥƤì
+    sLCD_WR_REG(0x00B0);        //ʨ׃LCDДʾģʽܰؖҦÊ
+    sLCD_WR_Data(0x0020);//(0x0018);        // ʹŜFRC 0X0018 18bit LCD࠘׆ 
     sLCD_WR_Data(0x0000);     //TFTģʽ
-    sLCD_WR_Data((HDP>>8)&0X00FF);  //Set HDP         ˮƽ��С
-    sLCD_WR_Data(HDP&0X00FF);             //˫�ֽڣ���λ��ǰ
-    sLCD_WR_Data((VDP>>8)&0X00FF);  //Set VDP         ��ֱ�ߴ�
+    sLCD_WR_Data((HDP>>8)&0X00FF);  //Set HDP         ˮƽճС
+    sLCD_WR_Data(HDP&0X00FF);             //˫ؖޚìٟλ՚ǰ
+    sLCD_WR_Data((VDP>>8)&0X00FF);  //Set VDP         Թֱԟէ
     sLCD_WR_Data(VDP&0X00FF);
-    sLCD_WR_Data(0x0000);                        //RGB˳����TFT�ӿ�
+    sLCD_WR_Data(0x0000);                        //RGB˳ѲԮѐTFTޓࠚ
 
-    sLCD_WR_REG(0x00B4);        //����  ˮƽ��ʾʱ�����
-    sLCD_WR_Data((HT>>8)&0X00FF);  //Set HT ˮƽ������
+    sLCD_WR_REG(0x00B4);        //ʨ׃  ˮƽДʾʱݤӎ˽
+    sLCD_WR_Data((HT>>8)&0X00FF);  //Set HT ˮƽ؜לǚ
     sLCD_WR_Data(HT&0X00FF);
-    sLCD_WR_Data((HPS>>8)&0X00FF);  //Set HPS ˮƽͬ�����忪ʼλ
+    sLCD_WR_Data((HPS>>8)&0X00FF);  //Set HPS ˮƽͬҽöԥߪʼλ
     sLCD_WR_Data(HPS&0X00FF);
-    sLCD_WR_Data(HPW);                           //Set HPW ˮƽͬ���������
-    sLCD_WR_Data((LPS>>8)&0X00FF);  //Set LPS ��ʾ��ʼλ
+    sLCD_WR_Data(HPW);                           //Set HPW ˮƽͬҽöԥ࠭׈
+    sLCD_WR_Data((LPS>>8)&0X00FF);  //Set LPS Дʾߪʼλ
     sLCD_WR_Data(LPS&0X00FF);
-    sLCD_WR_Data(0x0000);         //TFT mode�£��������
+    sLCD_WR_Data(0x0000);         //TFT modeЂìɧՋʨ׃
 
-    sLCD_WR_REG(0x00B6);        //����        ��ֱ��ʾʱ�����
-    sLCD_WR_Data((VT>>8)&0X00FF);   //Set VT ��ֱ������
+    sLCD_WR_REG(0x00B6);        //ʨ׃        ԹֱДʾʱݤӎ˽
+    sLCD_WR_Data((VT>>8)&0X00FF);   //Set VT Թֱ؜לǚ
     sLCD_WR_Data(VT&0X00FF);
-    sLCD_WR_Data((VPS>>8)&0X00FF);  //Set VPS ��ֱͬ�����忪ʼλ
+    sLCD_WR_Data((VPS>>8)&0X00FF);  //Set VPS Թֱͬҽöԥߪʼλ
     sLCD_WR_Data(VPS&0X00FF);
-    sLCD_WR_Data(VPW);                           //Set VPW��ֱͬ���������
-    sLCD_WR_Data((FPS>>8)&0X00FF);  //Set FPS  ��ʾ��ʼλ��
+    sLCD_WR_Data(VPW);                           //Set VPWԹֱͬҽöԥ࠭׈
+    sLCD_WR_Data((FPS>>8)&0X00FF);  //Set FPS  Дʾߪʼλ׃
     sLCD_WR_Data(FPS&0X00FF);
     
-    sLCD_WR_REG(0X0036);    //���ô�������ȡָ��˳�򣬿���ʡ�ԣ��ϵ�Ĭ��Ϊ0
+    sLCD_WR_REG(0X0036);    //ʨ׃Փ׷ׁܺȡָ®˳ѲìࠉӔʡÔìʏ֧ĬɏΪ0
     sLCD_WR_Data(0X0000);
-    sLCD_WR_REG(0x00F0); //pixel data interface  �����������ݽӿ�Ϊ16λ
-    sLCD_WR_Data(0x0003); //03Ϊ 565 ��16λͨѶ��
+    sLCD_WR_REG(0x00F0); //pixel data interface  ʨ׃б̘˽ߝޓࠚΪ16λ
+    sLCD_WR_Data(0x0003); //03Ϊ 565 ք16λͨѶc
     
-    //step 5 : ��ѡ������ͼ�κ�����
-    //sLCD_WR_REG(0x0021);        //����ͼ����ɫ��תģʽ 
+    //step 5 : ࠉѡcʨ׃ͼю۳Ԧmc
+    //sLCD_WR_REG(0x0021);        //޸ɫͼюҕɫ׭תģʽ 
 
-    //sLCD_WR_REG(0x00BC);//����ͼ�����
-    //sLCD_WR_Data(0x005A);//(0x0080);//�Աȶ�
-    //sLCD_WR_Data(0x0064);//(0x0080);//����
-    //sLCD_WR_Data(0x005A);//(0x0080);//���Ͷ�ֵ  //
-    //sLCD_WR_Data(0x0001);//����������
+    //sLCD_WR_REG(0x00BC);//ʨ׃ͼб۳Ԧm
+    //sLCD_WR_Data(0x005A);//(0x0080);//ה҈׈
+    //sLCD_WR_Data(0x0064);//(0x0080);//׈
+    //sLCD_WR_Data(0x005A);//(0x0080);//ѥۍ׈ֵ  //
+    //sLCD_WR_Data(0x0001);//ԦmܺՊѭ
 
-    //sLCD_Clear(0Xffff);//ˢ�ɰ�ɫ
-    //sLCD_Clear(0x0000000);//��ɫ
+    //sLCD_Clear(0Xffff);//ˢԉїɫ
+    //sLCD_Clear(0x0000000);//ۚɫ
     sLCD_WR_REG(0x0029); //display on
     
-//    // step 6 ���������ã�Ҳ����Ļ��������һ����
-//    sLCD_WR_REG(0x00BE); //set PWM����
-//    sLCD_WR_Data(0x0006);        //PWMƵ�� = PLL / (256* 0x06) /256        
-//    sLCD_WR_Data(0x00ff); // PWMռ�ձ����� 
-//    sLCD_WR_Data(0x09); //DBC ����PWM ʹ�� 
-//    sLCD_WR_Data(0xFF); //DBC�ֶ���������
-//    sLCD_WR_Data(0x00); //DBC ��С�������� 
+//    // step 6 ìѳڢʨ׃ìҲˇǁĻǰ4քһҽc
+//    sLCD_WR_REG(0x00BE); //set PWM࠘׆
+//    sLCD_WR_Data(0x0006);        //PWMƵÊ = PLL / (256* 0x06) /256        
+//    sLCD_WR_Data(0x00ff); // PWMռࠕ҈ʨ׃ 
+//    sLCD_WR_Data(0x09); //DBC ࠘׆PWM ʹŜ 
+//    sLCD_WR_Data(0xFF); //DBC˖֯׈ʨ׃
+//    sLCD_WR_Data(0x00); //DBC خС׈ʨ׃ 
 //    sLCD_WR_Data(0x00);
 //
-//    sLCD_WR_REG(0xD4); //����ÿ���ȼ��ĵ�Դ��ֵ
+//    sLCD_WR_REG(0xD4); //ʨ׃ÿٶֈܶք֧Դקֵ
 //    //TH1 = display width * display height * 3 * 0.1 /16 
 //    //480*272 * 3 * 0.1 /16 =990H
 //    sLCD_WR_Data(0x00); // 
@@ -342,7 +342,7 @@ static void sLCD_Init(void)
 //    sLCD_WR_Data(0x39); // 
 //    sLCD_WR_Data(0x60); //
 //                 
-//    sLCD_WR_REG(0x00d0);//���ö�̬����������� 
+//    sLCD_WR_REG(0x00d0);//ʨ׃̬֯ѳڢ࠘׆Ƥ׃ 
 //    sLCD_WR_Data(0x000d); 
 }
 

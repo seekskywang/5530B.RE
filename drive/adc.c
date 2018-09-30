@@ -230,3 +230,4 @@ void ADC_CH_Scan(void)//滤波
 	}
 	NTC_value=sum/50;
 }
+

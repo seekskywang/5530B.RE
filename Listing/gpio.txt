@@ -139,6 +139,7 @@
 0000e8  f7fffffe          BL       GPIO_SetBits
 ;;;66     }
 0000ec  e8bd87fc          POP      {r2-r10,pc}
+;;;67     
                           ENDP
 
                   |L1.240|

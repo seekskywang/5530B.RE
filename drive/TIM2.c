@@ -101,3 +101,4 @@ void Temp_Comapre(void)	  //温度来控制风扇
 		flag_FAN_ON=0;
 	}
 }
+

@@ -444,7 +444,7 @@
 0000cc  4640              MOV      r0,r8
 0000ce  f7fffffe          BL       GPIO_PinAFConfig
 ;;;131        /*
-;;;132            FSMC Data �ܽų�ʼ�� D0~D15
+;;;132            FSMC Data ڜޅԵʼۯ D0~D15
 ;;;133        */
 ;;;134        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_15 | GPIO_Pin_8 | 
 0000d2  f24c7003          MOV      r0,#0xc703
@@ -457,7 +457,7 @@
 ;;;138        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 0000de  2602              MOVS     r6,#2
 0000e0  f88d6004          STRB     r6,[sp,#4]
-;;;139    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//�������
+;;;139    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//ΆάˤԶ
 0000e4  2400              MOVS     r4,#0
 0000e6  f88d4006          STRB     r4,[sp,#6]
 ;;;140    		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
@@ -476,7 +476,7 @@
 0000fc  f88d5005          STRB     r5,[sp,#5]
 ;;;147        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 000100  f88d6004          STRB     r6,[sp,#4]
-;;;148    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//�������
+;;;148    		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//ΆάˤԶ
 000104  f88d4006          STRB     r4,[sp,#6]
 ;;;149    		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 000108  f88d4007          STRB     r4,[sp,#7]
@@ -541,80 +541,80 @@
 ;;;247        DeviceCode = sLCD_Read_Data();    
 000018  f7fffffe          BL       sLCD_Read_Data
 ;;;248        DeviceCode = DeviceCode;
-;;;249        //  Step 2: PLL����
-;;;250        sLCD_WR_REG(0x00E2);     //0XE2������PLL �ļĴ�����
+;;;249        //  Step 2: PLLʨ׃
+;;;250        sLCD_WR_REG(0x00E2);     //0XE2ˇʨ׃PLL ք݄զǷc
 00001c  20e2              MOVS     r0,#0xe2
 00001e  f7fffffe          BL       sLCD_WR_REG
-;;;251        sLCD_WR_Data(0x001D);// (0x002C);//   //���ñ�Ƶ�� M   0x21D for 10M
+;;;251        sLCD_WR_Data(0x001D);// (0x002C);//   //ʨ׃ѶƵ˽ M   0x21D for 10M
 000022  201d              MOVS     r0,#0x1d
 000024  f7fffffe          BL       sLCD_WR_Data
-;;;252        sLCD_WR_Data(0x0002);    //���÷�Ƶ�� N
+;;;252        sLCD_WR_Data(0x0002);    //ʨ׃ؖƵ˽ N
 000028  2002              MOVS     r0,#2
 00002a  f7fffffe          BL       sLCD_WR_Data
-;;;253        sLCD_WR_Data(0x0004);    //ʹ��MN   PLL = INCLK*(M+1) / (N+1)  PLL ��Ƶ��120M PLL=8*44/3=120M
+;;;253        sLCD_WR_Data(0x0004);    //ʹŜMN   PLL = INCLK*(M+1) / (N+1)  PLL ѶƵս120M PLL=8*44/3=120M
 00002e  2004              MOVS     r0,#4
 000030  f7fffffe          BL       sLCD_WR_Data
 ;;;254    
-;;;255        sLCD_WR_REG(0x00E0);     //0XE0��PLLʹ�ܼĴ���
+;;;255        sLCD_WR_REG(0x00E0);     //0XE0ˇPLLʹŜ݄զǷ
 000034  20e0              MOVS     r0,#0xe0
 000036  f7fffffe          BL       sLCD_WR_REG
-;;;256        sLCD_WR_Data(0x0001);    //�ȿ���PLL
+;;;256        sLCD_WR_Data(0x0001);    //ЈߪǴPLL
 00003a  2001              MOVS     r0,#1
 00003c  f7fffffe          BL       sLCD_WR_Data
 ;;;257        Delay_ms(10);
 000040  200a              MOVS     r0,#0xa
 000042  f7fffffe          BL       Delay_ms
 ;;;258    	
-;;;259        sLCD_WR_REG(0x00E0);     //��Ҫһ��
+;;;259        sLCD_WR_REG(0x00E0);     //۹ҪһՎ
 000046  20e0              MOVS     r0,#0xe0
 000048  f7fffffe          BL       sLCD_WR_REG
-;;;260        sLCD_WR_Data(0x0003);    // ʹ�� PLL��Ϊʱ��
+;;;260        sLCD_WR_Data(0x0003);    // ʹԃ PLLطΪʱד
 00004c  2003              MOVS     r0,#3
 00004e  f7fffffe          BL       sLCD_WR_Data
 ;;;261        Delay_ms(10);
 000052  200a              MOVS     r0,#0xa
 000054  f7fffffe          BL       Delay_ms
-;;;262        sLCD_WR_REG(0x0001);     // ������λ
+;;;262        sLCD_WR_REG(0x0001);     // ɭݾشλ
 000058  2001              MOVS     r0,#1
 00005a  f7fffffe          BL       sLCD_WR_REG
 ;;;263        Delay_ms(10);
 00005e  200a              MOVS     r0,#0xa
 000060  f7fffffe          BL       Delay_ms
 ;;;264    
-;;;265        //step 3 : ����PCLK��Ҳ��������ʱ��
-;;;266        sLCD_WR_REG(0xE6);        //�ţ�û�� 0XE6����������ʱ�ӵļĴ���  
+;;;265        //step 3 : ʨ׃PCLKìҲߍˇб̘ʱד
+;;;266        sLCD_WR_REG(0xE6);        //ᅣ̓۴𜁘E6ˇʨ׃б̘ʱדք݄զǷ  
 000064  20e6              MOVS     r0,#0xe6
 000066  f7fffffe          BL       sLCD_WR_REG
-;;;267        sLCD_WR_Data(0x0001);//(0x01);//       //�ҵ���Ļ��4.3�磬���Ƶ�ʾͿ����ˣ������Ļ�Ƚϴ�����˸�Ļ��������ټӴ�
+;;;267        sLCD_WR_Data(0x0001);//(0x01);//       //ϒքǁĻˇ4.3էì֢ٶƵÊߍࠉӔìɧڻǁĻ҈ޏճìԐʁ˸ք۰ìࠉӔՙݓճ
 00006a  2001              MOVS     r0,#1
 00006c  f7fffffe          BL       sLCD_WR_Data
 ;;;268        sLCD_WR_Data(0x0093);//(0x93);//
 000070  2093              MOVS     r0,#0x93
 000072  f7fffffe          BL       sLCD_WR_Data
-;;;269        sLCD_WR_Data(0x0032);// ( 0xE0);//     //����˵�ˣ��Ĵ���ָ���8λ����ģ����������ʱ����Ҫ3���ֽ������ã���λ��ǰ
+;;;269        sLCD_WR_Data(0x0032);// ( 0xE0);//     //μ݇˵ì݄զǷָ®ּˇ8λԫˤքì֢oքб̘ʱדѨҪ3ٶؖޚ4ʨ׃ìٟλ՚ǰ
 000076  2032              MOVS     r0,#0x32
 000078  f7fffffe          BL       sLCD_WR_Data
 ;;;270    
-;;;271        //step 4 : ����LCD����ʾģʽ����Ҫ������Ļ��С��LCD�ĵ�·���Ʒ�����ƥ�䣬
-;;;272        sLCD_WR_REG(0x00B0);        //����LCD��ʾģʽ���ֱ���
+;;;271        //step 4 : ʨ׃LCDքДʾģʽìѨҪٹߝǁĻճСۍLCDք֧·࠘׆׽רРƥƤì
+;;;272        sLCD_WR_REG(0x00B0);        //ʨ׃LCDДʾģʽܰؖҦÊ
 00007c  20b0              MOVS     r0,#0xb0
 00007e  f7fffffe          BL       sLCD_WR_REG
-;;;273        sLCD_WR_Data(0x0020);//(0x0018);        // ʹ��FRC 0X0018 18bit LCD���� 
+;;;273        sLCD_WR_Data(0x0020);//(0x0018);        // ʹŜFRC 0X0018 18bit LCD࠘׆ 
 000082  2020              MOVS     r0,#0x20
 000084  f7fffffe          BL       sLCD_WR_Data
 ;;;274        sLCD_WR_Data(0x0000);     //TFTģʽ
 000088  2000              MOVS     r0,#0
 00008a  f7fffffe          BL       sLCD_WR_Data
-;;;275        sLCD_WR_Data((HDP>>8)&0X00FF);  //Set HDP         ˮƽ��С
+;;;275        sLCD_WR_Data((HDP>>8)&0X00FF);  //Set HDP         ˮƽճС
 00008e  4a36              LDR      r2,|L10.360|
 000090  6850              LDR      r0,[r2,#4]  ; HDP
 000092  f3c02007          UBFX     r0,r0,#8,#8
 000096  f7fffffe          BL       sLCD_WR_Data
-;;;276        sLCD_WR_Data(HDP&0X00FF);             //˫�ֽڣ���λ��ǰ
+;;;276        sLCD_WR_Data(HDP&0X00FF);             //˫ؖޚìٟλ՚ǰ
 00009a  6850              LDR      r0,[r2,#4]  ; HDP
 00009c  b2c0              UXTB     r0,r0
 00009e  f7fffffe          BL       sLCD_WR_Data
-;;;277        sLCD_WR_Data((VDP>>8)&0X00FF);  //Set VDP         ��ֱ�ߴ�
+;;;277        sLCD_WR_Data((VDP>>8)&0X00FF);  //Set VDP         Թֱԟէ
 0000a2  6950              LDR      r0,[r2,#0x14]  ; VDP
 0000a4  f3c02007          UBFX     r0,r0,#8,#8
 0000a8  f7fffffe          BL       sLCD_WR_Data
@@ -622,14 +622,14 @@
 0000ac  6950              LDR      r0,[r2,#0x14]  ; VDP
 0000ae  b2c0              UXTB     r0,r0
 0000b0  f7fffffe          BL       sLCD_WR_Data
-;;;279        sLCD_WR_Data(0x0000);                        //RGB˳����TFT�ӿ�
+;;;279        sLCD_WR_Data(0x0000);                        //RGB˳ѲԮѐTFTޓࠚ
 0000b4  2000              MOVS     r0,#0
 0000b6  f7fffffe          BL       sLCD_WR_Data
 ;;;280    
-;;;281        sLCD_WR_REG(0x00B4);        //����  ˮƽ��ʾʱ�����
+;;;281        sLCD_WR_REG(0x00B4);        //ʨ׃  ˮƽДʾʱݤӎ˽
 0000ba  20b4              MOVS     r0,#0xb4
 0000bc  f7fffffe          BL       sLCD_WR_REG
-;;;282        sLCD_WR_Data((HT>>8)&0X00FF);  //Set HT ˮƽ������
+;;;282        sLCD_WR_Data((HT>>8)&0X00FF);  //Set HT ˮƽ؜לǚ
 0000c0  6890              LDR      r0,[r2,#8]  ; HT
 0000c2  f3c02007          UBFX     r0,r0,#8,#8
 0000c6  f7fffffe          BL       sLCD_WR_Data
@@ -637,7 +637,7 @@
 0000ca  6890              LDR      r0,[r2,#8]  ; HT
 0000cc  b2c0              UXTB     r0,r0
 0000ce  f7fffffe          BL       sLCD_WR_Data
-;;;284        sLCD_WR_Data((HPS>>8)&0X00FF);  //Set HPS ˮƽͬ�����忪ʼλ
+;;;284        sLCD_WR_Data((HPS>>8)&0X00FF);  //Set HPS ˮƽͬҽöԥߪʼλ
 0000d2  68d0              LDR      r0,[r2,#0xc]  ; HPS
 0000d4  f3c02007          UBFX     r0,r0,#8,#8
 0000d8  f7fffffe          BL       sLCD_WR_Data
@@ -645,10 +645,10 @@
 0000dc  68d0              LDR      r0,[r2,#0xc]  ; HPS
 0000de  b2c0              UXTB     r0,r0
 0000e0  f7fffffe          BL       sLCD_WR_Data
-;;;286        sLCD_WR_Data(HPW);                           //Set HPW ˮƽͬ���������
+;;;286        sLCD_WR_Data(HPW);                           //Set HPW ˮƽͬҽöԥ࠭׈
 0000e4  7810              LDRB     r0,[r2,#0]  ; HPW
 0000e6  f7fffffe          BL       sLCD_WR_Data
-;;;287        sLCD_WR_Data((LPS>>8)&0X00FF);  //Set LPS ��ʾ��ʼλ
+;;;287        sLCD_WR_Data((LPS>>8)&0X00FF);  //Set LPS Дʾߪʼλ
 0000ea  6910              LDR      r0,[r2,#0x10]  ; LPS
 0000ec  f3c02007          UBFX     r0,r0,#8,#8
 0000f0  f7fffffe          BL       sLCD_WR_Data
@@ -656,14 +656,14 @@
 0000f4  6910              LDR      r0,[r2,#0x10]  ; LPS
 0000f6  b2c0              UXTB     r0,r0
 0000f8  f7fffffe          BL       sLCD_WR_Data
-;;;289        sLCD_WR_Data(0x0000);         //TFT mode�£��������
+;;;289        sLCD_WR_Data(0x0000);         //TFT modeЂìɧՋʨ׃
 0000fc  2000              MOVS     r0,#0
 0000fe  f7fffffe          BL       sLCD_WR_Data
 ;;;290    
-;;;291        sLCD_WR_REG(0x00B6);        //����        ��ֱ��ʾʱ�����
+;;;291        sLCD_WR_REG(0x00B6);        //ʨ׃        ԹֱДʾʱݤӎ˽
 000102  20b6              MOVS     r0,#0xb6
 000104  f7fffffe          BL       sLCD_WR_REG
-;;;292        sLCD_WR_Data((VT>>8)&0X00FF);   //Set VT ��ֱ������
+;;;292        sLCD_WR_Data((VT>>8)&0X00FF);   //Set VT Թֱ؜לǚ
 000108  6990              LDR      r0,[r2,#0x18]  ; VT
 00010a  f3c02007          UBFX     r0,r0,#8,#8
 00010e  f7fffffe          BL       sLCD_WR_Data
@@ -671,7 +671,7 @@
 000112  6990              LDR      r0,[r2,#0x18]  ; VT
 000114  b2c0              UXTB     r0,r0
 000116  f7fffffe          BL       sLCD_WR_Data
-;;;294        sLCD_WR_Data((VPS>>8)&0X00FF);  //Set VPS ��ֱͬ�����忪ʼλ
+;;;294        sLCD_WR_Data((VPS>>8)&0X00FF);  //Set VPS Թֱͬҽöԥߪʼλ
 00011a  69d0              LDR      r0,[r2,#0x1c]  ; VPS
 00011c  f3c02007          UBFX     r0,r0,#8,#8
 000120  f7fffffe          BL       sLCD_WR_Data
@@ -679,10 +679,10 @@
 000124  69d0              LDR      r0,[r2,#0x1c]  ; VPS
 000126  b2c0              UXTB     r0,r0
 000128  f7fffffe          BL       sLCD_WR_Data
-;;;296        sLCD_WR_Data(VPW);                           //Set VPW��ֱͬ���������
+;;;296        sLCD_WR_Data(VPW);                           //Set VPWԹֱͬҽöԥ࠭׈
 00012c  7850              LDRB     r0,[r2,#1]  ; VPW
 00012e  f7fffffe          BL       sLCD_WR_Data
-;;;297        sLCD_WR_Data((FPS>>8)&0X00FF);  //Set FPS  ��ʾ��ʼλ��
+;;;297        sLCD_WR_Data((FPS>>8)&0X00FF);  //Set FPS  Дʾߪʼλ׃
 000132  6a10              LDR      r0,[r2,#0x20]  ; FPS
 000134  f3c02007          UBFX     r0,r0,#8,#8
 000138  f7fffffe          BL       sLCD_WR_Data
@@ -691,45 +691,45 @@
 00013e  b2c0              UXTB     r0,r0
 000140  f7fffffe          BL       sLCD_WR_Data
 ;;;299        
-;;;300        sLCD_WR_REG(0X0036);    //���ô�������ȡָ��˳�򣬿���ʡ�ԣ��ϵ�Ĭ��Ϊ0
+;;;300        sLCD_WR_REG(0X0036);    //ʨ׃Փ׷ׁܺȡָ®˳ѲìࠉӔʡÔìʏ֧ĬɏΪ0
 000144  2036              MOVS     r0,#0x36
 000146  f7fffffe          BL       sLCD_WR_REG
 ;;;301        sLCD_WR_Data(0X0000);
 00014a  2000              MOVS     r0,#0
 00014c  f7fffffe          BL       sLCD_WR_Data
-;;;302        sLCD_WR_REG(0x00F0); //pixel data interface  �����������ݽӿ�Ϊ16λ
+;;;302        sLCD_WR_REG(0x00F0); //pixel data interface  ʨ׃б̘˽ߝޓࠚΪ16λ
 000150  20f0              MOVS     r0,#0xf0
 000152  f7fffffe          BL       sLCD_WR_REG
-;;;303        sLCD_WR_Data(0x0003); //03Ϊ 565 ��16λͨѶ��
+;;;303        sLCD_WR_Data(0x0003); //03Ϊ 565 ք16λͨѶc
 000156  2003              MOVS     r0,#3
 000158  f7fffffe          BL       sLCD_WR_Data
 ;;;304        
-;;;305        //step 5 : ��ѡ������ͼ�κ�����
-;;;306        //sLCD_WR_REG(0x0021);        //����ͼ����ɫ��תģʽ 
+;;;305        //step 5 : ࠉѡcʨ׃ͼю۳Ԧmc
+;;;306        //sLCD_WR_REG(0x0021);        //޸ɫͼюҕɫ׭תģʽ 
 ;;;307    
-;;;308        //sLCD_WR_REG(0x00BC);//����ͼ�����
-;;;309        //sLCD_WR_Data(0x005A);//(0x0080);//�Աȶ�
-;;;310        //sLCD_WR_Data(0x0064);//(0x0080);//����
-;;;311        //sLCD_WR_Data(0x005A);//(0x0080);//���Ͷ�ֵ  //
-;;;312        //sLCD_WR_Data(0x0001);//����������
+;;;308        //sLCD_WR_REG(0x00BC);//ʨ׃ͼб۳Ԧm
+;;;309        //sLCD_WR_Data(0x005A);//(0x0080);//ה҈׈
+;;;310        //sLCD_WR_Data(0x0064);//(0x0080);//׈
+;;;311        //sLCD_WR_Data(0x005A);//(0x0080);//ѥۍ׈ֵ  //
+;;;312        //sLCD_WR_Data(0x0001);//ԦmܺՊѭ
 ;;;313    
-;;;314        //sLCD_Clear(0Xffff);//ˢ�ɰ�ɫ
-;;;315        //sLCD_Clear(0x0000000);//��ɫ
+;;;314        //sLCD_Clear(0Xffff);//ˢԉїɫ
+;;;315        //sLCD_Clear(0x0000000);//ۚɫ
 ;;;316        sLCD_WR_REG(0x0029); //display on
 00015c  2029              MOVS     r0,#0x29
 00015e  f85deb04          POP      {lr}
 000162  f7ffbffe          B.W      sLCD_WR_REG
 ;;;317        
-;;;318    //    // step 6 ���������ã�Ҳ����Ļ��������һ����
-;;;319    //    sLCD_WR_REG(0x00BE); //set PWM����
-;;;320    //    sLCD_WR_Data(0x0006);        //PWMƵ�� = PLL / (256* 0x06) /256        
-;;;321    //    sLCD_WR_Data(0x00ff); // PWMռ�ձ����� 
-;;;322    //    sLCD_WR_Data(0x09); //DBC ����PWM ʹ�� 
-;;;323    //    sLCD_WR_Data(0xFF); //DBC�ֶ���������
-;;;324    //    sLCD_WR_Data(0x00); //DBC ��С�������� 
+;;;318    //    // step 6 ìѳڢʨ׃ìҲˇǁĻǰ4քһҽc
+;;;319    //    sLCD_WR_REG(0x00BE); //set PWM࠘׆
+;;;320    //    sLCD_WR_Data(0x0006);        //PWMƵÊ = PLL / (256* 0x06) /256        
+;;;321    //    sLCD_WR_Data(0x00ff); // PWMռࠕ҈ʨ׃ 
+;;;322    //    sLCD_WR_Data(0x09); //DBC ࠘׆PWM ʹŜ 
+;;;323    //    sLCD_WR_Data(0xFF); //DBC˖֯׈ʨ׃
+;;;324    //    sLCD_WR_Data(0x00); //DBC خС׈ʨ׃ 
 ;;;325    //    sLCD_WR_Data(0x00);
 ;;;326    //
-;;;327    //    sLCD_WR_REG(0xD4); //����ÿ���ȼ��ĵ�Դ��ֵ
+;;;327    //    sLCD_WR_REG(0xD4); //ʨ׃ÿٶֈܶք֧Դקֵ
 ;;;328    //    //TH1 = display width * display height * 3 * 0.1 /16 
 ;;;329    //    //480*272 * 3 * 0.1 /16 =990H
 ;;;330    //    sLCD_WR_Data(0x00); // 
@@ -747,7 +747,7 @@
 ;;;342    //    sLCD_WR_Data(0x39); // 
 ;;;343    //    sLCD_WR_Data(0x60); //
 ;;;344    //                 
-;;;345    //    sLCD_WR_REG(0x00d0);//���ö�̬����������� 
+;;;345    //    sLCD_WR_REG(0x00d0);//ʨ׃̬֯ѳڢ࠘׆Ƥ׃ 
 ;;;346    //    sLCD_WR_Data(0x000d); 
 ;;;347    }
 ;;;348    

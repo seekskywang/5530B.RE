@@ -30,6 +30,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
 #include "bsp_SysTick.h"
+#include "my_register.h"
+
 extern __IO int32_t OS_TimeMS;
 
 extern struct bitDefine
@@ -46,6 +48,7 @@ extern struct bitDefine
 /** @addtogroup Template_Project
   * @{
   */
+float temp;
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -159,20 +162,20 @@ void SysTick_Handler(void)
 	if(t_KeyScan>10)
 	{
 		t_KeyScan=0;
-		Flag_Key_Scan=1;//°´¼üÏû¶¶±êÖ¾
+		Flag_Key_Scan=1;//Ğ´İ¼Ğ»Ö¶ÒªÖ¾
 	}
 	t_0_5S++;
 	if(t_0_5S>20)
 	{
 		t_0_5S=0;
-		Flag_0_5S =1;//·äÃùÆ÷ÏìÒ»Éù±êÖ¾
+		Flag_0_5S =1;//Ø¤Ä¹Ç·Ğ¬Ò»Ê¹ÒªÖ¾
 	}
 //--------------------------------------------
-	if(flag_Tim_USART==1)//´®¿ÚÇåÁã¼ÆÊı
+	if(flag_Tim_USART==1)//Ô®à šÈ¥Â£İ†Ë½
 	{
 		t_USART++;
 	}
-	if(t_USART>40)//´óÔ¼2.6ms
+	if(t_USART>40)//Õ³Ô¼2.6ms
 	{
 		t_USART=0;
 		flag_Tim_USART=0;
@@ -188,7 +191,7 @@ void  DMA2_Stream0_IRQHandler(void)
 
 void  TIM6_DAC_IRQHandler (void)
 {
-	TIM_ClearITPendingBit(TIM6,TIM_IT_Update);//ÇåÖĞ¶Ï±êÖ¾Î»
+	TIM_ClearITPendingBit(TIM6,TIM_IT_Update);//È¥××ÒªÖ¾Î»
 }
 
 void USART1_IRQHandler(void)
@@ -220,6 +223,54 @@ void USART1_IRQHandler(void)
 		}
 	}
 }
+void USART3_IRQHandler(void)
+{
+    static vu8 count = 0;
+    u8 res; 
+    static vu8 i = 0;
+    static float sum;
+    if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
+    {
+        
+        res =USART_ReceiveData(USART3);//(USART1->DR); //×È¡Ş“Ë•Õ½Ö„Ë½ß
+        if(count == 0)
+        {
+            if(res == 0x03)
+            {
+                count = 1;
+            }else{
+                count = 0;
+            }
+        }else if(count == 1){
+             if(res == 0xff)
+            {
+                count = 2;
+            }else{
+                count = 0;
+            }
+            
+        }else if(count > 1 && count <4)
+        {
+            UART_Buffer_Rece[count] = res;               
+//            temp = (UART_Buffer_Rece[2] * 256 + UART_Buffer_Rece[3])/10.0;
+            count ++;
+        }else if(count == 4)
+        {
+            if(i < 10)
+            {
+             sum += (UART_Buffer_Rece[2] * 256 + UART_Buffer_Rece[3])/10.0;
+            }else{
+                temp = sum/10.0;
+                sum = 0;
+                i = 0;
+            }
+             count =0;
+             i ++;
+        }
+        USART_ClearITPendingBit(USART3, USART_IT_RXNE);
+     }
+}
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

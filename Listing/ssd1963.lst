@@ -1,10 +1,10 @@
 L 1 "..\drive\ssd1963.c"
 N/******************************************************************/
-N/* ���ƣH                                          					    */
-N/* Ч����                                                        */
-N/* ���ݣ� ssd1963��������																		    */
-N/* ���ߣ�����                                                    */
-N/* ��ϵ��ʽ��QQ:363116119                                        */
+N/* ĻԆĈ                                          					    */
+N/* Чڻú                                                        */
+N/* Śɝú ssd1963Ƚ֯ԌѲ																		    */
+N/* ط֟únֱ                                                    */
+N/* jϵ׽ʽúQQ:363116119                                        */
 N/******************************************************************/
 N#include "stm32f4xx.h"
 L 1 "..\User\stm32f4xx.h" 1
@@ -34718,7 +34718,22 @@ N#include "STM32F4xx.h"
 N#ifndef __my_register_h__
 N#define __my_register_h__
 N//=============================================================================
-N
+Nvoid Write_Limits(void);
+Nvoid Wrtite_step(void);
+Nvoid OC_ADD(void);
+Nvoid Wrtite_S(void);
+Nvoid Write_oct(void);
+Nvoid Write_alarm(void);
+Nvoid Write_btype(void);
+Nvoid Write_LOAD(void);
+Nvoid Write_info(void);
+Nvoid OC_CHECK(void);
+Nvoid INPUT_POW(char* num);  
+Nvoid INPUT_NUM(char* num); 
+Nvoid INPUT_CDC(char* num); 
+Nvoid INPUT_C(char* num);  
+Nvoid INPUT_LOAD(char* num);  
+Nvoid INPUT_INFO(vu8 num);
 N//=============================================================================
 N#define NOP   __nop();	  //��ָ��
 N
@@ -34838,23 +34853,220 @@ Nextern  float DISS_POW_Voltage;
 Nextern float DISS_Current;
 Nextern float DISS_POW_Current;
 Nextern float DISS_R;
+Nextern vu16 steptime;
+Nextern vu8 r_stable;
+Nextern char set_limit[5];
+Nextern vu8 bit;
+Nextern vu8 bit1;
+Nextern vu8 dot_flag;
+Nextern vu8 page_sw;
+Nextern vu8 para_set1;
+Nextern vu8 para_set2;
+Nextern vu8 para_set3;
+Nextern vu8 para_set4;
+Nextern vu8 oct_sw;
+Nextern vu8 set_sw;
+Nextern vu8 charge_step;
+Nextern vu8 cutoff_flag;
+Nextern vu8 lang;
+Nextern vu8 r_raly;
+Nextern vu16 steptime;
+Nextern vu8 alert_flag;
+Nextern vu8 t_onoff;
+Nextern vu8 ocstop;
+Nextern float temp;
+Nextern vu8 mode_sw;
+Nextern vu16 stepcount;
+Nextern vu16 battery_c;
+Nextern float bc_raw;
+Nextern vu8 track;
+Nextern vu8 clear_flag1;
+Nextern vu8 clear_flag2;
+Nextern vu8 clear_flag3;
+Nextern vu8 pass;
+Nextern vu8 b_type;
+Nextern vu8 buffer;
+Nextern float clear_v;
+Nextern float clear_pv;
+Nextern float clear_lv;
+Nextern float temp;
 N
-Nextern vu32 Run_Control[14];	
+Nextern vu32 Run_Control[37];	
 N#define onoff_ch                    Run_Control[0]  //ON/OFF
-N#define SET_Voltage 	    	        Run_Control[1]  //��Դ�趨��ѹ
-N#define SET_Current	    	    		  Run_Control[2]  //��Դ�趨����
-N#define SET_Voltage_Laod 					  Run_Control[3]  //�����趨��ѹ
-N#define SET_Current_Laod					  Run_Control[4]  //�����趨����
+N#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
+N#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
+N#define SET_Voltage_Laod 					  Run_Control[3]  //غ՘ʨ֧֨ѹ
+N#define SET_Current_Laod					  Run_Control[4]  //غ՘ʨ֧֨·
 N#define LOCK_KEY								    Run_Control[5]  //
 N#define BEEP_KEY								    Run_Control[6]  //
 N#define STRONG_KEY							    Run_Control[7]  //
 N
 N#define MODE_Woke							   	  Run_Control[8]  //
-N#define POW_Voltage	    	          Run_Control[9]  //��Դ������ѹ
-N#define Voltage	    	              Run_Control[10]  //���ز�����ѹ
-N#define Current	    	    		      Run_Control[11]  //��Դ��������
-N#define Laod_Current	    		      Run_Control[12]  //���ز�������
-N#define R_VLUE											Run_Control[13]  //����ֵ
+N#define POW_Voltage	    	            Run_Control[9]  //֧ԴӢ֧ѹ
+N#define Voltage	    	                Run_Control[10]  //غ՘Ӣ֧ѹ
+N#define Current	    	    		    Run_Control[11]  //֧ԴӢ֧·
+N#define Laod_Current	    		    Run_Control[12]  //غ՘Ӣ֧·
+N#define R_VLUE							Run_Control[13]  //Śبֵ
+N#define set_max_v						Run_Control[14]  //设置测量电压上限
+N#define set_min_v						Run_Control[15]  //设置测量电压下限
+N#define set_max_r						Run_Control[16]  //设置测量内阻上限
+N#define set_min_r						Run_Control[17]  //设置测量内阻下限
+N#define set_max_c						Run_Control[18]  //设置测量电流上限
+N#define set_min_c						Run_Control[19]  //设置测量电流西线
+N#define set_output_v					Run_Control[20]  //设置测量输出电压
+N#define set_output_c					Run_Control[21]  //设置测量输出电流
+N#define set_init_c					    Run_Control[22]  //设置测量输出电压
+N#define set_sbs_c					    Run_Control[23]  //设置测量输出电流
+N#define set_add_c					    Run_Control[24]
+N#define set_c_cutoff_v					Run_Control[25]
+N#define set_c_cutoff_c					Run_Control[26]
+N#define set_dc_cutoff_v					Run_Control[27]
+N#define set_dc_cutoff_c					Run_Control[28]
+N#define start_time					    Run_Control[29]
+N#define end_time					    Run_Control[30]
+N#define opv1    					    Run_Control[31]
+N#define opv2    					    Run_Control[32]
+N#define opv3    					    Run_Control[33]
+N#define opc1    					    Run_Control[34]
+N#define opc2    					    Run_Control[35]
+N#define opc3    					    Run_Control[36]
+N
+N
+Nextern float coff[6];
+N#define cov1    					    coff[0]
+N#define cov2    					    coff[1]
+N#define cov3    					    coff[2]
+N#define coc1    					    coff[3]
+N#define coc2    					    coff[4]
+N#define coc3    					    coff[5]										 //����ֵ
+N
+N/*
+N************************************************************************
+N*						页面识别符
+N************************************************************************
+N*/
+N
+N#define face_graph      0
+N#define face_cdc        1
+N#define face_menu       2
+N#define face_r          3
+N#define face_load       4
+N#define face_set        5
+N#define face_starter    6
+N#define face_sys_info   7
+N/*
+N************************************************************************
+N*						设置选项识别符
+N************************************************************************
+N*/
+N
+N#define set_1           0
+N#define set_2           1
+N#define set_3           2
+N#define set_4           3
+N#define set_5           4
+N#define set_6           5
+N#define set_7           6
+N#define set_8           7
+N#define set_9           8
+N#define set_10          9
+N#define set_11          10
+N#define set_12          11
+N#define set_13          12
+N#define set_14          13
+N#define set_15          14
+N#define set_16          15
+N#define set_17          16
+N#define set_18          17
+N#define set_19          18
+N#define set_20          19
+N#define set_21          20
+N#define set_22          21
+N#define set_23          22
+N#define set_24          23
+N#define set_25          24
+N#define set_26          25
+N#define set_27          26
+N#define set_28          27
+N#define set_29          28
+N#define set_30          29
+N#define set_31          30
+N#define set_32          31
+N#define set_33          32
+N#define set_34          33
+N#define set_35          34
+N#define set_36          35
+N#define set_37          36
+N#define set_38          37
+N#define set_39          38
+N#define set_40          39
+N#define set_41          40
+N#define set_42          41
+N#define set_43          42
+N#define set_44          43
+N#define set_45          44
+N#define set_46          45
+N#define set_47          46
+N#define set_48          47
+N#define set_49          48
+N#define set_50          49
+N#define set_51          50
+N#define set_52          51
+N#define set_53          52
+N#define set_54          53
+N#define set_55          54
+N#define set_56          55
+N#define set_57          56
+N#define set_58          57
+N#define set_59          58
+N#define set_60          59
+N#define set_61          60
+N#define set_62          61
+N#define set_63          62
+N#define set_64          63
+N#define set_65          64
+N#define set_66          65
+N#define set_67          66
+N#define set_68          67
+N#define set_69          68
+N#define set_70          69
+N#define set_71          70
+N/*
+N************************************************************************
+N*						参数设置识别符
+N************************************************************************
+N*/
+N
+N#define set_1_on            0xff
+N#define set_1_off           0
+N#define set_2_on            0xff
+N#define set_2_off           0
+N#define set_3_on            1
+N#define set_3_off           0
+N#define set_4_on            0xff
+N#define set_4_off           0
+N#define cdc_on              1
+N#define cdc_off             0
+N#define oct_on              1
+N#define oct_off             0
+N#define c_on                1
+N#define c_off               0
+N#define mode_r              1
+N#define mode_load           2
+N#define mode_pow            3
+N#define load_on             1
+N#define load_off            0
+N#define pow_on              1
+N#define pow_off             0
+N#define Lion                1
+N#define NiMH                2
+N#define NiCd                3
+N#define SLA                 4
+N#define LiMH                5
+N#define step1               0
+N#define step2               1
+N#define step3               2
+N
 N
 N
 Nextern vu16 Contr_Voltage;//
@@ -34910,8 +35122,9 @@ N//=============================================================================
 N#define Receive_BUFFERSIZE   10
 N//=============================================================================
 N#endif
-W "..\Include\my_register.h" 206 90 last line of file ends without a newline
 N/******************* (C) COPYRIGHT 2015 KUNKIN *****END OF FILE*************************/
+N
+N
 L 2 "..\Include\ssd1963.h" 2
 N#include "stm32f4xx.h"
 N#ifndef  SSD1963_H
@@ -34948,7 +35161,22 @@ N#include "STM32F4xx.h"
 N#ifndef __my_register_h__
 S#define __my_register_h__
 S//=============================================================================
-S
+Svoid Write_Limits(void);
+Svoid Wrtite_step(void);
+Svoid OC_ADD(void);
+Svoid Wrtite_S(void);
+Svoid Write_oct(void);
+Svoid Write_alarm(void);
+Svoid Write_btype(void);
+Svoid Write_LOAD(void);
+Svoid Write_info(void);
+Svoid OC_CHECK(void);
+Svoid INPUT_POW(char* num);  
+Svoid INPUT_NUM(char* num); 
+Svoid INPUT_CDC(char* num); 
+Svoid INPUT_C(char* num);  
+Svoid INPUT_LOAD(char* num);  
+Svoid INPUT_INFO(vu8 num);
 S//=============================================================================
 S#define NOP   __nop();	  //��ָ��
 S
@@ -35068,23 +35296,220 @@ Sextern  float DISS_POW_Voltage;
 Sextern float DISS_Current;
 Sextern float DISS_POW_Current;
 Sextern float DISS_R;
+Sextern vu16 steptime;
+Sextern vu8 r_stable;
+Sextern char set_limit[5];
+Sextern vu8 bit;
+Sextern vu8 bit1;
+Sextern vu8 dot_flag;
+Sextern vu8 page_sw;
+Sextern vu8 para_set1;
+Sextern vu8 para_set2;
+Sextern vu8 para_set3;
+Sextern vu8 para_set4;
+Sextern vu8 oct_sw;
+Sextern vu8 set_sw;
+Sextern vu8 charge_step;
+Sextern vu8 cutoff_flag;
+Sextern vu8 lang;
+Sextern vu8 r_raly;
+Sextern vu16 steptime;
+Sextern vu8 alert_flag;
+Sextern vu8 t_onoff;
+Sextern vu8 ocstop;
+Sextern float temp;
+Sextern vu8 mode_sw;
+Sextern vu16 stepcount;
+Sextern vu16 battery_c;
+Sextern float bc_raw;
+Sextern vu8 track;
+Sextern vu8 clear_flag1;
+Sextern vu8 clear_flag2;
+Sextern vu8 clear_flag3;
+Sextern vu8 pass;
+Sextern vu8 b_type;
+Sextern vu8 buffer;
+Sextern float clear_v;
+Sextern float clear_pv;
+Sextern float clear_lv;
+Sextern float temp;
 S
-Sextern vu32 Run_Control[14];	
+Sextern vu32 Run_Control[37];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
-S#define SET_Voltage 	    	        Run_Control[1]  //��Դ�趨��ѹ
-S#define SET_Current	    	    		  Run_Control[2]  //��Դ�趨����
-S#define SET_Voltage_Laod 					  Run_Control[3]  //�����趨��ѹ
-S#define SET_Current_Laod					  Run_Control[4]  //�����趨����
+S#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
+S#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
+S#define SET_Voltage_Laod 					  Run_Control[3]  //غ՘ʨ֧֨ѹ
+S#define SET_Current_Laod					  Run_Control[4]  //غ՘ʨ֧֨·
 S#define LOCK_KEY								    Run_Control[5]  //
 S#define BEEP_KEY								    Run_Control[6]  //
 S#define STRONG_KEY							    Run_Control[7]  //
 S
 S#define MODE_Woke							   	  Run_Control[8]  //
-S#define POW_Voltage	    	          Run_Control[9]  //��Դ������ѹ
-S#define Voltage	    	              Run_Control[10]  //���ز�����ѹ
-S#define Current	    	    		      Run_Control[11]  //��Դ��������
-S#define Laod_Current	    		      Run_Control[12]  //���ز�������
-S#define R_VLUE											Run_Control[13]  //����ֵ
+S#define POW_Voltage	    	            Run_Control[9]  //֧ԴӢ֧ѹ
+S#define Voltage	    	                Run_Control[10]  //غ՘Ӣ֧ѹ
+S#define Current	    	    		    Run_Control[11]  //֧ԴӢ֧·
+S#define Laod_Current	    		    Run_Control[12]  //غ՘Ӣ֧·
+S#define R_VLUE							Run_Control[13]  //Śبֵ
+S#define set_max_v						Run_Control[14]  //设置测量电压上限
+S#define set_min_v						Run_Control[15]  //设置测量电压下限
+S#define set_max_r						Run_Control[16]  //设置测量内阻上限
+S#define set_min_r						Run_Control[17]  //设置测量内阻下限
+S#define set_max_c						Run_Control[18]  //设置测量电流上限
+S#define set_min_c						Run_Control[19]  //设置测量电流西线
+S#define set_output_v					Run_Control[20]  //设置测量输出电压
+S#define set_output_c					Run_Control[21]  //设置测量输出电流
+S#define set_init_c					    Run_Control[22]  //设置测量输出电压
+S#define set_sbs_c					    Run_Control[23]  //设置测量输出电流
+S#define set_add_c					    Run_Control[24]
+S#define set_c_cutoff_v					Run_Control[25]
+S#define set_c_cutoff_c					Run_Control[26]
+S#define set_dc_cutoff_v					Run_Control[27]
+S#define set_dc_cutoff_c					Run_Control[28]
+S#define start_time					    Run_Control[29]
+S#define end_time					    Run_Control[30]
+S#define opv1    					    Run_Control[31]
+S#define opv2    					    Run_Control[32]
+S#define opv3    					    Run_Control[33]
+S#define opc1    					    Run_Control[34]
+S#define opc2    					    Run_Control[35]
+S#define opc3    					    Run_Control[36]
+S
+S
+Sextern float coff[6];
+S#define cov1    					    coff[0]
+S#define cov2    					    coff[1]
+S#define cov3    					    coff[2]
+S#define coc1    					    coff[3]
+S#define coc2    					    coff[4]
+S#define coc3    					    coff[5]										 //����ֵ
+S
+S/*
+S************************************************************************
+S*						页面识别符
+S************************************************************************
+S*/
+S
+S#define face_graph      0
+S#define face_cdc        1
+S#define face_menu       2
+S#define face_r          3
+S#define face_load       4
+S#define face_set        5
+S#define face_starter    6
+S#define face_sys_info   7
+S/*
+S************************************************************************
+S*						设置选项识别符
+S************************************************************************
+S*/
+S
+S#define set_1           0
+S#define set_2           1
+S#define set_3           2
+S#define set_4           3
+S#define set_5           4
+S#define set_6           5
+S#define set_7           6
+S#define set_8           7
+S#define set_9           8
+S#define set_10          9
+S#define set_11          10
+S#define set_12          11
+S#define set_13          12
+S#define set_14          13
+S#define set_15          14
+S#define set_16          15
+S#define set_17          16
+S#define set_18          17
+S#define set_19          18
+S#define set_20          19
+S#define set_21          20
+S#define set_22          21
+S#define set_23          22
+S#define set_24          23
+S#define set_25          24
+S#define set_26          25
+S#define set_27          26
+S#define set_28          27
+S#define set_29          28
+S#define set_30          29
+S#define set_31          30
+S#define set_32          31
+S#define set_33          32
+S#define set_34          33
+S#define set_35          34
+S#define set_36          35
+S#define set_37          36
+S#define set_38          37
+S#define set_39          38
+S#define set_40          39
+S#define set_41          40
+S#define set_42          41
+S#define set_43          42
+S#define set_44          43
+S#define set_45          44
+S#define set_46          45
+S#define set_47          46
+S#define set_48          47
+S#define set_49          48
+S#define set_50          49
+S#define set_51          50
+S#define set_52          51
+S#define set_53          52
+S#define set_54          53
+S#define set_55          54
+S#define set_56          55
+S#define set_57          56
+S#define set_58          57
+S#define set_59          58
+S#define set_60          59
+S#define set_61          60
+S#define set_62          61
+S#define set_63          62
+S#define set_64          63
+S#define set_65          64
+S#define set_66          65
+S#define set_67          66
+S#define set_68          67
+S#define set_69          68
+S#define set_70          69
+S#define set_71          70
+S/*
+S************************************************************************
+S*						参数设置识别符
+S************************************************************************
+S*/
+S
+S#define set_1_on            0xff
+S#define set_1_off           0
+S#define set_2_on            0xff
+S#define set_2_off           0
+S#define set_3_on            1
+S#define set_3_off           0
+S#define set_4_on            0xff
+S#define set_4_off           0
+S#define cdc_on              1
+S#define cdc_off             0
+S#define oct_on              1
+S#define oct_off             0
+S#define c_on                1
+S#define c_off               0
+S#define mode_r              1
+S#define mode_load           2
+S#define mode_pow            3
+S#define load_on             1
+S#define load_off            0
+S#define pow_on              1
+S#define pow_off             0
+S#define Lion                1
+S#define NiMH                2
+S#define NiCd                3
+S#define SLA                 4
+S#define LiMH                5
+S#define step1               0
+S#define step2               1
+S#define step3               2
+S
 S
 S
 Sextern vu16 Contr_Voltage;//
@@ -35140,8 +35565,9 @@ S//=============================================================================
 S#define Receive_BUFFERSIZE   10
 S//=============================================================================
 N#endif
-W "..\Include\my_register.h" 206 90 last line of file ends without a newline
 N/******************* (C) COPYRIGHT 2015 KUNKIN *****END OF FILE*************************/
+N
+N
 L 13 "..\drive\ssd1963.c" 2
 N#include "stm32f4xx_gpio.h"
 N#include "stm32f4xx_rcc.h"
@@ -35290,7 +35716,7 @@ X		GPIO_PinAFConfig(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0
 N		GPIO_PinAFConfig(GPIOE, GPIO_PinSource15 , GPIO_AF_FSMC);
 X		GPIO_PinAFConfig(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1000)), ((uint8_t)0x0F) , ((uint8_t)0xC));
 N    /*
-N        FSMC Data �ܽų�ʼ�� D0~D15
+N        FSMC Data ڜޅԵʼۯ D0~D15
 N    */
 N    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_15 | GPIO_Pin_8 | 
 X    GPIO_InitStructure.GPIO_Pin = ((uint16_t)0x4000) | ((uint16_t)0x8000) | ((uint16_t)0x0100) | 
@@ -35301,7 +35727,7 @@ X                                    ((uint16_t)0x0002) ;
 N    GPIO_InitStructure.GPIO_Speed =GPIO_Speed_100MHz;
 X    GPIO_InitStructure.GPIO_Speed =GPIO_High_Speed;
 N    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-N		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//�������
+N		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//ΆάˤԶ
 N		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 N    GPIO_Init(GPIOD, &GPIO_InitStructure);
 X    GPIO_Init(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0C00)), &GPIO_InitStructure);
@@ -35315,7 +35741,7 @@ X                                    ((uint16_t)0x2000) | ((uint16_t)0x4000) | (
 N		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
 X		GPIO_InitStructure.GPIO_Speed = GPIO_High_Speed;
 N    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-N		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//�������
+N		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//ΆάˤԶ
 N		GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 N    GPIO_Init(GPIOE, &GPIO_InitStructure);
 X    GPIO_Init(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x1000)), &GPIO_InitStructure);
@@ -35439,85 +35865,85 @@ N    DeviceCode = sLCD_Read_Data();
 N    DeviceCode = sLCD_Read_Data();    
 N    DeviceCode = sLCD_Read_Data();    
 N    DeviceCode = DeviceCode;
-N    //  Step 2: PLL����
-N    sLCD_WR_REG(0x00E2);     //0XE2������PLL �ļĴ�����
-N    sLCD_WR_Data(0x001D);// (0x002C);//   //���ñ�Ƶ�� M   0x21D for 10M
-N    sLCD_WR_Data(0x0002);    //���÷�Ƶ�� N
-N    sLCD_WR_Data(0x0004);    //ʹ��MN   PLL = INCLK*(M+1) / (N+1)  PLL ��Ƶ��120M PLL=8*44/3=120M
+N    //  Step 2: PLLʨ׃
+N    sLCD_WR_REG(0x00E2);     //0XE2ˇʨ׃PLL ք݄զǷc
+N    sLCD_WR_Data(0x001D);// (0x002C);//   //ʨ׃ѶƵ˽ M   0x21D for 10M
+N    sLCD_WR_Data(0x0002);    //ʨ׃ؖƵ˽ N
+N    sLCD_WR_Data(0x0004);    //ʹŜMN   PLL = INCLK*(M+1) / (N+1)  PLL ѶƵս120M PLL=8*44/3=120M
 N
-N    sLCD_WR_REG(0x00E0);     //0XE0��PLLʹ�ܼĴ���
-N    sLCD_WR_Data(0x0001);    //�ȿ���PLL
+N    sLCD_WR_REG(0x00E0);     //0XE0ˇPLLʹŜ݄զǷ
+N    sLCD_WR_Data(0x0001);    //ЈߪǴPLL
 N    Delay_ms(10);
 N	
-N    sLCD_WR_REG(0x00E0);     //��Ҫһ��
-N    sLCD_WR_Data(0x0003);    // ʹ�� PLL��Ϊʱ��
+N    sLCD_WR_REG(0x00E0);     //۹ҪһՎ
+N    sLCD_WR_Data(0x0003);    // ʹԃ PLLطΪʱד
 N    Delay_ms(10);
-N    sLCD_WR_REG(0x0001);     // ������λ
+N    sLCD_WR_REG(0x0001);     // ɭݾشλ
 N    Delay_ms(10);
 N
-N    //step 3 : ����PCLK��Ҳ��������ʱ��
-N    sLCD_WR_REG(0xE6);        //�ţ�û�� 0XE6����������ʱ�ӵļĴ���  
-N    sLCD_WR_Data(0x0001);//(0x01);//       //�ҵ���Ļ��4.3�磬���Ƶ�ʾͿ����ˣ������Ļ�Ƚϴ�����˸�Ļ��������ټӴ�
+N    //step 3 : ʨ׃PCLKìҲߍˇб̘ʱד
+N    sLCD_WR_REG(0xE6);        //ᅣ̓۴𜁘E6ˇʨ׃б̘ʱדք݄զǷ  
+N    sLCD_WR_Data(0x0001);//(0x01);//       //ϒքǁĻˇ4.3էì֢ٶƵÊߍࠉӔìɧڻǁĻ҈ޏճìԐʁ˸ք۰ìࠉӔՙݓճ
 N    sLCD_WR_Data(0x0093);//(0x93);//
-N    sLCD_WR_Data(0x0032);// ( 0xE0);//     //����˵�ˣ��Ĵ���ָ���8λ����ģ����������ʱ����Ҫ3���ֽ������ã���λ��ǰ
+N    sLCD_WR_Data(0x0032);// ( 0xE0);//     //μ݇˵ì݄զǷָ®ּˇ8λԫˤքì֢oքб̘ʱדѨҪ3ٶؖޚ4ʨ׃ìٟλ՚ǰ
 N
-N    //step 4 : ����LCD����ʾģʽ����Ҫ������Ļ��С��LCD�ĵ�·���Ʒ�����ƥ�䣬
-N    sLCD_WR_REG(0x00B0);        //����LCD��ʾģʽ���ֱ���
-N    sLCD_WR_Data(0x0020);//(0x0018);        // ʹ��FRC 0X0018 18bit LCD���� 
+N    //step 4 : ʨ׃LCDքДʾģʽìѨҪٹߝǁĻճСۍLCDք֧·࠘׆׽רРƥƤì
+N    sLCD_WR_REG(0x00B0);        //ʨ׃LCDДʾģʽܰؖҦÊ
+N    sLCD_WR_Data(0x0020);//(0x0018);        // ʹŜFRC 0X0018 18bit LCD࠘׆ 
 N    sLCD_WR_Data(0x0000);     //TFTģʽ
-N    sLCD_WR_Data((HDP>>8)&0X00FF);  //Set HDP         ˮƽ��С
-N    sLCD_WR_Data(HDP&0X00FF);             //˫�ֽڣ���λ��ǰ
-N    sLCD_WR_Data((VDP>>8)&0X00FF);  //Set VDP         ��ֱ�ߴ�
+N    sLCD_WR_Data((HDP>>8)&0X00FF);  //Set HDP         ˮƽճС
+N    sLCD_WR_Data(HDP&0X00FF);             //˫ؖޚìٟλ՚ǰ
+N    sLCD_WR_Data((VDP>>8)&0X00FF);  //Set VDP         Թֱԟէ
 N    sLCD_WR_Data(VDP&0X00FF);
-N    sLCD_WR_Data(0x0000);                        //RGB˳����TFT�ӿ�
+N    sLCD_WR_Data(0x0000);                        //RGB˳ѲԮѐTFTޓࠚ
 N
-N    sLCD_WR_REG(0x00B4);        //����  ˮƽ��ʾʱ�����
-N    sLCD_WR_Data((HT>>8)&0X00FF);  //Set HT ˮƽ������
+N    sLCD_WR_REG(0x00B4);        //ʨ׃  ˮƽДʾʱݤӎ˽
+N    sLCD_WR_Data((HT>>8)&0X00FF);  //Set HT ˮƽ؜לǚ
 N    sLCD_WR_Data(HT&0X00FF);
-N    sLCD_WR_Data((HPS>>8)&0X00FF);  //Set HPS ˮƽͬ�����忪ʼλ
+N    sLCD_WR_Data((HPS>>8)&0X00FF);  //Set HPS ˮƽͬҽöԥߪʼλ
 N    sLCD_WR_Data(HPS&0X00FF);
-N    sLCD_WR_Data(HPW);                           //Set HPW ˮƽͬ���������
-N    sLCD_WR_Data((LPS>>8)&0X00FF);  //Set LPS ��ʾ��ʼλ
+N    sLCD_WR_Data(HPW);                           //Set HPW ˮƽͬҽöԥ࠭׈
+N    sLCD_WR_Data((LPS>>8)&0X00FF);  //Set LPS Дʾߪʼλ
 N    sLCD_WR_Data(LPS&0X00FF);
-N    sLCD_WR_Data(0x0000);         //TFT mode�£��������
+N    sLCD_WR_Data(0x0000);         //TFT modeЂìɧՋʨ׃
 N
-N    sLCD_WR_REG(0x00B6);        //����        ��ֱ��ʾʱ�����
-N    sLCD_WR_Data((VT>>8)&0X00FF);   //Set VT ��ֱ������
+N    sLCD_WR_REG(0x00B6);        //ʨ׃        ԹֱДʾʱݤӎ˽
+N    sLCD_WR_Data((VT>>8)&0X00FF);   //Set VT Թֱ؜לǚ
 N    sLCD_WR_Data(VT&0X00FF);
-N    sLCD_WR_Data((VPS>>8)&0X00FF);  //Set VPS ��ֱͬ�����忪ʼλ
+N    sLCD_WR_Data((VPS>>8)&0X00FF);  //Set VPS Թֱͬҽöԥߪʼλ
 N    sLCD_WR_Data(VPS&0X00FF);
-N    sLCD_WR_Data(VPW);                           //Set VPW��ֱͬ���������
-N    sLCD_WR_Data((FPS>>8)&0X00FF);  //Set FPS  ��ʾ��ʼλ��
+N    sLCD_WR_Data(VPW);                           //Set VPWԹֱͬҽöԥ࠭׈
+N    sLCD_WR_Data((FPS>>8)&0X00FF);  //Set FPS  Дʾߪʼλ׃
 N    sLCD_WR_Data(FPS&0X00FF);
 N    
-N    sLCD_WR_REG(0X0036);    //���ô�������ȡָ��˳�򣬿���ʡ�ԣ��ϵ�Ĭ��Ϊ0
+N    sLCD_WR_REG(0X0036);    //ʨ׃Փ׷ׁܺȡָ®˳ѲìࠉӔʡÔìʏ֧ĬɏΪ0
 N    sLCD_WR_Data(0X0000);
-N    sLCD_WR_REG(0x00F0); //pixel data interface  �����������ݽӿ�Ϊ16λ
-N    sLCD_WR_Data(0x0003); //03Ϊ 565 ��16λͨѶ��
+N    sLCD_WR_REG(0x00F0); //pixel data interface  ʨ׃б̘˽ߝޓࠚΪ16λ
+N    sLCD_WR_Data(0x0003); //03Ϊ 565 ք16λͨѶc
 N    
-N    //step 5 : ��ѡ������ͼ�κ�����
-N    //sLCD_WR_REG(0x0021);        //����ͼ����ɫ��תģʽ 
+N    //step 5 : ࠉѡcʨ׃ͼю۳Ԧmc
+N    //sLCD_WR_REG(0x0021);        //޸ɫͼюҕɫ׭תģʽ 
 N
-N    //sLCD_WR_REG(0x00BC);//����ͼ�����
-N    //sLCD_WR_Data(0x005A);//(0x0080);//�Աȶ�
-N    //sLCD_WR_Data(0x0064);//(0x0080);//����
-N    //sLCD_WR_Data(0x005A);//(0x0080);//���Ͷ�ֵ  //
-N    //sLCD_WR_Data(0x0001);//����������
+N    //sLCD_WR_REG(0x00BC);//ʨ׃ͼб۳Ԧm
+N    //sLCD_WR_Data(0x005A);//(0x0080);//ה҈׈
+N    //sLCD_WR_Data(0x0064);//(0x0080);//׈
+N    //sLCD_WR_Data(0x005A);//(0x0080);//ѥۍ׈ֵ  //
+N    //sLCD_WR_Data(0x0001);//ԦmܺՊѭ
 N
-N    //sLCD_Clear(0Xffff);//ˢ�ɰ�ɫ
-N    //sLCD_Clear(0x0000000);//��ɫ
+N    //sLCD_Clear(0Xffff);//ˢԉїɫ
+N    //sLCD_Clear(0x0000000);//ۚɫ
 N    sLCD_WR_REG(0x0029); //display on
 N    
-N//    // step 6 ���������ã�Ҳ����Ļ��������һ����
-N//    sLCD_WR_REG(0x00BE); //set PWM����
-N//    sLCD_WR_Data(0x0006);        //PWMƵ�� = PLL / (256* 0x06) /256        
-N//    sLCD_WR_Data(0x00ff); // PWMռ�ձ����� 
-N//    sLCD_WR_Data(0x09); //DBC ����PWM ʹ�� 
-N//    sLCD_WR_Data(0xFF); //DBC�ֶ���������
-N//    sLCD_WR_Data(0x00); //DBC ��С�������� 
+N//    // step 6 ìѳڢʨ׃ìҲˇǁĻǰ4քһҽc
+N//    sLCD_WR_REG(0x00BE); //set PWM࠘׆
+N//    sLCD_WR_Data(0x0006);        //PWMƵÊ = PLL / (256* 0x06) /256        
+N//    sLCD_WR_Data(0x00ff); // PWMռࠕ҈ʨ׃ 
+N//    sLCD_WR_Data(0x09); //DBC ࠘׆PWM ʹŜ 
+N//    sLCD_WR_Data(0xFF); //DBC˖֯׈ʨ׃
+N//    sLCD_WR_Data(0x00); //DBC خС׈ʨ׃ 
 N//    sLCD_WR_Data(0x00);
 N//
-N//    sLCD_WR_REG(0xD4); //����ÿ���ȼ��ĵ�Դ��ֵ
+N//    sLCD_WR_REG(0xD4); //ʨ׃ÿٶֈܶք֧Դקֵ
 N//    //TH1 = display width * display height * 3 * 0.1 /16 
 N//    //480*272 * 3 * 0.1 /16 =990H
 N//    sLCD_WR_Data(0x00); // 
@@ -35535,7 +35961,7 @@ N//    sLCD_WR_Data(0x00); //
 N//    sLCD_WR_Data(0x39); // 
 N//    sLCD_WR_Data(0x60); //
 N//                 
-N//    sLCD_WR_REG(0x00d0);//���ö�̬����������� 
+N//    sLCD_WR_REG(0x00d0);//ʨ׃̬֯ѳڢ࠘׆Ƥ׃ 
 N//    sLCD_WR_Data(0x000d); 
 N}
 N

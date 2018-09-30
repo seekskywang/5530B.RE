@@ -67,6 +67,7 @@
 ;;;812    	return CRC_Result;
 ;;;813    }
 00003a  bd30              POP      {r4,r5,pc}
+;;;814    
                           ENDP
 
 
@@ -2048,7 +2049,7 @@
                   Correct_Strong
                           %        44
                   Run_Control
-                          %        56
+                          %        148
 
                           AREA ||.data||, DATA, ALIGN=1
 

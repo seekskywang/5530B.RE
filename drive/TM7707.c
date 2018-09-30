@@ -247,3 +247,4 @@ void TM7707_Reset(void)
 		TM7707_ST_UNRESET();
 		TM7707_Delay(5000);
 }
+

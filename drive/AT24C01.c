@@ -342,10 +342,10 @@ vu8 EEPROM_READ_Byte(vu8 ReadAddr)
 
 /*--------------------------------------------------------------------------------------------------*/
 
-static void ee_Delay( vu32 nCount)	 //简单的延时函数
-{
-	for(; nCount != 0; nCount--);
-}
+// static void ee_Delay( vu32 nCount)	 //简单的延时函数
+// {
+// 	for(; nCount != 0; nCount--);
+// }
 
 /*
  * eeprom AT24C02 读写测试

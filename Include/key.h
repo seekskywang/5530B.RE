@@ -18,6 +18,8 @@ void Setvalue_Add(void);
 void Setvalue_Reduction(void);
 void Auto_Test(void);
 void Setvalue_Change(void);
+void setmode_r(void);
 /******************************************************************/
 #endif
 /******************* (C) COPYRIGHT 2015 AVER *****END OF FILE***************************/
+

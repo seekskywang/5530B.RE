@@ -240,3 +240,4 @@ void TM1650_SET_LED(vu8 addr,vu8 dat)
 	ucAck = IIc_WaitAck();	/* 等待ACK*/
 	IIc_Stop();			/* 读完停止 */
 }
+

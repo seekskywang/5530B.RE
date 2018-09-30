@@ -73,3 +73,4 @@ void TIM1_PWM_Config(void)
   TIM_CtrlPWMOutputs(TIM1, ENABLE);	
 	TIM_SetCompare1(TIM1,PWM_FI/2);
 }
+
