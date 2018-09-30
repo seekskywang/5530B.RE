@@ -15,7 +15,7 @@
 ;;;143        static vu16 scancount;
 ;;;144        
 ;;;145        if(TIM_GetITStatus(TIM3,TIM_IT_Update)==SET) //ӧԶא׏
-000004  4c2d              LDR      r4,|L1.188|
+000004  4c2e              LDR      r4,|L1.192|
 000006  2101              MOVS     r1,#1
 000008  4620              MOV      r0,r4
 00000a  f7fffffe          BL       TIM_GetITStatus
@@ -27,16 +27,16 @@
 000014  4620              MOV      r0,r4
 000016  f7fffffe          BL       TIM_ClearITPendingBit
 ;;;148            if(page_sw != face_starter)
-00001a  4c29              LDR      r4,|L1.192|
+00001a  4c2a              LDR      r4,|L1.196|
 00001c  7820              LDRB     r0,[r4,#0]  ; page_sw
 00001e  2601              MOVS     r6,#1                 ;145
 ;;;149            {
 ;;;150                 if(resetflag == 1)
 ;;;151                 {
-;;;152                     if(resetcount == 2)
+;;;152                     if(resetcount == 1)
 ;;;153                     {
-;;;154                         sLCD_WR_REG(0x01);
-;;;155    //                     LCD_Initializtion();
+;;;154                         LCD_Initializtion();
+;;;155                         sLCD_WR_REG(0xf1);
 ;;;156                         GUI_Init();
 ;;;157                         if(page_sw == face_menu)
 ;;;158                         {
@@ -56,14 +56,14 @@
 ;;;172    //                     resetflag = 0;
 ;;;173                         resetcount = 0;
 000020  2700              MOVS     r7,#0
-000022  4d28              LDR      r5,|L1.196|
+000022  4d29              LDR      r5,|L1.200|
 000024  2806              CMP      r0,#6                 ;148
 000026  d008              BEQ      |L1.58|
 000028  7868              LDRB     r0,[r5,#1]            ;150  ; resetflag
 00002a  2801              CMP      r0,#1                 ;150
 00002c  d105              BNE      |L1.58|
 00002e  88a8              LDRH     r0,[r5,#4]            ;152  ; resetcount
-000030  2802              CMP      r0,#2                 ;152
+000030  2801              CMP      r0,#1                 ;152
 000032  d018              BEQ      |L1.102|
 ;;;174                     }else{
 ;;;175                         resetcount++;
@@ -147,13 +147,13 @@
 ;;;246                case face_r:
 ;;;247                {
 ;;;248                    if(oct_sw == oct_on)
-000040  4821              LDR      r0,|L1.200|
+000040  4822              LDR      r0,|L1.204|
 000042  7800              LDRB     r0,[r0,#0]  ; oct_sw
 000044  2801              CMP      r0,#1
 000046  d10c              BNE      |L1.98|
 ;;;249                    {
 ;;;250                        if(alert_flag == 1)
-000048  4820              LDR      r0,|L1.204|
+000048  4821              LDR      r0,|L1.208|
 00004a  7800              LDRB     r0,[r0,#0]  ; alert_flag
 00004c  2801              CMP      r0,#1
 00004e  d108              BNE      |L1.98|
@@ -168,7 +168,7 @@
 00005a  d102              BNE      |L1.98|
 ;;;254                            {
 ;;;255                                ocstop = 1;
-00005c  481c              LDR      r0,|L1.208|
+00005c  481d              LDR      r0,|L1.212|
 00005e  7006              STRB     r6,[r0,#0]
 ;;;256                                calert = 0;
 000060  702f              STRB     r7,[r5,#0]
@@ -186,62 +186,63 @@
 ;;;267    }
 000062  e8bd81f0          POP      {r4-r8,pc}
                   |L1.102|
-000066  2001              MOVS     r0,#1                 ;154
-000068  f7fffffe          BL       sLCD_WR_REG
-00006c  f7fffffe          BL       GUI_Init
-000070  7820              LDRB     r0,[r4,#0]            ;157  ; page_sw
-000072  2802              CMP      r0,#2                 ;157
-000074  d00e              BEQ      |L1.148|
-000076  7820              LDRB     r0,[r4,#0]            ;160  ; page_sw
-000078  2801              CMP      r0,#1                 ;160
-00007a  d00e              BEQ      |L1.154|
-00007c  7820              LDRB     r0,[r4,#0]            ;162  ; page_sw
-00007e  2803              CMP      r0,#3                 ;162
-000080  d00e              BEQ      |L1.160|
-000082  7820              LDRB     r0,[r4,#0]            ;164  ; page_sw
-000084  2804              CMP      r0,#4                 ;164
-000086  d00e              BEQ      |L1.166|
-000088  7820              LDRB     r0,[r4,#0]            ;166  ; page_sw
-00008a  b178              CBZ      r0,|L1.172|
-00008c  7820              LDRB     r0,[r4,#0]            ;168  ; page_sw
-00008e  2805              CMP      r0,#5                 ;168
-000090  d00f              BEQ      |L1.178|
-000092  e010              B        |L1.182|
-                  |L1.148|
-000094  f7fffffe          BL       ResetPow
-000098  e00d              B        |L1.182|
-                  |L1.154|
-00009a  f7fffffe          BL       ResetCDC
-00009e  e00a              B        |L1.182|
-                  |L1.160|
-0000a0  f7fffffe          BL       ResetR
-0000a4  e007              B        |L1.182|
-                  |L1.166|
-0000a6  f7fffffe          BL       ResetLoad
-0000aa  e004              B        |L1.182|
-                  |L1.172|
-0000ac  f7fffffe          BL       ResetG
-0000b0  e001              B        |L1.182|
-                  |L1.178|
-0000b2  f7fffffe          BL       ResetSET
+000066  f7fffffe          BL       LCD_Initializtion
+00006a  20f1              MOVS     r0,#0xf1              ;155
+00006c  f7fffffe          BL       sLCD_WR_REG
+000070  f7fffffe          BL       GUI_Init
+000074  7820              LDRB     r0,[r4,#0]            ;157  ; page_sw
+000076  2802              CMP      r0,#2                 ;157
+000078  d00e              BEQ      |L1.152|
+00007a  7820              LDRB     r0,[r4,#0]            ;160  ; page_sw
+00007c  2801              CMP      r0,#1                 ;160
+00007e  d00e              BEQ      |L1.158|
+000080  7820              LDRB     r0,[r4,#0]            ;162  ; page_sw
+000082  2803              CMP      r0,#3                 ;162
+000084  d00e              BEQ      |L1.164|
+000086  7820              LDRB     r0,[r4,#0]            ;164  ; page_sw
+000088  2804              CMP      r0,#4                 ;164
+00008a  d00e              BEQ      |L1.170|
+00008c  7820              LDRB     r0,[r4,#0]            ;166  ; page_sw
+00008e  b178              CBZ      r0,|L1.176|
+000090  7820              LDRB     r0,[r4,#0]            ;168  ; page_sw
+000092  2805              CMP      r0,#5                 ;168
+000094  d00f              BEQ      |L1.182|
+000096  e010              B        |L1.186|
+                  |L1.152|
+000098  f7fffffe          BL       ResetPow
+00009c  e00d              B        |L1.186|
+                  |L1.158|
+00009e  f7fffffe          BL       ResetCDC
+0000a2  e00a              B        |L1.186|
+                  |L1.164|
+0000a4  f7fffffe          BL       ResetR
+0000a8  e007              B        |L1.186|
+                  |L1.170|
+0000aa  f7fffffe          BL       ResetLoad
+0000ae  e004              B        |L1.186|
+                  |L1.176|
+0000b0  f7fffffe          BL       ResetG
+0000b4  e001              B        |L1.186|
                   |L1.182|
-0000b6  70ae              STRB     r6,[r5,#2]            ;171
-0000b8  80af              STRH     r7,[r5,#4]            ;173
-0000ba  e7be              B        |L1.58|
+0000b6  f7fffffe          BL       ResetSET
+                  |L1.186|
+0000ba  70ae              STRB     r6,[r5,#2]            ;171
+0000bc  80af              STRH     r7,[r5,#4]            ;173
+0000be  e7bc              B        |L1.58|
 ;;;268    
                           ENDP
 
-                  |L1.188|
-                          DCD      0x40000400
                   |L1.192|
-                          DCD      page_sw
+                          DCD      0x40000400
                   |L1.196|
-                          DCD      ||.data||
+                          DCD      page_sw
                   |L1.200|
-                          DCD      oct_sw
+                          DCD      ||.data||
                   |L1.204|
-                          DCD      alert_flag
+                          DCD      oct_sw
                   |L1.208|
+                          DCD      alert_flag
+                  |L1.212|
                           DCD      ocstop
 
                           AREA ||i.TIM3_Int_Init||, CODE, READONLY, ALIGN=2

@@ -49589,10 +49589,10 @@ X        if(page_sw != 6)
 N        {
 N             if(resetflag == 1)
 N             {
-N                 if(resetcount == 2)
+N                 if(resetcount == 1)
 N                 {
-N                     sLCD_WR_REG(0x01);
-N//                     LCD_Initializtion();
+N                     LCD_Initializtion();
+N                     sLCD_WR_REG(0xf1);
 N                     GUI_Init();
 N                     if(page_sw == face_menu)
 X                     if(page_sw == 2)

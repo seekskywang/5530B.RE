@@ -50832,12 +50832,12 @@ N
 N			case KEY_ESC :
 X			case 0X6D :
 N			{
-W "..\drive\key.c" 824 17 function "LCD_Initializtion" declared implicitly
-N                LCD_Initializtion();
+W "..\drive\key.c" 824 17 function "sLCD_WR_REG" declared implicitly
+N                sLCD_WR_REG(0x01);
 N//                main();
 N				timer_sw = 0;
 N				KeyCounter = 0;
-N				BEEP_Tiggr();//瑙﹀彂铚傞福鍣
+N//				BEEP_Tiggr();//瑙﹀彂铚傞福鍣
 N			}
 N			break;
 N			

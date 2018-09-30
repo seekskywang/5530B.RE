@@ -36253,74 +36253,108 @@ X	correct_por[4]=EEPROM_READ_Byte(0x5D);
 N	Polar5=EEPROM_READ_Byte(0x5E);
 X	correct_por[5]=EEPROM_READ_Byte(0x5E);
 N    
-N//     t_beep=EEPROM_READ_Byte(0x60);
-N//     para_set4 = EEPROM_READ_Byte(0x7A);
-N//     para_set2 = EEPROM_READ_Byte(0x7B);
-N//     b_type = EEPROM_READ_Byte(0x78);
-N//     buffer = EEPROM_READ_Byte(0x79);
-N//     para_set1 = EEPROM_READ_Byte(0x61);
-N//     year1 = EEPROM_READ_Byte(0x7C);
-N//     year2 = EEPROM_READ_Byte(0x7D);
-N//     year3 = EEPROM_READ_Byte(0x7E);
-N//     year4 = EEPROM_READ_Byte(0x7F);
-N//     month1 = EEPROM_READ_Byte(0x80);
-N//     month2 = EEPROM_READ_Byte(0x81);
-N//     day1 = EEPROM_READ_Byte(0x82);
-N//     day2 = EEPROM_READ_Byte(0x83);
-N//     code1 = EEPROM_READ_Byte(0x84);
-N//     code2 = EEPROM_READ_Byte(0x85);
-N//     code3 = EEPROM_READ_Byte(0x86);
-N//     code4 = EEPROM_READ_Byte(0x87);
-N//     code5 = EEPROM_READ_Byte(0x88);
-N//     code6 = EEPROM_READ_Byte(0x89);
-N//     code7 = EEPROM_READ_Byte(0x8A);
-N//     code8 = EEPROM_READ_Byte(0x8B);
-N//     flag_Load_CC = EEPROM_READ_Byte(0x8C);
-N//     steptime = EEPROM_READ_Byte(0x8D);
-N//     
-N//     set_max_v=EEPROM_READ_Byte(0x62);
-N// 	set_max_v=set_max_v<<8;
-N// 	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
-N// 	
-N// 	set_min_v=EEPROM_READ_Byte(0x64);
-N// 	set_min_v=set_min_v<<8;
-N// 	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
-N//     
-N// 	set_max_r=EEPROM_READ_Byte(0x66);
-N// 	set_max_r=set_max_r<<8;
-N// 	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
-N// 	
-N// 	set_min_r=EEPROM_READ_Byte(0x68);
-N// 	set_min_r=set_min_r<<8;
-N// 	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
+N    t_beep=EEPROM_READ_Byte(0x60);
+N    para_set4 = EEPROM_READ_Byte(0x7A);
+N    para_set2 = EEPROM_READ_Byte(0x7B);
+N    b_type = EEPROM_READ_Byte(0x78);
+N    buffer = EEPROM_READ_Byte(0x79);
+N    para_set1 = EEPROM_READ_Byte(0x61);
+N    year1 = EEPROM_READ_Byte(0x7C);
+N    year2 = EEPROM_READ_Byte(0x7D);
+N    year3 = EEPROM_READ_Byte(0x7E);
+N    year4 = EEPROM_READ_Byte(0x7F);
+N    month1 = EEPROM_READ_Byte(0x80);
+N    month2 = EEPROM_READ_Byte(0x81);
+N    day1 = EEPROM_READ_Byte(0x82);
+N    day2 = EEPROM_READ_Byte(0x83);
+N    code1 = EEPROM_READ_Byte(0x84);
+N    code2 = EEPROM_READ_Byte(0x85);
+N    code3 = EEPROM_READ_Byte(0x86);
+N    code4 = EEPROM_READ_Byte(0x87);
+N    code5 = EEPROM_READ_Byte(0x88);
+N    code6 = EEPROM_READ_Byte(0x89);
+N    code7 = EEPROM_READ_Byte(0x8A);
+N    code8 = EEPROM_READ_Byte(0x8B);
+N    flag_Load_CC = EEPROM_READ_Byte(0x8C);
+X    (flagD . bit7) = EEPROM_READ_Byte(0x8C);
+N    steptime = EEPROM_READ_Byte(0x8D);
+N    
+N    set_max_v=EEPROM_READ_Byte(0x62);
+X    Run_Control[14]=EEPROM_READ_Byte(0x62);
+N	set_max_v=set_max_v<<8;
+X	Run_Control[14]=Run_Control[14]<<8;
+N	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
+X	Run_Control[14]=Run_Control[14]+EEPROM_READ_Byte(0x63);
+N	
+N	set_min_v=EEPROM_READ_Byte(0x64);
+X	Run_Control[15]=EEPROM_READ_Byte(0x64);
+N	set_min_v=set_min_v<<8;
+X	Run_Control[15]=Run_Control[15]<<8;
+N	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
+X	Run_Control[15]=Run_Control[15]+EEPROM_READ_Byte(0x65);
+N    
+N	set_max_r=EEPROM_READ_Byte(0x66);
+X	Run_Control[16]=EEPROM_READ_Byte(0x66);
+N	set_max_r=set_max_r<<8;
+X	Run_Control[16]=Run_Control[16]<<8;
+N	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
+X	Run_Control[16]=Run_Control[16]+EEPROM_READ_Byte(0x67);
+N	
+N	set_min_r=EEPROM_READ_Byte(0x68);
+X	Run_Control[17]=EEPROM_READ_Byte(0x68);
+N	set_min_r=set_min_r<<8;
+X	Run_Control[17]=Run_Control[17]<<8;
+N	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
+X	Run_Control[17]=Run_Control[17]+EEPROM_READ_Byte(0x69);
 N
-N//     set_max_c=EEPROM_READ_Byte(0x6A);
-N// 	set_max_c=set_max_c<<8;
-N// 	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
-N// 	
-N// 	set_min_c=EEPROM_READ_Byte(0x6C);
-N// 	set_min_c=set_min_c<<8;
-N// 	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
-N//     
-N//     SET_Voltage=EEPROM_READ_Byte(0x6E);
-N// 	SET_Voltage=SET_Voltage<<8;
-N// 	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
-N// 	
-N// 	SET_Current=EEPROM_READ_Byte(0x70);
-N// 	SET_Current=SET_Current<<8;
-N// 	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
+N    set_max_c=EEPROM_READ_Byte(0x6A);
+X    Run_Control[18]=EEPROM_READ_Byte(0x6A);
+N	set_max_c=set_max_c<<8;
+X	Run_Control[18]=Run_Control[18]<<8;
+N	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
+X	Run_Control[18]=Run_Control[18]+EEPROM_READ_Byte(0x6B);
+N	
+N	set_min_c=EEPROM_READ_Byte(0x6C);
+X	Run_Control[19]=EEPROM_READ_Byte(0x6C);
+N	set_min_c=set_min_c<<8;
+X	Run_Control[19]=Run_Control[19]<<8;
+N	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
+X	Run_Control[19]=Run_Control[19]+EEPROM_READ_Byte(0x6D);
+N    
+N    SET_Voltage=EEPROM_READ_Byte(0x6E);
+X    Run_Control[1]=EEPROM_READ_Byte(0x6E);
+N	SET_Voltage=SET_Voltage<<8;
+X	Run_Control[1]=Run_Control[1]<<8;
+N	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
+X	Run_Control[1]=Run_Control[1]+EEPROM_READ_Byte(0x6F);
+N	
+N	SET_Current=EEPROM_READ_Byte(0x70);
+X	Run_Control[2]=EEPROM_READ_Byte(0x70);
+N	SET_Current=SET_Current<<8;
+X	Run_Control[2]=Run_Control[2]<<8;
+N	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
+X	Run_Control[2]=Run_Control[2]+EEPROM_READ_Byte(0x71);
 N
-N//     SET_Current_Laod=EEPROM_READ_Byte(0x72);
-N// 	SET_Current_Laod=SET_Current_Laod<<8;
-N// 	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
-N//     
-N//     set_init_c=EEPROM_READ_Byte(0x74);
-N// 	set_init_c=set_init_c<<8;
-N// 	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
-N//     
-N//     set_sbs_c=EEPROM_READ_Byte(0x76);
-N// 	set_sbs_c=set_sbs_c<<8;
-N// 	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
+N    SET_Current_Laod=EEPROM_READ_Byte(0x72);
+X    Run_Control[4]=EEPROM_READ_Byte(0x72);
+N	SET_Current_Laod=SET_Current_Laod<<8;
+X	Run_Control[4]=Run_Control[4]<<8;
+N	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
+X	Run_Control[4]=Run_Control[4]+EEPROM_READ_Byte(0x73); 
+N    
+N    set_init_c=EEPROM_READ_Byte(0x74);
+X    Run_Control[22]=EEPROM_READ_Byte(0x74);
+N	set_init_c=set_init_c<<8;
+X	Run_Control[22]=Run_Control[22]<<8;
+N	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
+X	Run_Control[22]=Run_Control[22]+EEPROM_READ_Byte(0x75);
+N    
+N    set_sbs_c=EEPROM_READ_Byte(0x76);
+X    Run_Control[23]=EEPROM_READ_Byte(0x76);
+N	set_sbs_c=set_sbs_c<<8;
+X	Run_Control[23]=Run_Control[23]<<8;
+N	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
+X	Run_Control[23]=Run_Control[23]+EEPROM_READ_Byte(0x77);
 N}
 Nvoid Wrtite_Beep(void)//ѣզBEEP״ׁ̬FLASHא
 N{

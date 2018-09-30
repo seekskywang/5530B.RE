@@ -800,7 +800,7 @@
 ;;;424    	Polar=EEPROM_READ_Byte(0x59);
 00056c  2059              MOVS     r0,#0x59
 00056e  f7fffffe          BL       EEPROM_READ_Byte
-000572  4c0b              LDR      r4,|L1.1440|
+000572  4c91              LDR      r4,|L1.1976|
 000574  7020              STRB     r0,[r4,#0]
 ;;;425    	Polar1=EEPROM_READ_Byte(0x5A);
 000576  205a              MOVS     r0,#0x5a
@@ -823,81 +823,352 @@
 000598  f7fffffe          BL       EEPROM_READ_Byte
 00059c  7160              STRB     r0,[r4,#5]
 ;;;430        
-;;;431    //     t_beep=EEPROM_READ_Byte(0x60);
-;;;432    //     para_set4 = EEPROM_READ_Byte(0x7A);
-;;;433    //     para_set2 = EEPROM_READ_Byte(0x7B);
-;;;434    //     b_type = EEPROM_READ_Byte(0x78);
-;;;435    //     buffer = EEPROM_READ_Byte(0x79);
-;;;436    //     para_set1 = EEPROM_READ_Byte(0x61);
-;;;437    //     year1 = EEPROM_READ_Byte(0x7C);
-;;;438    //     year2 = EEPROM_READ_Byte(0x7D);
-;;;439    //     year3 = EEPROM_READ_Byte(0x7E);
-;;;440    //     year4 = EEPROM_READ_Byte(0x7F);
-;;;441    //     month1 = EEPROM_READ_Byte(0x80);
-;;;442    //     month2 = EEPROM_READ_Byte(0x81);
-;;;443    //     day1 = EEPROM_READ_Byte(0x82);
-;;;444    //     day2 = EEPROM_READ_Byte(0x83);
-;;;445    //     code1 = EEPROM_READ_Byte(0x84);
-;;;446    //     code2 = EEPROM_READ_Byte(0x85);
-;;;447    //     code3 = EEPROM_READ_Byte(0x86);
-;;;448    //     code4 = EEPROM_READ_Byte(0x87);
-;;;449    //     code5 = EEPROM_READ_Byte(0x88);
-;;;450    //     code6 = EEPROM_READ_Byte(0x89);
-;;;451    //     code7 = EEPROM_READ_Byte(0x8A);
-;;;452    //     code8 = EEPROM_READ_Byte(0x8B);
-;;;453    //     flag_Load_CC = EEPROM_READ_Byte(0x8C);
-;;;454    //     steptime = EEPROM_READ_Byte(0x8D);
-;;;455    //     
-;;;456    //     set_max_v=EEPROM_READ_Byte(0x62);
-;;;457    // 	set_max_v=set_max_v<<8;
-;;;458    // 	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
-;;;459    // 	
-;;;460    // 	set_min_v=EEPROM_READ_Byte(0x64);
-;;;461    // 	set_min_v=set_min_v<<8;
-;;;462    // 	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
-;;;463    //     
-;;;464    // 	set_max_r=EEPROM_READ_Byte(0x66);
-;;;465    // 	set_max_r=set_max_r<<8;
-;;;466    // 	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
-;;;467    // 	
-;;;468    // 	set_min_r=EEPROM_READ_Byte(0x68);
-;;;469    // 	set_min_r=set_min_r<<8;
-;;;470    // 	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
+;;;431        t_beep=EEPROM_READ_Byte(0x60);
+00059e  2060              MOVS     r0,#0x60
+0005a0  f7fffffe          BL       EEPROM_READ_Byte
+0005a4  4985              LDR      r1,|L1.1980|
+0005a6  7008              STRB     r0,[r1,#0]
+;;;432        para_set4 = EEPROM_READ_Byte(0x7A);
+0005a8  207a              MOVS     r0,#0x7a
+0005aa  f7fffffe          BL       EEPROM_READ_Byte
+0005ae  4984              LDR      r1,|L1.1984|
+0005b0  7008              STRB     r0,[r1,#0]
+;;;433        para_set2 = EEPROM_READ_Byte(0x7B);
+0005b2  207b              MOVS     r0,#0x7b
+0005b4  f7fffffe          BL       EEPROM_READ_Byte
+0005b8  4982              LDR      r1,|L1.1988|
+0005ba  7008              STRB     r0,[r1,#0]
+;;;434        b_type = EEPROM_READ_Byte(0x78);
+0005bc  2078              MOVS     r0,#0x78
+0005be  f7fffffe          BL       EEPROM_READ_Byte
+0005c2  4981              LDR      r1,|L1.1992|
+0005c4  7008              STRB     r0,[r1,#0]
+;;;435        buffer = EEPROM_READ_Byte(0x79);
+0005c6  2079              MOVS     r0,#0x79
+0005c8  f7fffffe          BL       EEPROM_READ_Byte
+0005cc  497f              LDR      r1,|L1.1996|
+0005ce  7008              STRB     r0,[r1,#0]
+;;;436        para_set1 = EEPROM_READ_Byte(0x61);
+0005d0  2061              MOVS     r0,#0x61
+0005d2  f7fffffe          BL       EEPROM_READ_Byte
+0005d6  497e              LDR      r1,|L1.2000|
+0005d8  7008              STRB     r0,[r1,#0]
+;;;437        year1 = EEPROM_READ_Byte(0x7C);
+0005da  207c              MOVS     r0,#0x7c
+0005dc  f7fffffe          BL       EEPROM_READ_Byte
+0005e0  497c              LDR      r1,|L1.2004|
+0005e2  8008              STRH     r0,[r1,#0]
+;;;438        year2 = EEPROM_READ_Byte(0x7D);
+0005e4  207d              MOVS     r0,#0x7d
+0005e6  f7fffffe          BL       EEPROM_READ_Byte
+0005ea  497b              LDR      r1,|L1.2008|
+0005ec  8008              STRH     r0,[r1,#0]
+;;;439        year3 = EEPROM_READ_Byte(0x7E);
+0005ee  207e              MOVS     r0,#0x7e
+0005f0  f7fffffe          BL       EEPROM_READ_Byte
+0005f4  4979              LDR      r1,|L1.2012|
+0005f6  8008              STRH     r0,[r1,#0]
+;;;440        year4 = EEPROM_READ_Byte(0x7F);
+0005f8  207f              MOVS     r0,#0x7f
+0005fa  f7fffffe          BL       EEPROM_READ_Byte
+0005fe  4978              LDR      r1,|L1.2016|
+000600  8008              STRH     r0,[r1,#0]
+;;;441        month1 = EEPROM_READ_Byte(0x80);
+000602  2080              MOVS     r0,#0x80
+000604  f7fffffe          BL       EEPROM_READ_Byte
+000608  4976              LDR      r1,|L1.2020|
+00060a  7008              STRB     r0,[r1,#0]
+;;;442        month2 = EEPROM_READ_Byte(0x81);
+00060c  2081              MOVS     r0,#0x81
+00060e  f7fffffe          BL       EEPROM_READ_Byte
+000612  4975              LDR      r1,|L1.2024|
+000614  7008              STRB     r0,[r1,#0]
+;;;443        day1 = EEPROM_READ_Byte(0x82);
+000616  2082              MOVS     r0,#0x82
+000618  f7fffffe          BL       EEPROM_READ_Byte
+00061c  4973              LDR      r1,|L1.2028|
+00061e  7008              STRB     r0,[r1,#0]
+;;;444        day2 = EEPROM_READ_Byte(0x83);
+000620  2083              MOVS     r0,#0x83
+000622  f7fffffe          BL       EEPROM_READ_Byte
+000626  4972              LDR      r1,|L1.2032|
+000628  7008              STRB     r0,[r1,#0]
+;;;445        code1 = EEPROM_READ_Byte(0x84);
+00062a  2084              MOVS     r0,#0x84
+00062c  f7fffffe          BL       EEPROM_READ_Byte
+000630  4970              LDR      r1,|L1.2036|
+000632  7008              STRB     r0,[r1,#0]
+;;;446        code2 = EEPROM_READ_Byte(0x85);
+000634  2085              MOVS     r0,#0x85
+000636  f7fffffe          BL       EEPROM_READ_Byte
+00063a  496f              LDR      r1,|L1.2040|
+00063c  7008              STRB     r0,[r1,#0]
+;;;447        code3 = EEPROM_READ_Byte(0x86);
+00063e  2086              MOVS     r0,#0x86
+000640  f7fffffe          BL       EEPROM_READ_Byte
+000644  496d              LDR      r1,|L1.2044|
+000646  7008              STRB     r0,[r1,#0]
+;;;448        code4 = EEPROM_READ_Byte(0x87);
+000648  2087              MOVS     r0,#0x87
+00064a  f7fffffe          BL       EEPROM_READ_Byte
+00064e  496c              LDR      r1,|L1.2048|
+000650  7008              STRB     r0,[r1,#0]
+;;;449        code5 = EEPROM_READ_Byte(0x88);
+000652  2088              MOVS     r0,#0x88
+000654  f7fffffe          BL       EEPROM_READ_Byte
+000658  496a              LDR      r1,|L1.2052|
+00065a  7008              STRB     r0,[r1,#0]
+;;;450        code6 = EEPROM_READ_Byte(0x89);
+00065c  2089              MOVS     r0,#0x89
+00065e  f7fffffe          BL       EEPROM_READ_Byte
+000662  4969              LDR      r1,|L1.2056|
+000664  7008              STRB     r0,[r1,#0]
+;;;451        code7 = EEPROM_READ_Byte(0x8A);
+000666  208a              MOVS     r0,#0x8a
+000668  f7fffffe          BL       EEPROM_READ_Byte
+00066c  4967              LDR      r1,|L1.2060|
+00066e  7008              STRB     r0,[r1,#0]
+;;;452        code8 = EEPROM_READ_Byte(0x8B);
+000670  208b              MOVS     r0,#0x8b
+000672  f7fffffe          BL       EEPROM_READ_Byte
+000676  4966              LDR      r1,|L1.2064|
+000678  7008              STRB     r0,[r1,#0]
+;;;453        flag_Load_CC = EEPROM_READ_Byte(0x8C);
+00067a  208c              MOVS     r0,#0x8c
+00067c  f7fffffe          BL       EEPROM_READ_Byte
+000680  4964              LDR      r1,|L1.2068|
+000682  680a              LDR      r2,[r1,#0]  ; flagD
+000684  f36012c7          BFI      r2,r0,#7,#1
+000688  600a              STR      r2,[r1,#0]  ; flagD
+;;;454        steptime = EEPROM_READ_Byte(0x8D);
+00068a  208d              MOVS     r0,#0x8d
+00068c  f7fffffe          BL       EEPROM_READ_Byte
+000690  4961              LDR      r1,|L1.2072|
+000692  8008              STRH     r0,[r1,#0]
+;;;455        
+;;;456        set_max_v=EEPROM_READ_Byte(0x62);
+000694  2062              MOVS     r0,#0x62
+000696  f7fffffe          BL       EEPROM_READ_Byte
+00069a  4c60              LDR      r4,|L1.2076|
+00069c  63a0              STR      r0,[r4,#0x38]  ; Run_Control
+;;;457    	set_max_v=set_max_v<<8;
+00069e  6ba0              LDR      r0,[r4,#0x38]  ; Run_Control
+0006a0  0200              LSLS     r0,r0,#8
+0006a2  63a0              STR      r0,[r4,#0x38]  ; Run_Control
+;;;458    	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
+0006a4  2063              MOVS     r0,#0x63
+0006a6  f7fffffe          BL       EEPROM_READ_Byte
+0006aa  6ba1              LDR      r1,[r4,#0x38]  ; Run_Control
+0006ac  4408              ADD      r0,r0,r1
+0006ae  63a0              STR      r0,[r4,#0x38]  ; Run_Control
+;;;459    	
+;;;460    	set_min_v=EEPROM_READ_Byte(0x64);
+0006b0  2064              MOVS     r0,#0x64
+0006b2  f7fffffe          BL       EEPROM_READ_Byte
+0006b6  63e0              STR      r0,[r4,#0x3c]  ; Run_Control
+;;;461    	set_min_v=set_min_v<<8;
+0006b8  6be0              LDR      r0,[r4,#0x3c]  ; Run_Control
+0006ba  0200              LSLS     r0,r0,#8
+0006bc  63e0              STR      r0,[r4,#0x3c]  ; Run_Control
+;;;462    	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
+0006be  2065              MOVS     r0,#0x65
+0006c0  f7fffffe          BL       EEPROM_READ_Byte
+0006c4  6be1              LDR      r1,[r4,#0x3c]  ; Run_Control
+0006c6  4408              ADD      r0,r0,r1
+0006c8  63e0              STR      r0,[r4,#0x3c]  ; Run_Control
+;;;463        
+;;;464    	set_max_r=EEPROM_READ_Byte(0x66);
+0006ca  2066              MOVS     r0,#0x66
+0006cc  f7fffffe          BL       EEPROM_READ_Byte
+0006d0  6420              STR      r0,[r4,#0x40]  ; Run_Control
+;;;465    	set_max_r=set_max_r<<8;
+0006d2  6c20              LDR      r0,[r4,#0x40]  ; Run_Control
+0006d4  0200              LSLS     r0,r0,#8
+0006d6  6420              STR      r0,[r4,#0x40]  ; Run_Control
+;;;466    	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
+0006d8  2067              MOVS     r0,#0x67
+0006da  f7fffffe          BL       EEPROM_READ_Byte
+0006de  6c21              LDR      r1,[r4,#0x40]  ; Run_Control
+0006e0  4408              ADD      r0,r0,r1
+0006e2  6420              STR      r0,[r4,#0x40]  ; Run_Control
+;;;467    	
+;;;468    	set_min_r=EEPROM_READ_Byte(0x68);
+0006e4  2068              MOVS     r0,#0x68
+0006e6  f7fffffe          BL       EEPROM_READ_Byte
+0006ea  6460              STR      r0,[r4,#0x44]  ; Run_Control
+;;;469    	set_min_r=set_min_r<<8;
+0006ec  6c60              LDR      r0,[r4,#0x44]  ; Run_Control
+0006ee  0200              LSLS     r0,r0,#8
+0006f0  6460              STR      r0,[r4,#0x44]  ; Run_Control
+;;;470    	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
+0006f2  2069              MOVS     r0,#0x69
+0006f4  f7fffffe          BL       EEPROM_READ_Byte
+0006f8  6c61              LDR      r1,[r4,#0x44]  ; Run_Control
+0006fa  4408              ADD      r0,r0,r1
+0006fc  6460              STR      r0,[r4,#0x44]  ; Run_Control
 ;;;471    
-;;;472    //     set_max_c=EEPROM_READ_Byte(0x6A);
-;;;473    // 	set_max_c=set_max_c<<8;
-;;;474    // 	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
-;;;475    // 	
-;;;476    // 	set_min_c=EEPROM_READ_Byte(0x6C);
-;;;477    // 	set_min_c=set_min_c<<8;
-;;;478    // 	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
-;;;479    //     
-;;;480    //     SET_Voltage=EEPROM_READ_Byte(0x6E);
-;;;481    // 	SET_Voltage=SET_Voltage<<8;
-;;;482    // 	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
-;;;483    // 	
-;;;484    // 	SET_Current=EEPROM_READ_Byte(0x70);
-;;;485    // 	SET_Current=SET_Current<<8;
-;;;486    // 	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
+;;;472        set_max_c=EEPROM_READ_Byte(0x6A);
+0006fe  206a              MOVS     r0,#0x6a
+000700  f7fffffe          BL       EEPROM_READ_Byte
+000704  64a0              STR      r0,[r4,#0x48]  ; Run_Control
+;;;473    	set_max_c=set_max_c<<8;
+000706  6ca0              LDR      r0,[r4,#0x48]  ; Run_Control
+000708  0200              LSLS     r0,r0,#8
+00070a  64a0              STR      r0,[r4,#0x48]  ; Run_Control
+;;;474    	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
+00070c  206b              MOVS     r0,#0x6b
+00070e  f7fffffe          BL       EEPROM_READ_Byte
+000712  6ca1              LDR      r1,[r4,#0x48]  ; Run_Control
+000714  4408              ADD      r0,r0,r1
+000716  64a0              STR      r0,[r4,#0x48]  ; Run_Control
+;;;475    	
+;;;476    	set_min_c=EEPROM_READ_Byte(0x6C);
+000718  206c              MOVS     r0,#0x6c
+00071a  f7fffffe          BL       EEPROM_READ_Byte
+00071e  64e0              STR      r0,[r4,#0x4c]  ; Run_Control
+;;;477    	set_min_c=set_min_c<<8;
+000720  6ce0              LDR      r0,[r4,#0x4c]  ; Run_Control
+000722  0200              LSLS     r0,r0,#8
+000724  64e0              STR      r0,[r4,#0x4c]  ; Run_Control
+;;;478    	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
+000726  206d              MOVS     r0,#0x6d
+000728  f7fffffe          BL       EEPROM_READ_Byte
+00072c  6ce1              LDR      r1,[r4,#0x4c]  ; Run_Control
+00072e  4408              ADD      r0,r0,r1
+000730  64e0              STR      r0,[r4,#0x4c]  ; Run_Control
+;;;479        
+;;;480        SET_Voltage=EEPROM_READ_Byte(0x6E);
+000732  206e              MOVS     r0,#0x6e
+000734  f7fffffe          BL       EEPROM_READ_Byte
+000738  6060              STR      r0,[r4,#4]  ; Run_Control
+;;;481    	SET_Voltage=SET_Voltage<<8;
+00073a  6860              LDR      r0,[r4,#4]  ; Run_Control
+00073c  0200              LSLS     r0,r0,#8
+00073e  6060              STR      r0,[r4,#4]  ; Run_Control
+;;;482    	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
+000740  206f              MOVS     r0,#0x6f
+000742  f7fffffe          BL       EEPROM_READ_Byte
+000746  6861              LDR      r1,[r4,#4]  ; Run_Control
+000748  4408              ADD      r0,r0,r1
+00074a  6060              STR      r0,[r4,#4]  ; Run_Control
+;;;483    	
+;;;484    	SET_Current=EEPROM_READ_Byte(0x70);
+00074c  2070              MOVS     r0,#0x70
+00074e  f7fffffe          BL       EEPROM_READ_Byte
+000752  60a0              STR      r0,[r4,#8]  ; Run_Control
+;;;485    	SET_Current=SET_Current<<8;
+000754  68a0              LDR      r0,[r4,#8]  ; Run_Control
+000756  0200              LSLS     r0,r0,#8
+000758  60a0              STR      r0,[r4,#8]  ; Run_Control
+;;;486    	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
+00075a  2071              MOVS     r0,#0x71
+00075c  f7fffffe          BL       EEPROM_READ_Byte
+000760  68a1              LDR      r1,[r4,#8]  ; Run_Control
+000762  4408              ADD      r0,r0,r1
+000764  60a0              STR      r0,[r4,#8]  ; Run_Control
 ;;;487    
-;;;488    //     SET_Current_Laod=EEPROM_READ_Byte(0x72);
-;;;489    // 	SET_Current_Laod=SET_Current_Laod<<8;
-;;;490    // 	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
-;;;491    //     
-;;;492    //     set_init_c=EEPROM_READ_Byte(0x74);
-;;;493    // 	set_init_c=set_init_c<<8;
-;;;494    // 	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
-;;;495    //     
-;;;496    //     set_sbs_c=EEPROM_READ_Byte(0x76);
-;;;497    // 	set_sbs_c=set_sbs_c<<8;
-;;;498    // 	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
+;;;488        SET_Current_Laod=EEPROM_READ_Byte(0x72);
+000766  2072              MOVS     r0,#0x72
+000768  f7fffffe          BL       EEPROM_READ_Byte
+00076c  6120              STR      r0,[r4,#0x10]  ; Run_Control
+;;;489    	SET_Current_Laod=SET_Current_Laod<<8;
+00076e  6920              LDR      r0,[r4,#0x10]  ; Run_Control
+000770  0200              LSLS     r0,r0,#8
+000772  6120              STR      r0,[r4,#0x10]  ; Run_Control
+;;;490    	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
+000774  2073              MOVS     r0,#0x73
+000776  f7fffffe          BL       EEPROM_READ_Byte
+00077a  6921              LDR      r1,[r4,#0x10]  ; Run_Control
+00077c  4408              ADD      r0,r0,r1
+00077e  6120              STR      r0,[r4,#0x10]  ; Run_Control
+;;;491        
+;;;492        set_init_c=EEPROM_READ_Byte(0x74);
+000780  2074              MOVS     r0,#0x74
+000782  f7fffffe          BL       EEPROM_READ_Byte
+000786  65a0              STR      r0,[r4,#0x58]  ; Run_Control
+;;;493    	set_init_c=set_init_c<<8;
+000788  6da0              LDR      r0,[r4,#0x58]  ; Run_Control
+00078a  0200              LSLS     r0,r0,#8
+00078c  65a0              STR      r0,[r4,#0x58]  ; Run_Control
+;;;494    	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
+00078e  2075              MOVS     r0,#0x75
+000790  f7fffffe          BL       EEPROM_READ_Byte
+000794  6da1              LDR      r1,[r4,#0x58]  ; Run_Control
+000796  4408              ADD      r0,r0,r1
+000798  65a0              STR      r0,[r4,#0x58]  ; Run_Control
+;;;495        
+;;;496        set_sbs_c=EEPROM_READ_Byte(0x76);
+00079a  2076              MOVS     r0,#0x76
+00079c  f7fffffe          BL       EEPROM_READ_Byte
+0007a0  65e0              STR      r0,[r4,#0x5c]  ; Run_Control
+;;;497    	set_sbs_c=set_sbs_c<<8;
+0007a2  6de0              LDR      r0,[r4,#0x5c]  ; Run_Control
+0007a4  0200              LSLS     r0,r0,#8
+0007a6  65e0              STR      r0,[r4,#0x5c]  ; Run_Control
+;;;498    	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
+0007a8  2077              MOVS     r0,#0x77
+0007aa  f7fffffe          BL       EEPROM_READ_Byte
+0007ae  6de1              LDR      r1,[r4,#0x5c]  ; Run_Control
+0007b0  4408              ADD      r0,r0,r1
+0007b2  65e0              STR      r0,[r4,#0x5c]  ; Run_Control
 ;;;499    }
-00059e  bd70              POP      {r4-r6,pc}
+0007b4  bd70              POP      {r4-r6,pc}
 ;;;500    void Wrtite_Beep(void)//ѣզBEEP״ׁ̬FLASHא
                           ENDP
 
-                  |L1.1440|
+0007b6  0000              DCW      0x0000
+                  |L1.1976|
                           DCD      correct_por
+                  |L1.1980|
+                          DCD      t_beep
+                  |L1.1984|
+                          DCD      para_set4
+                  |L1.1988|
+                          DCD      para_set2
+                  |L1.1992|
+                          DCD      b_type
+                  |L1.1996|
+                          DCD      buffer
+                  |L1.2000|
+                          DCD      para_set1
+                  |L1.2004|
+                          DCD      year1
+                  |L1.2008|
+                          DCD      year2
+                  |L1.2012|
+                          DCD      year3
+                  |L1.2016|
+                          DCD      year4
+                  |L1.2020|
+                          DCD      month1
+                  |L1.2024|
+                          DCD      month2
+                  |L1.2028|
+                          DCD      day1
+                  |L1.2032|
+                          DCD      day2
+                  |L1.2036|
+                          DCD      code1
+                  |L1.2040|
+                          DCD      code2
+                  |L1.2044|
+                          DCD      code3
+                  |L1.2048|
+                          DCD      code4
+                  |L1.2052|
+                          DCD      code5
+                  |L1.2056|
+                          DCD      code6
+                  |L1.2060|
+                          DCD      code7
+                  |L1.2064|
+                          DCD      code8
+                  |L1.2068|
+                          DCD      flagD
+                  |L1.2072|
+                          DCD      steptime
+                  |L1.2076|
+                          DCD      Run_Control
 
                           AREA ||i.Flash_Write_all||, CODE, READONLY, ALIGN=2
 

@@ -149,10 +149,10 @@ void TIM3_IRQHandler(void)
         {
              if(resetflag == 1)
              {
-                 if(resetcount == 2)
+                 if(resetcount == 1)
                  {
-                     sLCD_WR_REG(0x01);
-//                     LCD_Initializtion();
+                     LCD_Initializtion();
+                     sLCD_WR_REG(0xf1);
                      GUI_Init();
                      if(page_sw == face_menu)
                      {

@@ -821,11 +821,11 @@ void Key_Funtion(void)
 			
 			case KEY_ESC :
 			{
-                LCD_Initializtion();
+                sLCD_WR_REG(0x01);
 //                main();
 				timer_sw = 0;
 				KeyCounter = 0;
-				BEEP_Tiggr();//瑙﹀彂铚傞福鍣
+//				BEEP_Tiggr();//瑙﹀彂铚傞福鍣
 			}
 			break;
 			

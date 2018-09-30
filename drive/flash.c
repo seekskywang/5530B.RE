@@ -428,74 +428,74 @@ void EEPROM_READ_Coeff(void)
 	Polar4=EEPROM_READ_Byte(0x5D);
 	Polar5=EEPROM_READ_Byte(0x5E);
     
-//     t_beep=EEPROM_READ_Byte(0x60);
-//     para_set4 = EEPROM_READ_Byte(0x7A);
-//     para_set2 = EEPROM_READ_Byte(0x7B);
-//     b_type = EEPROM_READ_Byte(0x78);
-//     buffer = EEPROM_READ_Byte(0x79);
-//     para_set1 = EEPROM_READ_Byte(0x61);
-//     year1 = EEPROM_READ_Byte(0x7C);
-//     year2 = EEPROM_READ_Byte(0x7D);
-//     year3 = EEPROM_READ_Byte(0x7E);
-//     year4 = EEPROM_READ_Byte(0x7F);
-//     month1 = EEPROM_READ_Byte(0x80);
-//     month2 = EEPROM_READ_Byte(0x81);
-//     day1 = EEPROM_READ_Byte(0x82);
-//     day2 = EEPROM_READ_Byte(0x83);
-//     code1 = EEPROM_READ_Byte(0x84);
-//     code2 = EEPROM_READ_Byte(0x85);
-//     code3 = EEPROM_READ_Byte(0x86);
-//     code4 = EEPROM_READ_Byte(0x87);
-//     code5 = EEPROM_READ_Byte(0x88);
-//     code6 = EEPROM_READ_Byte(0x89);
-//     code7 = EEPROM_READ_Byte(0x8A);
-//     code8 = EEPROM_READ_Byte(0x8B);
-//     flag_Load_CC = EEPROM_READ_Byte(0x8C);
-//     steptime = EEPROM_READ_Byte(0x8D);
-//     
-//     set_max_v=EEPROM_READ_Byte(0x62);
-// 	set_max_v=set_max_v<<8;
-// 	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
-// 	
-// 	set_min_v=EEPROM_READ_Byte(0x64);
-// 	set_min_v=set_min_v<<8;
-// 	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
-//     
-// 	set_max_r=EEPROM_READ_Byte(0x66);
-// 	set_max_r=set_max_r<<8;
-// 	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
-// 	
-// 	set_min_r=EEPROM_READ_Byte(0x68);
-// 	set_min_r=set_min_r<<8;
-// 	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
+    t_beep=EEPROM_READ_Byte(0x60);
+    para_set4 = EEPROM_READ_Byte(0x7A);
+    para_set2 = EEPROM_READ_Byte(0x7B);
+    b_type = EEPROM_READ_Byte(0x78);
+    buffer = EEPROM_READ_Byte(0x79);
+    para_set1 = EEPROM_READ_Byte(0x61);
+    year1 = EEPROM_READ_Byte(0x7C);
+    year2 = EEPROM_READ_Byte(0x7D);
+    year3 = EEPROM_READ_Byte(0x7E);
+    year4 = EEPROM_READ_Byte(0x7F);
+    month1 = EEPROM_READ_Byte(0x80);
+    month2 = EEPROM_READ_Byte(0x81);
+    day1 = EEPROM_READ_Byte(0x82);
+    day2 = EEPROM_READ_Byte(0x83);
+    code1 = EEPROM_READ_Byte(0x84);
+    code2 = EEPROM_READ_Byte(0x85);
+    code3 = EEPROM_READ_Byte(0x86);
+    code4 = EEPROM_READ_Byte(0x87);
+    code5 = EEPROM_READ_Byte(0x88);
+    code6 = EEPROM_READ_Byte(0x89);
+    code7 = EEPROM_READ_Byte(0x8A);
+    code8 = EEPROM_READ_Byte(0x8B);
+    flag_Load_CC = EEPROM_READ_Byte(0x8C);
+    steptime = EEPROM_READ_Byte(0x8D);
+    
+    set_max_v=EEPROM_READ_Byte(0x62);
+	set_max_v=set_max_v<<8;
+	set_max_v=set_max_v+EEPROM_READ_Byte(0x63);
+	
+	set_min_v=EEPROM_READ_Byte(0x64);
+	set_min_v=set_min_v<<8;
+	set_min_v=set_min_v+EEPROM_READ_Byte(0x65);
+    
+	set_max_r=EEPROM_READ_Byte(0x66);
+	set_max_r=set_max_r<<8;
+	set_max_r=set_max_r+EEPROM_READ_Byte(0x67);
+	
+	set_min_r=EEPROM_READ_Byte(0x68);
+	set_min_r=set_min_r<<8;
+	set_min_r=set_min_r+EEPROM_READ_Byte(0x69);
 
-//     set_max_c=EEPROM_READ_Byte(0x6A);
-// 	set_max_c=set_max_c<<8;
-// 	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
-// 	
-// 	set_min_c=EEPROM_READ_Byte(0x6C);
-// 	set_min_c=set_min_c<<8;
-// 	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
-//     
-//     SET_Voltage=EEPROM_READ_Byte(0x6E);
-// 	SET_Voltage=SET_Voltage<<8;
-// 	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
-// 	
-// 	SET_Current=EEPROM_READ_Byte(0x70);
-// 	SET_Current=SET_Current<<8;
-// 	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
+    set_max_c=EEPROM_READ_Byte(0x6A);
+	set_max_c=set_max_c<<8;
+	set_max_c=set_max_c+EEPROM_READ_Byte(0x6B);
+	
+	set_min_c=EEPROM_READ_Byte(0x6C);
+	set_min_c=set_min_c<<8;
+	set_min_c=set_min_c+EEPROM_READ_Byte(0x6D);
+    
+    SET_Voltage=EEPROM_READ_Byte(0x6E);
+	SET_Voltage=SET_Voltage<<8;
+	SET_Voltage=SET_Voltage+EEPROM_READ_Byte(0x6F);
+	
+	SET_Current=EEPROM_READ_Byte(0x70);
+	SET_Current=SET_Current<<8;
+	SET_Current=SET_Current+EEPROM_READ_Byte(0x71);
 
-//     SET_Current_Laod=EEPROM_READ_Byte(0x72);
-// 	SET_Current_Laod=SET_Current_Laod<<8;
-// 	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
-//     
-//     set_init_c=EEPROM_READ_Byte(0x74);
-// 	set_init_c=set_init_c<<8;
-// 	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
-//     
-//     set_sbs_c=EEPROM_READ_Byte(0x76);
-// 	set_sbs_c=set_sbs_c<<8;
-// 	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
+    SET_Current_Laod=EEPROM_READ_Byte(0x72);
+	SET_Current_Laod=SET_Current_Laod<<8;
+	SET_Current_Laod=SET_Current_Laod+EEPROM_READ_Byte(0x73); 
+    
+    set_init_c=EEPROM_READ_Byte(0x74);
+	set_init_c=set_init_c<<8;
+	set_init_c=set_init_c+EEPROM_READ_Byte(0x75);
+    
+    set_sbs_c=EEPROM_READ_Byte(0x76);
+	set_sbs_c=set_sbs_c<<8;
+	set_sbs_c=set_sbs_c+EEPROM_READ_Byte(0x77);
 }
 void Wrtite_Beep(void)//ѣզBEEP״ׁ̬FLASHא
 {

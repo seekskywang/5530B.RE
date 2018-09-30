@@ -51374,6 +51374,12 @@ Nextern WM_HWIN CreateWindow(void);
 Xextern GUI_HWIN CreateWindow(void);
 Nextern WM_HWIN CreateR(void);
 Xextern GUI_HWIN CreateR(void);
+N
+Nstatic void ee_Delay( vu32 nCount)	 //莶榨謩覔时诏私
+N{
+N	for(; nCount != 0; nCount--);
+N}
+N
 N/**********************************************************************************************************
 N*	函 数 名: MainTask
 N*	功能说明: GUI主函数
@@ -51423,14 +51429,15 @@ N	Flag_Swtich_ON=0;
 X	(flagA . bit6)=0;
 N	while (1)
 N	{
-N        if(resdone != 1)
-N        {
+N//         if(resdone != 1)
+N//         {
 N            if(page_sw != face_starter)
 X            if(page_sw != 6)
 N            {
-N                if(scancount == 10)
+N                if(scancount == 9)
 N                {
 N                    sLCD_WR_REG(0xf1);
+N                    ee_Delay(10);
 N                    read1963 =sLCD_Read_Data();
 N                    scancount = 0;
 N                }else{
@@ -51443,9 +51450,9 @@ N                 }else{
 N                     resetflag = 0; 
 N                 }
 N            }
-N        }else{
-N            resetflag = 0; 
-N        }
+N//         }else{
+N//             resetflag = 0; 
+N//         }
 N        
 N		TIM_SetCompare1(TIM2,Contr_Current);//稳压电源电流DAC
 X		TIM_SetCompare1(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0000)),Contr_Current);
@@ -51496,4 +51503,6 @@ N		GUI_Delay(2);//GUI刷新
 N	}
 N  
 N}
+N
+N
 N/***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/
