@@ -34729,6 +34729,22 @@ Nvoid INPUT_CDC(char* num);
 Nvoid INPUT_C(char* num);  
 Nvoid INPUT_LOAD(char* num);  
 Nvoid INPUT_INFO(vu8 num);
+Nvoid SET_OP_DOWN(void);
+Nvoid SET_OP_UP(void);
+Nvoid SET_OP_RIGHT(void);
+Nvoid SET_OP_LEFT(void);
+Nvoid PARA_SET(void);
+Nvoid SYS_INFO_RIGHT(void);
+Nvoid SYS_INFO_LEFT(void);
+Nvoid SYS_INFO_UP(void);
+Nvoid SYS_INFO_DOWN(void);
+Nvoid INPUT_INFO(vu8 num);
+Nvoid CDC_OP_DOWN(void);
+Nvoid CDC_OP_UP(void);
+Nvoid CDC_OP_LEFT(void);
+Nvoid CDC_OP_RIGHT(void);
+Nvoid CDC_SET(void);
+Nvoid INPUT_CDC(char* num); 
 N//=============================================================================
 N#define NOP   __nop();	  //��ָ��
 N
@@ -34885,8 +34901,9 @@ Nextern float clear_v;
 Nextern float clear_pv;
 Nextern float clear_lv;
 Nextern float temp;
+Nextern vu8 set_loop_count;
 N
-Nextern vu32 Run_Control[37];	
+Nextern vu32 Run_Control[41];	
 N#define onoff_ch                    Run_Control[0]  //ON/OFF
 N#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 N#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -34925,9 +34942,13 @@ N#define opv3    					    Run_Control[33]
 N#define opc1    					    Run_Control[34]
 N#define opc2    					    Run_Control[35]
 N#define opc3    					    Run_Control[36]
+N#define load_c    					    Run_Control[37]
+N#define pow_v    					    Run_Control[38]
+N#define cdc_dc    					    Run_Control[39]
+N#define pow_c    					    Run_Control[40]
 N
 N
-Nextern float coff[6];
+Nextern vu16 coff[6];
 N#define cov1    					    coff[0]
 N#define cov2    					    coff[1]
 N#define cov3    					    coff[2]
@@ -49015,6 +49036,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //��ָ��
 S
@@ -49171,8 +49208,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 S#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -49211,9 +49249,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -49472,11 +49514,60 @@ N}
 N//֨ʱǷ 3 א׏ؾϱگ˽
 Nvoid TIM4_IRQHandler(void)
 N{
+N    static vu16 resetcount;
+N    static vu8 read1963;
+N    static vu16 scancount;
 N    if(TIM_GetITStatus(TIM4,TIM_IT_Update)==SET) //ӧԶא׏
 X    if(TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0800)),((uint16_t)0x0001))==SET) 
 N    {
 N        TIM_ClearITPendingBit(TIM4,TIM_IT_Update); //清除中断标志位
 X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0800)),((uint16_t)0x0001)); 
+N        
+N                if(page_sw != face_starter)
+X                if(page_sw != 6)
+N        {
+N             if(resetflag == 1 && resdone != 1)
+N             {
+N                 if(resetcount == 200)
+N                 {
+N                     LCD_Initializtion();
+N//                     sLCD_WR_REG(0xf1);
+N                     GUI_Init();
+N                     if(page_sw == face_menu)
+X                     if(page_sw == 2)
+N                     {
+W "..\drive\TIM6.c" 73 26 function "ResetPow" declared implicitly
+N                         ResetPow();
+N                     }else if(page_sw == face_cdc){
+X                     }else if(page_sw == 1){
+W "..\drive\TIM6.c" 75 26 function "ResetCDC" declared implicitly
+N                         ResetCDC();
+N                     }else if(page_sw == face_r){
+X                     }else if(page_sw == 3){
+W "..\drive\TIM6.c" 77 26 function "ResetR" declared implicitly
+N                         ResetR();
+N                     }else if(page_sw == face_load){
+X                     }else if(page_sw == 4){
+W "..\drive\TIM6.c" 79 26 function "ResetLoad" declared implicitly
+N                         ResetLoad();
+N                     }else if(page_sw == face_graph){
+X                     }else if(page_sw == 0){
+W "..\drive\TIM6.c" 81 26 function "ResetG" declared implicitly
+N                         ResetG();
+N                     }else if(page_sw == face_set){
+X                     }else if(page_sw == 5){
+W "..\drive\TIM6.c" 83 26 function "ResetSET" declared implicitly
+N                         ResetSET();
+N                     }
+N                     resdone = 1;
+N//                     resetflag = 0;
+N                     resetcount = 0;
+N                 }else{
+N                     resetcount++;
+N                 }                
+N             }
+N         }
+N         
 N        if(oct_sw == oct_on)
 X        if(oct_sw == 1)
 N        {
@@ -49584,117 +49675,119 @@ X    if(TIM_GetITStatus(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)),((ui
 N    {
 N        TIM_ClearITPendingBit(TIM3,TIM_IT_Update); //ȥԽא׏Ҫ־λ
 X        TIM_ClearITPendingBit(((TIM_TypeDef *) (((uint32_t)0x40000000) + 0x0400)),((uint16_t)0x0001)); 
-N        if(page_sw != face_starter)
-X        if(page_sw != 6)
-N        {
-N             if(resetflag == 1)
-N             {
-N                 if(resetcount == 1)
-N                 {
-N                     LCD_Initializtion();
-N                     sLCD_WR_REG(0xf1);
-N                     GUI_Init();
-N                     if(page_sw == face_menu)
-X                     if(page_sw == 2)
-N                     {
-W "..\drive\TIM6.c" 159 26 function "ResetPow" declared implicitly
-N                         ResetPow();
-N                     }else if(page_sw == face_cdc){
-X                     }else if(page_sw == 1){
-W "..\drive\TIM6.c" 161 26 function "ResetCDC" declared implicitly
-N                         ResetCDC();
-N                     }else if(page_sw == face_r){
-X                     }else if(page_sw == 3){
-W "..\drive\TIM6.c" 163 26 function "ResetR" declared implicitly
-N                         ResetR();
-N                     }else if(page_sw == face_load){
-X                     }else if(page_sw == 4){
-W "..\drive\TIM6.c" 165 26 function "ResetLoad" declared implicitly
-N                         ResetLoad();
-N                     }else if(page_sw == face_graph){
-X                     }else if(page_sw == 0){
-W "..\drive\TIM6.c" 167 26 function "ResetG" declared implicitly
-N                         ResetG();
-N                     }else if(page_sw == face_set){
-X                     }else if(page_sw == 5){
-W "..\drive\TIM6.c" 169 26 function "ResetSET" declared implicitly
-N                         ResetSET();
-N                     }
-N                     resdone = 1;
-N//                     resetflag = 0;
-N                     resetcount = 0;
-N                 }else{
-N                     resetcount++;
-N                 }                
-N             }
-N         }
+N//         if(page_sw != face_starter)
+N//         {
+N//              if(resetflag == 1)
+N//              {
+N//                  if(resetcount == 1)
+N//                  {
+N//                      LCD_Initializtion();
+N//                      sLCD_WR_REG(0xf1);
+N//                      GUI_Init();
+N//                      if(page_sw == face_menu)
+N//                      {
+N//                          ResetPow();
+N//                      }else if(page_sw == face_cdc){
+N//                          ResetCDC();
+N//                      }else if(page_sw == face_r){
+N//                          ResetR();
+N//                      }else if(page_sw == face_load){
+N//                          ResetLoad();
+N//                      }else if(page_sw == face_graph){
+N//                          ResetG();
+N//                      }else if(page_sw == face_set){
+N//                          ResetSET();
+N//                      }
+N//                      resdone = 1;
+N// //                     resetflag = 0;
+N//                      resetcount = 0;
+N//                  }else{
+N//                      resetcount++;
+N//                  }                
+N//              }
+N//          }
 N        switch(page_sw)
 N        {
-N//             case face_menu:
-N//             {
-N//                 if(pow_sw == pow_on)
-N//                 {
-N//                     bc_raw += DISS_POW_Current * 1000 * 1/3600;
-N//                 }else{
-N//                     bc_raw = 0;
-N//                 }
-N//             }break;
-N//             case face_cdc:
-N//             {
-N//                 if(mode_sw == mode_pow && cdc_sw == cdc_on)
-N//                 {
-N//                     bc_raw += DISS_POW_Current * 1000 * 1/3600;
-N//                 }else if(cdc_sw == cdc_off){
-N//                     bc_raw = 0;
-N//                 }
-N//             }break;
-N//             case face_load:
-N//             {
-N//                 if(load_sw == load_on)
-N//                 {
-N//                     if(alert_flag == 1)
-N//                     {
-N//                         calert ++;
-N//                         if(calert == 3)
-N//                         {
-N//                             t_onoff = 0;
-N//                             GPIO_SetBits(GPIOA,GPIO_Pin_15);//֧ؓغ՘OFF
-N//                             mode_sw = 0;
-N//                             load_sw = load_off;
-N//                             calert = 0;                                
-N//                         }
-N//                     }
-N//                     bc_raw += DISS_Current * 1000 * 1/3600;
-N//                 }else{
-N//                     bc_raw = 0;
-N//                 }
-N//             }break;
-N//             case face_graph:
-N//             {
-N//                 if(mode_sw == mode_pow)
-N//                 {
-N//                     if(pow_sw == pow_on)
-N//                     {
-N//                         bc_raw += DISS_POW_Current * 1000 * 1/3600;
-N//                     }else if(mode_sw == mode_pow && cdc_sw == cdc_on)
-N//                     {
-N//                         bc_raw += DISS_POW_Current * 1000 * 1/3600;
-N//                     }
-N//                     else{
-N//                         bc_raw = 0;
-N//                     }
-N//                 }               
-N//                 
-N//                 if(mode_sw == mode_load)
-N//                 {
-N//                     if(load_sw == load_on)
-N//                     {
-N//                         bc_raw += DISS_Current * 1000 * 1/3600;
-N//                     }else{
-N//                         bc_raw = 0;
-N//                     }
-N//                 }
-N//             }break;
+N            case face_menu:
+X            case 2:
+N            {
+N                if(pow_sw == pow_on)
+X                if(pow_sw == 1)
+N                {
+N                    bc_raw += DISS_POW_Current * 1000 * 1/3600;
+N                }else{
+N                    bc_raw = 0;
+N                }
+N            }break;
+N            case face_cdc:
+X            case 1:
+N            {
+N                if(mode_sw == mode_pow && cdc_sw == cdc_on)
+X                if(mode_sw == 3 && cdc_sw == 1)
+N                {
+N                    bc_raw += DISS_POW_Current * 1000 * 1/3600;
+N                }else if(cdc_sw == cdc_off){
+X                }else if(cdc_sw == 0){
+N                    bc_raw = 0;
+N                }
+N            }break;
+N            case face_load:
+X            case 4:
+N            {
+N                if(load_sw == load_on)
+X                if(load_sw == 1)
+N                {
+N                    if(alert_flag == 1)
+N                    {
+N                        calert ++;
+N                        if(calert == 3)
+N                        {
+N                            t_onoff = 0;
+N                            GPIO_SetBits(GPIOA,GPIO_Pin_15);//֧ؓغ՘OFF
+X                            GPIO_SetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0000)),((uint16_t)0x8000));
+N                            mode_sw = 0;
+N                            load_sw = load_off;
+X                            load_sw = 0;
+N                            calert = 0;                                
+N                        }
+N                    }
+N                    bc_raw += DISS_Current * 1000 * 1/3600;
+N                }else{
+N                    bc_raw = 0;
+N                }
+N            }break;
+N            case face_graph:
+X            case 0:
+N            {
+N                if(mode_sw == mode_pow)
+X                if(mode_sw == 3)
+N                {
+N                    if(pow_sw == pow_on)
+X                    if(pow_sw == 1)
+N                    {
+N                        bc_raw += DISS_POW_Current * 1000 * 1/3600;
+N                    }else if(mode_sw == mode_pow && cdc_sw == cdc_on)
+X                    }else if(mode_sw == 3 && cdc_sw == 1)
+N                    {
+N                        bc_raw += DISS_POW_Current * 1000 * 1/3600;
+N                    }
+N                    else{
+N                        bc_raw = 0;
+N                    }
+N                }               
+N                
+N                if(mode_sw == mode_load)
+X                if(mode_sw == 2)
+N                {
+N                    if(load_sw == load_on)
+X                    if(load_sw == 1)
+N                    {
+N                        bc_raw += DISS_Current * 1000 * 1/3600;
+N                    }else{
+N                        bc_raw = 0;
+N                    }
+N                }
+N            }break;
 N            case face_r:
 X            case 3:
 N            {

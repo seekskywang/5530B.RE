@@ -5,8 +5,8 @@
                           AREA ||i.CFM_PASS||, CODE, READONLY, ALIGN=2
 
                   CFM_PASS PROC
-;;;1361   WM_HWIN CFM_PASS(void);            
-;;;1362   WM_HWIN CFM_PASS(void){
+;;;1361   void CFM_PASS(void);            
+;;;1362   void CFM_PASS(void){
 000000  b570              PUSH     {r4-r6,lr}
 ;;;1363       if(admin == 1)
 000002  4d13              LDR      r5,|L1.80|
@@ -111,7 +111,7 @@
                           REQUIRE _printf_d
                           REQUIRE _printf_int_dec
                   INPUT_INFO PROC
-;;;1207   void INPUT_INFO(vu8 num);            
+;;;1207              
 ;;;1208   void INPUT_INFO(vu8 num){
 000000  b570              PUSH     {r4-r6,lr}
 000002  4604              MOV      r4,r0
@@ -548,8 +548,8 @@
                           AREA ||i.SYS_INFO_DOWN||, CODE, READONLY, ALIGN=2
 
                   SYS_INFO_DOWN PROC
-;;;988    WM_HWIN SYS_INFO_DOWN(void);
-;;;989    WM_HWIN SYS_INFO_DOWN(void)
+;;;988    
+;;;989    void SYS_INFO_DOWN(void)
 000000  e92d5ff0          PUSH     {r4-r12,lr}
 ;;;990    {
 ;;;991        WM_HWIN hItem;
@@ -1149,8 +1149,8 @@
                           AREA ||i.SYS_INFO_LEFT||, CODE, READONLY, ALIGN=2
 
                   SYS_INFO_LEFT PROC
-;;;550    WM_HWIN SYS_INFO_LEFT(void);
-;;;551    WM_HWIN SYS_INFO_LEFT(void)
+;;;550    
+;;;551    void SYS_INFO_LEFT(void)
 000000  e92d5ff0          PUSH     {r4-r12,lr}
 ;;;552    {
 ;;;553        WM_HWIN hItem;
@@ -1788,8 +1788,8 @@
                           AREA ||i.SYS_INFO_RIGHT||, CODE, READONLY, ALIGN=2
 
                   SYS_INFO_RIGHT PROC
-;;;331    WM_HWIN SYS_INFO_RIGHT(void);
-;;;332    WM_HWIN SYS_INFO_RIGHT(void)
+;;;331    
+;;;332    void SYS_INFO_RIGHT(void)
 000000  e92d5ff0          PUSH     {r4-r12,lr}
 ;;;333    {
 ;;;334        WM_HWIN hItem;
@@ -2427,8 +2427,8 @@
                           AREA ||i.SYS_INFO_UP||, CODE, READONLY, ALIGN=2
 
                   SYS_INFO_UP PROC
-;;;769    WM_HWIN SYS_INFO_UP(void);
-;;;770    WM_HWIN SYS_INFO_UP(void)
+;;;769    
+;;;770    void SYS_INFO_UP(void)
 000000  e92d5ff0          PUSH     {r4-r12,lr}
 ;;;771    {
 ;;;772        WM_HWIN hItem;

@@ -27,6 +27,22 @@ void INPUT_CDC(char* num);
 void INPUT_C(char* num);  
 void INPUT_LOAD(char* num);  
 void INPUT_INFO(vu8 num);
+void SET_OP_DOWN(void);
+void SET_OP_UP(void);
+void SET_OP_RIGHT(void);
+void SET_OP_LEFT(void);
+void PARA_SET(void);
+void SYS_INFO_RIGHT(void);
+void SYS_INFO_LEFT(void);
+void SYS_INFO_UP(void);
+void SYS_INFO_DOWN(void);
+void INPUT_INFO(vu8 num);
+void CDC_OP_DOWN(void);
+void CDC_OP_UP(void);
+void CDC_OP_LEFT(void);
+void CDC_OP_RIGHT(void);
+void CDC_SET(void);
+void INPUT_CDC(char* num); 
 //=============================================================================
 #define NOP   __nop();	  //空指令
 
@@ -183,8 +199,9 @@ extern float clear_v;
 extern float clear_pv;
 extern float clear_lv;
 extern float temp;
+extern vu8 set_loop_count;
 
-extern vu32 Run_Control[37];	
+extern vu32 Run_Control[41];	
 #define onoff_ch                    Run_Control[0]  //ON/OFF
 #define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 #define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -223,9 +240,13 @@ extern vu32 Run_Control[37];
 #define opc1    					    Run_Control[34]
 #define opc2    					    Run_Control[35]
 #define opc3    					    Run_Control[36]
+#define load_c    					    Run_Control[37]
+#define pow_v    					    Run_Control[38]
+#define cdc_dc    					    Run_Control[39]
+#define pow_c    					    Run_Control[40]
 
 
-extern float coff[6];
+extern vu16 coff[6];
 #define cov1    					    coff[0]
 #define cov2    					    coff[1]
 #define cov3    					    coff[2]

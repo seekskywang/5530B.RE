@@ -70,7 +70,7 @@ extern vu8 t_onoff;
 extern vu8 mode_sw;
 
 extern vu8 LOAD_t;
-extern vu8 status_flash;
+//extern vu8 status_flash;
 extern vu8 pass;
 extern vu8 track;
 extern vu8 clear_r;
@@ -446,7 +446,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
                     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_98);
                     TEXT_SetTextColor(hItem, GUI_RED);
                     TEXT_SetText(hItem, "测试中");
-                    status_flash = 1;
+//                    status_flash = 1;
                     
     //             }else{
     //                 hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_98);

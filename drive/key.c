@@ -13,6 +13,7 @@
 #include "key.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
+#include "ssd1963.h"
 #include  "gui.h"
 #include "MainTask.h"
 

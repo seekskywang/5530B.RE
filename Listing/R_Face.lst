@@ -48568,6 +48568,22 @@ Nvoid INPUT_CDC(char* num);
 Nvoid INPUT_C(char* num);  
 Nvoid INPUT_LOAD(char* num);  
 Nvoid INPUT_INFO(vu8 num);
+Nvoid SET_OP_DOWN(void);
+Nvoid SET_OP_UP(void);
+Nvoid SET_OP_RIGHT(void);
+Nvoid SET_OP_LEFT(void);
+Nvoid PARA_SET(void);
+Nvoid SYS_INFO_RIGHT(void);
+Nvoid SYS_INFO_LEFT(void);
+Nvoid SYS_INFO_UP(void);
+Nvoid SYS_INFO_DOWN(void);
+Nvoid INPUT_INFO(vu8 num);
+Nvoid CDC_OP_DOWN(void);
+Nvoid CDC_OP_UP(void);
+Nvoid CDC_OP_LEFT(void);
+Nvoid CDC_OP_RIGHT(void);
+Nvoid CDC_SET(void);
+Nvoid INPUT_CDC(char* num); 
 N//=============================================================================
 N#define NOP   __nop();	  //��ָ��
 N
@@ -48724,8 +48740,9 @@ Nextern float clear_v;
 Nextern float clear_pv;
 Nextern float clear_lv;
 Nextern float temp;
+Nextern vu8 set_loop_count;
 N
-Nextern vu32 Run_Control[37];	
+Nextern vu32 Run_Control[41];	
 N#define onoff_ch                    Run_Control[0]  //ON/OFF
 N#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 N#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -48764,9 +48781,13 @@ N#define opv3    					    Run_Control[33]
 N#define opc1    					    Run_Control[34]
 N#define opc2    					    Run_Control[35]
 N#define opc3    					    Run_Control[36]
+N#define load_c    					    Run_Control[37]
+N#define pow_v    					    Run_Control[38]
+N#define cdc_dc    					    Run_Control[39]
+N#define pow_c    					    Run_Control[40]
 N
 N
-Nextern float coff[6];
+Nextern vu16 coff[6];
 N#define cov1    					    coff[0]
 N#define cov2    					    coff[1]
 N#define cov3    					    coff[2]
@@ -48996,6 +49017,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //��ָ��
 S
@@ -49152,8 +49189,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 S#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -49192,9 +49230,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -51410,6 +51452,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //��ָ��
 S
@@ -51566,8 +51624,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 S#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -51606,9 +51665,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -52439,7 +52502,7 @@ Nextern vu8 t_onoff;
 Nextern vu8 mode_sw;
 N
 Nextern vu8 LOAD_t;
-Nextern vu8 status_flash;
+N//extern vu8 status_flash;
 Nextern vu8 pass;
 Nextern vu8 track;
 Nextern vu8 clear_r;
@@ -52903,7 +52966,7 @@ X                    hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x0106));
 N                    TEXT_SetTextColor(hItem, GUI_RED);
 X                    TEXT_SetTextColor(hItem, 0x000000FF);
 N                    TEXT_SetText(hItem, "测试中");
-N                    status_flash = 1;
+N//                    status_flash = 1;
 N                    
 N    //             }else{
 N    //                 hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_98);

@@ -517,8 +517,8 @@ WM_HWIN ResetSET(void) {
 *       设置界面选项切换
 */
 //向下选择
-WM_HWIN SET_OP_DOWN(void);
-WM_HWIN SET_OP_DOWN(void) {
+
+void SET_OP_DOWN(void) {
                 switch(set_sw){
                     case set_1:
                     {
@@ -887,13 +887,13 @@ WM_HWIN SET_OP_DOWN(void) {
                     }
                     default: break;
                  }
-                return set_sw;
+//                return set_sw;
 //                return b_type;
 }
 
 //向上选择
-WM_HWIN SET_OP_UP(void);
-WM_HWIN SET_OP_UP(void) {
+
+void SET_OP_UP(void) {
                 switch(set_sw){
                     case set_1:
                     {
@@ -1263,12 +1263,12 @@ WM_HWIN SET_OP_UP(void) {
                     }
                     default: break;
                 }
-                return set_sw;
+//                return set_sw;
 }
 
 //向右选择
-WM_HWIN SET_OP_RIGHT(void);
-WM_HWIN SET_OP_RIGHT(void) {
+
+void SET_OP_RIGHT(void) {
                 switch(set_sw){
                     case set_1:
                     {
@@ -1435,12 +1435,12 @@ WM_HWIN SET_OP_RIGHT(void) {
 //                     }
                     default: break;
                 }
-                return set_sw;
+//                return set_sw;
 }
 
 //向左选择
-WM_HWIN SET_OP_LEFT(void);
-WM_HWIN SET_OP_LEFT(void) {
+
+void SET_OP_LEFT(void) {
                 switch(set_sw){
                     case set_1:
                     {
@@ -1607,12 +1607,12 @@ WM_HWIN SET_OP_LEFT(void) {
 //                     }
                     default: break;
                 }
-                return set_sw;
+//                return set_sw;
 }
 
 //参数设置
-WM_HWIN PARA_SET(void);
-WM_HWIN PARA_SET(void) {
+
+void PARA_SET(void) {
                 vu8 i;
                 char buf[5];
   
@@ -1700,7 +1700,7 @@ WM_HWIN PARA_SET(void) {
                             Write_alarm();
                             break;
                         }
-                        break;
+//                        break;
                         }
                     break;
                     }

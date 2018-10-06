@@ -328,8 +328,8 @@ WM_HWIN Createsysinfo(void) {
 }
 
 
-WM_HWIN SYS_INFO_RIGHT(void);
-WM_HWIN SYS_INFO_RIGHT(void)
+
+void SYS_INFO_RIGHT(void)
 {
     WM_HWIN hItem;
     switch(info_set)
@@ -547,8 +547,8 @@ WM_HWIN SYS_INFO_RIGHT(void)
 }
 
 
-WM_HWIN SYS_INFO_LEFT(void);
-WM_HWIN SYS_INFO_LEFT(void)
+
+void SYS_INFO_LEFT(void)
 {
     WM_HWIN hItem;
     switch(info_set)
@@ -766,8 +766,8 @@ WM_HWIN SYS_INFO_LEFT(void)
 }
 
 
-WM_HWIN SYS_INFO_UP(void);
-WM_HWIN SYS_INFO_UP(void)
+
+void SYS_INFO_UP(void)
 {
     WM_HWIN hItem;
     switch(info_set)
@@ -985,8 +985,8 @@ WM_HWIN SYS_INFO_UP(void)
 }
 
 
-WM_HWIN SYS_INFO_DOWN(void);
-WM_HWIN SYS_INFO_DOWN(void)
+
+void SYS_INFO_DOWN(void)
 {
     WM_HWIN hItem;
     switch(info_set)
@@ -1204,7 +1204,7 @@ WM_HWIN SYS_INFO_DOWN(void)
 }
 
 
-void INPUT_INFO(vu8 num);            
+           
 void INPUT_INFO(vu8 num){
     static char buf[5];
     WM_HWIN hItem;
@@ -1358,8 +1358,8 @@ void INPUT_INFO(vu8 num){
     }
 }
 
-WM_HWIN CFM_PASS(void);            
-WM_HWIN CFM_PASS(void){
+void CFM_PASS(void);            
+void CFM_PASS(void){
     if(admin == 1)
     {
         WM_HWIN hItem;

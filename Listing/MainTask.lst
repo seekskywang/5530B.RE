@@ -48617,6 +48617,22 @@ Nvoid INPUT_CDC(char* num);
 Nvoid INPUT_C(char* num);  
 Nvoid INPUT_LOAD(char* num);  
 Nvoid INPUT_INFO(vu8 num);
+Nvoid SET_OP_DOWN(void);
+Nvoid SET_OP_UP(void);
+Nvoid SET_OP_RIGHT(void);
+Nvoid SET_OP_LEFT(void);
+Nvoid PARA_SET(void);
+Nvoid SYS_INFO_RIGHT(void);
+Nvoid SYS_INFO_LEFT(void);
+Nvoid SYS_INFO_UP(void);
+Nvoid SYS_INFO_DOWN(void);
+Nvoid INPUT_INFO(vu8 num);
+Nvoid CDC_OP_DOWN(void);
+Nvoid CDC_OP_UP(void);
+Nvoid CDC_OP_LEFT(void);
+Nvoid CDC_OP_RIGHT(void);
+Nvoid CDC_SET(void);
+Nvoid INPUT_CDC(char* num); 
 N//=============================================================================
 N#define NOP   __nop();	  //空指令
 N
@@ -48773,8 +48789,9 @@ Nextern float clear_v;
 Nextern float clear_pv;
 Nextern float clear_lv;
 Nextern float temp;
+Nextern vu8 set_loop_count;
 N
-Nextern vu32 Run_Control[37];	
+Nextern vu32 Run_Control[41];	
 N#define onoff_ch                    Run_Control[0]  //ON/OFF
 N#define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 N#define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -48813,9 +48830,13 @@ N#define opv3    					    Run_Control[33]
 N#define opc1    					    Run_Control[34]
 N#define opc2    					    Run_Control[35]
 N#define opc3    					    Run_Control[36]
+N#define load_c    					    Run_Control[37]
+N#define pow_v    					    Run_Control[38]
+N#define cdc_dc    					    Run_Control[39]
+N#define pow_c    					    Run_Control[40]
 N
 N
-Nextern float coff[6];
+Nextern vu16 coff[6];
 N#define cov1    					    coff[0]
 N#define cov2    					    coff[1]
 N#define cov3    					    coff[2]
@@ -49077,6 +49098,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //空指令
 S
@@ -49233,8 +49270,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 S#define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -49273,9 +49311,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -49523,6 +49565,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //空指令
 S
@@ -49679,8 +49737,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 S#define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -49719,9 +49778,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -49971,6 +50034,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //空指令
 S
@@ -50127,8 +50206,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 S#define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -50167,9 +50247,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -50420,6 +50504,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //空指令
 S
@@ -50576,8 +50676,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 S#define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -50616,9 +50717,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -50871,6 +50976,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //空指令
 S
@@ -51027,8 +51148,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //支源狮吱支压
 S#define SET_Current	    	    		  Run_Control[2]  //支源狮吱支路
@@ -51067,9 +51189,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -51418,7 +51544,9 @@ N	HEADER_SetDefaultSkin(HEADER_SKIN_FLEX);
 X	HEADER_SetDefaultSkin(HEADER_DrawSkinFlex);
 N	RADIO_SetDefaultSkin(RADIO_SKIN_FLEX);
 X	RADIO_SetDefaultSkin(RADIO_DrawSkinFlex);
-N	CreateR();//开机进入内阻测试界面
+W "..\STemWinLibrary522\emWinTask\MainTask.c" 70 5 function "CreateSTARTER" declared implicitly
+N    CreateSTARTER();
+N//	CreateR();//开机进入内阻测试界面
 N	flag_Load_CC=1;//开机负载默认进入CC模式
 X	(flagD . bit7)=1;
 N	GPIO_ResetBits(GPIOC,GPIO_Pin_12);//CC
@@ -51434,10 +51562,10 @@ N//         {
 N            if(page_sw != face_starter)
 X            if(page_sw != 6)
 N            {
-N                if(scancount == 9)
+N                if(scancount == 9 && resdone == 0)
 N                {
 N                    sLCD_WR_REG(0xf1);
-N                    ee_Delay(10);
+N                    ee_Delay(30);
 N                    read1963 =sLCD_Read_Data();
 N                    scancount = 0;
 N                }else{
@@ -51447,6 +51575,7 @@ N                 if(read1963 != 0x03)
 N                 {
 N                     resetflag = 1;               
 N                 }else{
+N                     resdone = 0;
 N                     resetflag = 0; 
 N                 }
 N            }

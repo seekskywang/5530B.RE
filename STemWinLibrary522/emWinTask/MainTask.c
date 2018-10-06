@@ -67,7 +67,8 @@ void MainTask(void)
 	SLIDER_SetDefaultSkin(SLIDER_SKIN_FLEX);
 	HEADER_SetDefaultSkin(HEADER_SKIN_FLEX);
 	RADIO_SetDefaultSkin(RADIO_SKIN_FLEX);
-	CreateR();//开机进入内阻测试界面
+    CreateSTARTER();
+//	CreateR();//开机进入内阻测试界面
 	flag_Load_CC=1;//开机负载默认进入CC模式
 	GPIO_ResetBits(GPIOC,GPIO_Pin_12);//CC
 	GPIO_SetBits(GPIOA,GPIO_Pin_15);//OFF
@@ -78,10 +79,10 @@ void MainTask(void)
 //         {
             if(page_sw != face_starter)
             {
-                if(scancount == 9)
+                if(scancount == 9 && resdone == 0)
                 {
                     sLCD_WR_REG(0xf1);
-                    ee_Delay(10);
+                    ee_Delay(30);
                     read1963 =sLCD_Read_Data();
                     scancount = 0;
                 }else{
@@ -91,6 +92,7 @@ void MainTask(void)
                  {
                      resetflag = 1;               
                  }else{
+                     resdone = 0;
                      resetflag = 0; 
                  }
             }

@@ -427,6 +427,8 @@ WM_HWIN CreateWindow(void) {
   page_sw = face_menu;
   track = face_menu;
   set_sw = set_10;
+    SET_Voltage = pow_v;
+  SET_Current = pow_c;
   pass = 0;
   mode_sw = mode_pow;
   USART_SendData(USART3,1);//打开电源
@@ -565,6 +567,7 @@ void MENU_SET(void)
             hItem = WM_GetDialogItem(hWinWind, ID_TEXT_41);
             TEXT_SetBkColor(hItem,GUI_INVALID_COLOR);//选项背景色设为透明
             TEXT_SetTextColor(hItem, GUI_WHITE);
+            SET_Voltage = pow_v;
             if(SET_Voltage/100 * SET_Current/1000 > 200)
             {
                 SET_Voltage = 0;
@@ -611,6 +614,7 @@ void MENU_SET(void)
             hItem = WM_GetDialogItem(hWinWind, ID_TEXT_42);
             TEXT_SetBkColor(hItem,GUI_INVALID_COLOR);//选项背景色设为透明
             TEXT_SetTextColor(hItem, GUI_WHITE);
+              SET_Current = pow_c;
             if(SET_Current > 5000)
             {
                 SET_Current = 5000;               
@@ -650,7 +654,7 @@ void INPUT_POW(char* num){
             switch(bit){
                 case 1:
                 {
-                    SET_Voltage = atoi(num) * 100;
+                    pow_v = atoi(num) * 100;
                     strcat(set_limit,num);            
                     TEXT_SetText(hItem,set_limit);
                     bit = 2;
@@ -664,7 +668,7 @@ void INPUT_POW(char* num){
                     {
                         dot_flag = 1;
                     }else{
-                        SET_Voltage = SET_Voltage * 10 + atoi(num) * 100;
+                        pow_v = pow_v * 10 + atoi(num) * 100;
                     }
                     bit = 3;
                     break;
@@ -679,10 +683,10 @@ void INPUT_POW(char* num){
                         {                            
                             dot_flag = 2;
                         }else{
-                            SET_Voltage = /*3000*/ 6200;
+                            pow_v = /*3000*/ 6200;
                         }
                     }else{
-                        SET_Voltage = SET_Voltage + atoi(num) * 10;
+                        pow_v = pow_v + atoi(num) * 10;
                     }
                                        
                     bit = 4;
@@ -694,11 +698,11 @@ void INPUT_POW(char* num){
                     TEXT_SetText(hItem,set_limit);
                     if(dot_flag == 0)
                     {
-                        SET_Voltage = /*3000*/ 6200;
+                        pow_v = /*3000*/ 6200;
                     }else if(dot_flag == 2){
-                        SET_Voltage = SET_Voltage + atoi(num) * 10;
+                        pow_v = pow_v + atoi(num) * 10;
                     }else{
-                        SET_Voltage = SET_Voltage + atoi(num);
+                        pow_v = pow_v + atoi(num);
                     }
                                        
                     bit = 5;
@@ -710,11 +714,11 @@ void INPUT_POW(char* num){
                     TEXT_SetText(hItem,set_limit);
                     if(dot_flag == 0)
                     {
-                        SET_Voltage = /*3000*/ 6200;
+                        pow_v = /*3000*/ 6200;
                     }else if(dot_flag == 1){
-                        SET_Voltage = SET_Voltage;
+                        pow_v = pow_v;
                     }else{
-                        SET_Voltage = SET_Voltage + atoi(num);
+                        pow_v = pow_v + atoi(num);
                     }
                                        
                     bit = 1;
@@ -779,7 +783,7 @@ void INPUT_POW(char* num){
 //                 }
                 case 1:
                 {
-                    SET_Current = atoi(num) * 1000;
+                    pow_c = atoi(num) * 1000;
                     strcat(set_limit,num);            
                     TEXT_SetText(hItem,set_limit);
                     bit = 2;
@@ -793,7 +797,7 @@ void INPUT_POW(char* num){
                     {
                         dot_flag = 1;
                     }else{
-                        SET_Current = SET_Current * 10 + atoi(num) * 1000;
+                        pow_c = pow_c * 10 + atoi(num) * 1000;
                     }
                     bit = 3;
                     break;
@@ -808,10 +812,10 @@ void INPUT_POW(char* num){
                         {                            
                             dot_flag = 2;
                         }else{
-                            SET_Current = 5000;
+                            pow_c = 5000;
                         }
                     }else{
-                        SET_Current = SET_Current + atoi(num) * 100;
+                        pow_c = pow_c + atoi(num) * 100;
                     }
                                        
                     bit = 4;
@@ -823,11 +827,11 @@ void INPUT_POW(char* num){
                     TEXT_SetText(hItem,set_limit);
                     if(dot_flag == 0)
                     {
-                        SET_Current = 5000;
+                        pow_c = 5000;
                     }else if(dot_flag == 2){
-                        SET_Current = SET_Current + atoi(num) * 100;
+                        pow_c = pow_c + atoi(num) * 100;
                     }else{
-                        SET_Current = SET_Current + atoi(num) * 10;
+                        pow_c = pow_c + atoi(num) * 10;
                     }
                                        
                     bit = 5;
@@ -839,11 +843,11 @@ void INPUT_POW(char* num){
                     TEXT_SetText(hItem,set_limit);
                     if(dot_flag == 0)
                     {
-                        SET_Current = 5000;
+                        pow_c = 5000;
                     }else if(dot_flag == 1){
-                        SET_Current = SET_Current + atoi(num);
+                        pow_c = pow_c + atoi(num);
                     }else{
-                        SET_Current = SET_Current + atoi(num) * 10;
+                        pow_c = pow_c + atoi(num) * 10;
                     }
                                        
                     bit = 6;
@@ -855,9 +859,9 @@ void INPUT_POW(char* num){
                     TEXT_SetText(hItem,set_limit);
                     if(dot_flag == 0)
                     {
-                        SET_Current = 0;
+                        pow_c = 0;
                     }else if(dot_flag == 2){
-                        SET_Current = SET_Current + atoi(num);
+                        pow_c = pow_c + atoi(num);
                     }                 
                     bit = 1;
                     break;

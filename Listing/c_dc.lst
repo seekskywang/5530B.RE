@@ -48568,6 +48568,22 @@ Nvoid INPUT_CDC(char* num);
 Nvoid INPUT_C(char* num);  
 Nvoid INPUT_LOAD(char* num);  
 Nvoid INPUT_INFO(vu8 num);
+Nvoid SET_OP_DOWN(void);
+Nvoid SET_OP_UP(void);
+Nvoid SET_OP_RIGHT(void);
+Nvoid SET_OP_LEFT(void);
+Nvoid PARA_SET(void);
+Nvoid SYS_INFO_RIGHT(void);
+Nvoid SYS_INFO_LEFT(void);
+Nvoid SYS_INFO_UP(void);
+Nvoid SYS_INFO_DOWN(void);
+Nvoid INPUT_INFO(vu8 num);
+Nvoid CDC_OP_DOWN(void);
+Nvoid CDC_OP_UP(void);
+Nvoid CDC_OP_LEFT(void);
+Nvoid CDC_OP_RIGHT(void);
+Nvoid CDC_SET(void);
+Nvoid INPUT_CDC(char* num); 
 N//=============================================================================
 N#define NOP   __nop();	  //��ָ��
 N
@@ -48724,8 +48740,9 @@ Nextern float clear_v;
 Nextern float clear_pv;
 Nextern float clear_lv;
 Nextern float temp;
+Nextern vu8 set_loop_count;
 N
-Nextern vu32 Run_Control[37];	
+Nextern vu32 Run_Control[41];	
 N#define onoff_ch                    Run_Control[0]  //ON/OFF
 N#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 N#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -48764,9 +48781,13 @@ N#define opv3    					    Run_Control[33]
 N#define opc1    					    Run_Control[34]
 N#define opc2    					    Run_Control[35]
 N#define opc3    					    Run_Control[36]
+N#define load_c    					    Run_Control[37]
+N#define pow_v    					    Run_Control[38]
+N#define cdc_dc    					    Run_Control[39]
+N#define pow_c    					    Run_Control[40]
 N
 N
-Nextern float coff[6];
+Nextern vu16 coff[6];
 N#define cov1    					    coff[0]
 N#define cov2    					    coff[1]
 N#define cov3    					    coff[2]
@@ -48996,6 +49017,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //��ָ��
 S
@@ -49152,8 +49189,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 S#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -49192,9 +49230,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -51410,6 +51452,22 @@ Svoid INPUT_CDC(char* num);
 Svoid INPUT_C(char* num);  
 Svoid INPUT_LOAD(char* num);  
 Svoid INPUT_INFO(vu8 num);
+Svoid SET_OP_DOWN(void);
+Svoid SET_OP_UP(void);
+Svoid SET_OP_RIGHT(void);
+Svoid SET_OP_LEFT(void);
+Svoid PARA_SET(void);
+Svoid SYS_INFO_RIGHT(void);
+Svoid SYS_INFO_LEFT(void);
+Svoid SYS_INFO_UP(void);
+Svoid SYS_INFO_DOWN(void);
+Svoid INPUT_INFO(vu8 num);
+Svoid CDC_OP_DOWN(void);
+Svoid CDC_OP_UP(void);
+Svoid CDC_OP_LEFT(void);
+Svoid CDC_OP_RIGHT(void);
+Svoid CDC_SET(void);
+Svoid INPUT_CDC(char* num); 
 S//=============================================================================
 S#define NOP   __nop();	  //��ָ��
 S
@@ -51566,8 +51624,9 @@ Sextern float clear_v;
 Sextern float clear_pv;
 Sextern float clear_lv;
 Sextern float temp;
+Sextern vu8 set_loop_count;
 S
-Sextern vu32 Run_Control[37];	
+Sextern vu32 Run_Control[41];	
 S#define onoff_ch                    Run_Control[0]  //ON/OFF
 S#define SET_Voltage 	    	        Run_Control[1]  //֧Դʨ֧֨ѹ
 S#define SET_Current	    	    		  Run_Control[2]  //֧Դʨ֧֨·
@@ -51606,9 +51665,13 @@ S#define opv3    					    Run_Control[33]
 S#define opc1    					    Run_Control[34]
 S#define opc2    					    Run_Control[35]
 S#define opc3    					    Run_Control[36]
+S#define load_c    					    Run_Control[37]
+S#define pow_v    					    Run_Control[38]
+S#define cdc_dc    					    Run_Control[39]
+S#define pow_c    					    Run_Control[40]
 S
 S
-Sextern float coff[6];
+Sextern vu16 coff[6];
 S#define cov1    					    coff[0]
 S#define cov2    					    coff[1]
 S#define cov3    					    coff[2]
@@ -52407,7 +52470,7 @@ Nvu8 cur_step;
 Nvu8 coffv_step;
 Nvu8 coffc_step;
 Nvu8 charge_step;
-Nfloat coff[6];
+Nvu16 coff[6];
 Nint count_num(int data);
 NWM_HWIN timer(void);
 XGUI_HWIN timer(void);
@@ -52596,10 +52659,10 @@ N  float dis_output_v = (float)SET_Voltage/100;
 X  float dis_output_v = (float)Run_Control[1]/100;
 N  float dis_output_c = (float)SET_Current/1000;
 X  float dis_output_c = (float)Run_Control[2]/1000;
-N  float dis_c_cutoff_v = (float)set_c_cutoff_v/100;
-X  float dis_c_cutoff_v = (float)Run_Control[25]/100;
-N  float dis_c_cutoff_c = (float)set_c_cutoff_c/1000;
-X  float dis_c_cutoff_c = (float)Run_Control[26]/1000;
+N  float dis_c_cutoff_v = (float)cov1/100;
+X  float dis_c_cutoff_v = (float)coff[0]/100;
+N  float dis_c_cutoff_c = (float)coc1/1000;
+X  float dis_c_cutoff_c = (float)coff[3]/1000;
 N  float dis_dc_cutoff_v = (float)set_dc_cutoff_v/1000;
 X  float dis_dc_cutoff_v = (float)Run_Control[27]/1000;
 N  float dis_dc_cutoff_c = (float)set_dc_cutoff_c/100;
@@ -52761,13 +52824,13 @@ N            }
 N            if(opv2 == 0 && opv3 == 0 && opc2 == 0 && opc3 == 0)
 X            if(Run_Control[32] == 0 && Run_Control[33] == 0 && Run_Control[35] == 0 && Run_Control[36] == 0)
 N            {
-N                if(((DISS_POW_Voltage >= cov1 && cov1 != 0) || DISS_POW_Current < coc1) && cutoff_flag == 0){//判断电流是否小于截止电流，并记录时间
-X                if(((DISS_POW_Voltage >= coff[0] && coff[0] != 0) || DISS_POW_Current < coff[3]) && cutoff_flag == 0){
+N                if(((DISS_POW_Voltage >= (float)cov1/100 && cov1 != 0) || DISS_POW_Current < (float)coc1/1000) && cutoff_flag == 0){//判断电流是否小于截止电流，并记录时间
+X                if(((DISS_POW_Voltage >= (float)coff[0]/100 && coff[0] != 0) || DISS_POW_Current < (float)coff[3]/1000) && cutoff_flag == 0){
 N                    cutoff_time = GUI_GetTime()/500;
 N                    cutoff_flag = 1;
 N                }
-N                if(((DISS_POW_Voltage >= cov1 && cov1 != 0) || DISS_POW_Current < coc1) && (GUI_GetTime()/500 - cutoff_time) >= 10 )//若测量电流小于截止电流
-X                if(((DISS_POW_Voltage >= coff[0] && coff[0] != 0) || DISS_POW_Current < coff[3]) && (GUI_GetTime()/500 - cutoff_time) >= 10 )
+N                if(((DISS_POW_Voltage >= (float)cov1/100 && cov1 != 0) || DISS_POW_Current < (float)coc1/1000) && (GUI_GetTime()/500 - cutoff_time) >= 10 )//若测量电流小于截止电流
+X                if(((DISS_POW_Voltage >= (float)coff[0]/100 && coff[0] != 0) || DISS_POW_Current < (float)coff[3]/1000) && (GUI_GetTime()/500 - cutoff_time) >= 10 )
 N                {
 N                    if(mode_sw == mode_pow){
 X                    if(mode_sw == 3){
@@ -52788,8 +52851,8 @@ X                    mode_sw = 2;
 N                }
 N            }else if(opv3 == 0 && opc3 == 0){
 X            }else if(Run_Control[33] == 0 && Run_Control[36] == 0){
-N                if(((DISS_POW_Voltage >= cov1 && cov1 != 0) || DISS_POW_Current < coc1) && cutoff_flag == 0 && charge_step == 1)
-X                if(((DISS_POW_Voltage >= coff[0] && coff[0] != 0) || DISS_POW_Current < coff[3]) && cutoff_flag == 0 && charge_step == 1)
+N                if(((DISS_POW_Voltage >= (float)cov1/100 && cov1 != 0) || DISS_POW_Current < (float)coc1/1000) && cutoff_flag == 0 && charge_step == 1)
+X                if(((DISS_POW_Voltage >= (float)coff[0]/100 && coff[0] != 0) || DISS_POW_Current < (float)coff[3]/1000) && cutoff_flag == 0 && charge_step == 1)
 N                {//判断电流是否小于截止电流，并记录时间
 N                    SET_Voltage = opv2;
 X                    Run_Control[1] = Run_Control[32];
@@ -52797,13 +52860,13 @@ N                    SET_Current = opc2;
 X                    Run_Control[2] = Run_Control[35];
 N                    charge_step = 2;
 N                }
-N                if(((DISS_POW_Voltage >= cov2 && cov2 != 0) || DISS_POW_Current < coc2) && cutoff_flag == 0 && charge_step == 2){//判断电流是否小于截止电流，并记录时间
-X                if(((DISS_POW_Voltage >= coff[1] && coff[1] != 0) || DISS_POW_Current < coff[4]) && cutoff_flag == 0 && charge_step == 2){
+N                if(((DISS_POW_Voltage >= (float)cov2/100 && cov2 != 0) || DISS_POW_Current < (float)coc2/1000) && cutoff_flag == 0 && charge_step == 2){//判断电流是否小于截止电流，并记录时间
+X                if(((DISS_POW_Voltage >= (float)coff[1]/100 && coff[1] != 0) || DISS_POW_Current < (float)coff[4]/1000) && cutoff_flag == 0 && charge_step == 2){
 N                    cutoff_time = GUI_GetTime()/500;
 N                    cutoff_flag = 1;
 N                }
-N                if(((DISS_POW_Voltage >= cov2 && cov2 != 0) || DISS_POW_Current < coc2) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 2)//若测量电流小于截止电流
-X                if(((DISS_POW_Voltage >= coff[1] && coff[1] != 0) || DISS_POW_Current < coff[4]) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 2)
+N                if(((DISS_POW_Voltage >= (float)cov2/100 && cov2 != 0) || DISS_POW_Current < (float)coc2/1000) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 2)//若测量电流小于截止电流
+X                if(((DISS_POW_Voltage >= (float)coff[1]/100 && coff[1] != 0) || DISS_POW_Current < (float)coff[4]/1000) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 2)
 N                {
 N                    if(mode_sw == mode_pow){
 X                    if(mode_sw == 3){
@@ -52824,8 +52887,8 @@ X                    mode_sw = 2;
 N                }
 N            }else if(opv1 != 0 && opv2 != 0 && opv3 != 0 && opc1 != 0&& opc2 != 0 && opc3 != 0){
 X            }else if(Run_Control[31] != 0 && Run_Control[32] != 0 && Run_Control[33] != 0 && Run_Control[34] != 0&& Run_Control[35] != 0 && Run_Control[36] != 0){
-N                if(((DISS_POW_Voltage >= cov1 && cov1 != 0) || DISS_POW_Current < coc1) && cutoff_flag == 0 && charge_step == 1)
-X                if(((DISS_POW_Voltage >= coff[0] && coff[0] != 0) || DISS_POW_Current < coff[3]) && cutoff_flag == 0 && charge_step == 1)
+N                if(((DISS_POW_Voltage >= (float)cov1/100 && cov1 != 0) || DISS_POW_Current < (float)coc1/1000) && cutoff_flag == 0 && charge_step == 1)
+X                if(((DISS_POW_Voltage >= (float)coff[0]/100 && coff[0] != 0) || DISS_POW_Current < (float)coff[3]/1000) && cutoff_flag == 0 && charge_step == 1)
 N                {//判断电流是否小于截止电流，并记录时间
 N                    SET_Voltage = opv2;
 X                    Run_Control[1] = Run_Control[32];
@@ -52833,8 +52896,8 @@ N                    SET_Current = opc2;
 X                    Run_Control[2] = Run_Control[35];
 N                    charge_step = 2;
 N                }
-N                if(((DISS_POW_Voltage > cov2 && cov2 != 0) || DISS_POW_Current < coc2) && cutoff_flag == 0 && charge_step == 2)
-X                if(((DISS_POW_Voltage > coff[1] && coff[1] != 0) || DISS_POW_Current < coff[4]) && cutoff_flag == 0 && charge_step == 2)
+N                if(((DISS_POW_Voltage > (float)cov2/100 && cov2 != 0) || DISS_POW_Current < (float)coc2/1000) && cutoff_flag == 0 && charge_step == 2)
+X                if(((DISS_POW_Voltage > (float)coff[1]/100 && coff[1] != 0) || DISS_POW_Current < (float)coff[4]/1000) && cutoff_flag == 0 && charge_step == 2)
 N                {//判断电流是否小于截止电流，并记录时间
 N                    SET_Voltage = opv3;
 X                    Run_Control[1] = Run_Control[33];
@@ -52842,13 +52905,13 @@ N                    SET_Current = opc3;
 X                    Run_Control[2] = Run_Control[36];
 N                    charge_step = 3;
 N                }
-N                if(((DISS_POW_Voltage > cov3 && cov3 != 0) || DISS_POW_Current < coc3) && cutoff_flag == 0 && charge_step == 3){//判断电流是否小于截止电流，并记录时间
-X                if(((DISS_POW_Voltage > coff[2] && coff[2] != 0) || DISS_POW_Current < coff[5]) && cutoff_flag == 0 && charge_step == 3){
+N                if(((DISS_POW_Voltage > (float)cov3/100 && cov3 != 0) || DISS_POW_Current < (float)coc3/1000) && cutoff_flag == 0 && charge_step == 3){//判断电流是否小于截止电流，并记录时间
+X                if(((DISS_POW_Voltage > (float)coff[2]/100 && coff[2] != 0) || DISS_POW_Current < (float)coff[5]/1000) && cutoff_flag == 0 && charge_step == 3){
 N                    cutoff_time = GUI_GetTime()/500;
 N                    cutoff_flag = 1;
 N                }
-N                if(((DISS_POW_Voltage > cov3 && cov3 != 0) || DISS_POW_Current < coc3) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 3)//若测量电流小于截止电流
-X                if(((DISS_POW_Voltage > coff[2] && coff[2] != 0) || DISS_POW_Current < coff[5]) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 3)
+N                if(((DISS_POW_Voltage > (float)cov3/100 && cov3 != 0) || DISS_POW_Current < (float)coc3/1000) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 3)//若测量电流小于截止电流
+X                if(((DISS_POW_Voltage > (float)coff[2]/100 && coff[2] != 0) || DISS_POW_Current < (float)coff[5]/1000) && (GUI_GetTime()/500 - cutoff_time) >= 10 && charge_step == 3)
 N                {
 N                    if(mode_sw == mode_pow){
 X                    if(mode_sw == 3){
@@ -53087,14 +53150,12 @@ N            }
 N        }else if(pause_flag == 1 && battery_c != 0){
 N            hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_66);
 X            hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x7F));
-W "..\APP\c_dc.c" 555 32 argument is incompatible with corresponding format string conversion
-N            sprintf(buf,"%.2f",0);       
+N            sprintf(buf,"%.2f",0.00);       
 N            TEXT_SetText(hItem,buf);
 N                
 N            hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_67);
 X            hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x80));
-W "..\APP\c_dc.c" 559 32 argument is incompatible with corresponding format string conversion
-N            sprintf(buf,"%.3f",0);       
+N            sprintf(buf,"%.3f",0.00);       
 N            TEXT_SetText(hItem,buf);
 N            
 N            hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_69);
@@ -53115,14 +53176,12 @@ N        }else if(cdc_sw == cdc_off){
 X        }else if(cdc_sw == 0){
 N            hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_66);
 X            hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x7F));
-W "..\APP\c_dc.c" 573 32 argument is incompatible with corresponding format string conversion
-N            sprintf(buf,"%.2f",0);       
+N            sprintf(buf,"%.2f",0.00);       
 N            TEXT_SetText(hItem,buf);
 N                
 N            hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_67);
 X            hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x80));
-W "..\APP\c_dc.c" 577 32 argument is incompatible with corresponding format string conversion
-N            sprintf(buf,"%.3f",0);       
+N            sprintf(buf,"%.3f",0.000);       
 N            TEXT_SetText(hItem,buf);
 N            
 N            hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_119);
@@ -53371,8 +53430,7 @@ N// 		TEXT_SetText(hItem,dc_cutoff_c);
 N        
 N        hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_66);
 X        hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x7F));
-W "..\APP\c_dc.c" 774 28 argument is incompatible with corresponding format string conversion
-N        sprintf(buf,"%.2f",0);
+N        sprintf(buf,"%.2f",0.00);
 N        TEXT_SetTextColor(hItem, GUI_GREEN);//设置字体颜色
 X        TEXT_SetTextColor(hItem, 0x0000FF00);
 N        TEXT_SetFont(hItem,&GUI_FontD24x32);//设定文本字体
@@ -53381,8 +53439,7 @@ N        TEXT_SetText(hItem,buf);
 N            
 N        hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_67);
 X        hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x80));
-W "..\APP\c_dc.c" 781 28 argument is incompatible with corresponding format string conversion
-N        sprintf(buf,"%.3f",0);
+N        sprintf(buf,"%.3f",0.000);
 N        TEXT_SetTextColor(hItem, GUI_GREEN);//设置字体颜色
 X        TEXT_SetTextColor(hItem, 0x0000FF00);
 N        TEXT_SetFont(hItem,&GUI_FontD24x32);//设定文本字体
@@ -53485,6 +53542,12 @@ X  page_sw = 1;
 N  set_sw = set_26;
 X  set_sw = 25;
 N  pass = 0;
+N  SET_Voltage = opv1;
+X  Run_Control[1] = Run_Control[31];
+N  SET_Current = opc1;
+X  Run_Control[2] = Run_Control[34];
+N  SET_Current_Laod = cdc_dc;
+X  Run_Control[4] = Run_Control[39];
 N  track = face_cdc;
 X  track = 1;
 N  TM1650_SET_LED(0x68,0x70);
@@ -53503,7 +53566,7 @@ X  hWincdc = GUI_CreateDialogBox(_aDialogCreate4, (sizeof(_aDialogCreate4) / siz
 N  return hWincdc;
 N}
 N
-Nvoid CDC_OP_DOWN(void);
+N
 Nvoid CDC_OP_DOWN(void)
 N{
 N    switch(set_sw)
@@ -53687,7 +53750,7 @@ N        default: break;
 N    }
 N}
 N
-Nvoid CDC_OP_UP(void);
+N
 Nvoid CDC_OP_UP(void)
 N{
 N    switch(set_sw)
@@ -53870,7 +53933,7 @@ N        default: break;
 N    }
 N}
 N
-Nvoid CDC_OP_LEFT(void);
+N
 Nvoid CDC_OP_LEFT(void)
 N{
 N    float buffer;
@@ -53952,8 +54015,8 @@ N
 N            if(coffv_step == step3)
 X            if(coffv_step == 2)
 N            {
-N                buffer = cov2;
-X                buffer = coff[1];
+N                buffer = (float)cov2/100;
+X                buffer = (float)coff[1]/100;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_58);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x77));
 N                TEXT_SetText(hItem,"截止电压2");
@@ -53965,8 +54028,8 @@ N                coffv_step = step2;
 X                coffv_step = 1;
 N            }else if(coffv_step == step2){
 X            }else if(coffv_step == 1){
-N                buffer = cov1;
-X                buffer = coff[0];
+N                buffer = (float)cov1/100;
+X                buffer = (float)coff[0]/100;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_58);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x77));
 N                TEXT_SetText(hItem,"截止电压1");
@@ -53985,8 +54048,8 @@ N
 N            if(coffc_step == step3)
 X            if(coffc_step == 2)
 N            {
-N                buffer = coc2;
-X                buffer = coff[4];
+N                buffer = (float)coc2/1000;
+X                buffer = (float)coff[4]/1000;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_59);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x78));
 N                TEXT_SetText(hItem,"截止电流2");
@@ -53998,8 +54061,8 @@ N                coffc_step = step2;
 X                coffc_step = 1;
 N            }else if(coffc_step == step2){
 X            }else if(coffc_step == 1){
-N                buffer = coc1;
-X                buffer = coff[3];
+N                buffer = (float)coc1/1000;
+X                buffer = (float)coff[3]/1000;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_59);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x78));
 N                TEXT_SetText(hItem,"截止电流1");
@@ -54014,7 +54077,7 @@ N        }break;
 N    }
 N}
 N
-Nvoid CDC_OP_RIGHT(void);
+N
 Nvoid CDC_OP_RIGHT(void)
 N{
 N    float buffer;
@@ -54096,8 +54159,8 @@ N
 N            if(coffv_step == step1)
 X            if(coffv_step == 0)
 N            {
-N                buffer = cov2;
-X                buffer = coff[1];
+N                buffer = (float)cov2/100;
+X                buffer = (float)coff[1]/100;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_58);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x77));
 N                TEXT_SetText(hItem,"截止电压2");
@@ -54109,8 +54172,8 @@ N                coffv_step = step2;
 X                coffv_step = 1;
 N            }else if(coffv_step == step2){
 X            }else if(coffv_step == 1){
-N                buffer = cov3;
-X                buffer = coff[2];
+N                buffer = (float)cov3/100;
+X                buffer = (float)coff[2]/100;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_58);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x77));
 N                TEXT_SetText(hItem,"截止电压3");
@@ -54129,8 +54192,8 @@ N
 N            if(coffc_step == step1)
 X            if(coffc_step == 0)
 N            {
-N                buffer = coc2;
-X                buffer = coff[4];
+N                buffer = (float)coc2/1000;
+X                buffer = (float)coff[4]/1000;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_59);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x78));
 N                TEXT_SetText(hItem,"截止电流2");
@@ -54142,8 +54205,8 @@ N                coffc_step = step2;
 X                coffc_step = 1;
 N            }else if(coffc_step == step2){
 X            }else if(coffc_step == 1){
-N                buffer = coc3;
-X                buffer = coff[5];
+N                buffer = (float)coc3/1000;
+X                buffer = (float)coff[5]/1000;
 N                hItem = WM_GetDialogItem(hWincdc, ID_TEXT_59);
 X                hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x78));
 N                TEXT_SetText(hItem,"截止电流3");
@@ -54159,10 +54222,8 @@ N    }
 N}
 N
 N//充放电界面设置
-NWM_HWIN CDC_SET(void);
-XGUI_HWIN CDC_SET(void);
-NWM_HWIN CDC_SET(void)
-XGUI_HWIN CDC_SET(void)
+N
+Nvoid CDC_SET(void)
 N{
 N    vu8 i;
 N    char buf[5];
@@ -54221,24 +54282,33 @@ N            TEXT_SetBkColor(hItem,GUI_INVALID_COLOR);//选项背景色设为透
 X            TEXT_SetBkColor(hItem,0xFFFFFFF);
 N            TEXT_SetTextColor(hItem, GUI_WHITE);
 X            TEXT_SetTextColor(hItem, 0x00FFFFFF);
+N            if(pow_step == step1)
+X            if(pow_step == 0)
+N            {
+N                SET_Voltage = opv1;
+X                Run_Control[1] = Run_Control[31];
+N            }else if(pow_step == step2){
+X            }else if(pow_step == 1){
+N                SET_Voltage = opv2;
+X                Run_Control[1] = Run_Control[32];
+N            }else if(pow_step == step3){
+X            }else if(pow_step == 2){
+N                SET_Voltage = opv3;
+X                Run_Control[1] = Run_Control[33];
+N            }
+N            
 N            dis_output_v = (float)SET_Voltage/100;
 X            dis_output_v = (float)Run_Control[1]/100;
 N            sprintf(buf,"%.2f",dis_output_v);
 N            TEXT_SetText(hItem,buf);
-N            if(pow_step == step1)
-X            if(pow_step == 0)
-N            {
-N                opv1 = SET_Voltage;
-X                Run_Control[31] = Run_Control[1];
-N            }else if(pow_step == step2){
-X            }else if(pow_step == 1){
-N                opv2 = SET_Voltage;
-X                Run_Control[32] = Run_Control[1];
-N            }else if(pow_step == step3){
-X            }else if(pow_step == 2){
-N                opv3 = SET_Voltage;
-X                Run_Control[33] = Run_Control[1];
-N            }
+N//             if(pow_step == step1)
+N//             {
+N//                 opv1 = SET_Voltage;
+N//             }else if(pow_step == step2){
+N//                 opv2 = SET_Voltage;
+N//             }else if(pow_step == step3){
+N//                 opv3 = SET_Voltage;
+N//             }
 N            
 N            hItem = WM_GetDialogItem(hWincdc, ID_TEXT_50);
 X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x6F));
@@ -54250,6 +54320,7 @@ N            set_sw = set_26;
 X            set_sw = 25;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }
 N        case set_27:
@@ -54291,31 +54362,40 @@ N            TEXT_SetBkColor(hItem,GUI_INVALID_COLOR);//选项背景色设为透
 X            TEXT_SetBkColor(hItem,0xFFFFFFF);
 N            TEXT_SetTextColor(hItem, GUI_WHITE);
 X            TEXT_SetTextColor(hItem, 0x00FFFFFF);
-N            if(SET_Current > 15000)
-X            if(Run_Control[2] > 15000)
+N            if(cur_step == step1)
+X            if(cur_step == 0)
 N            {
-N                SET_Current = 15000;               
-X                Run_Control[2] = 15000;               
+N                SET_Current = opc1;
+X                Run_Control[2] = Run_Control[34];
+N            }else if(cur_step == step2){
+X            }else if(cur_step == 1){
+N                SET_Current = opc2;
+X                Run_Control[2] = Run_Control[35];
+N            }else if(cur_step == step3){
+X            }else if(cur_step == 2){
+N                SET_Current = opc3;
+X                Run_Control[2] = Run_Control[36];
+N            }
+N//            SET_Current = cdc_cc;
+N            if(SET_Current > 5000)
+X            if(Run_Control[2] > 5000)
+N            {
+N                SET_Current = 5000;               
+X                Run_Control[2] = 5000;               
 N            }
 N            dis_output_c = (float)SET_Current/1000;
 X            dis_output_c = (float)Run_Control[2]/1000;
 N            sprintf(buf,"%.3f",dis_output_c);
 N            TEXT_SetText(hItem,buf);
 N            
-N            if(cur_step == step1)
-X            if(cur_step == 0)
-N            {
-N                opc1 = SET_Current;
-X                Run_Control[34] = Run_Control[2];
-N            }else if(cur_step == step2){
-X            }else if(cur_step == 1){
-N                opc2 = SET_Current;
-X                Run_Control[35] = Run_Control[2];
-N            }else if(cur_step == step3){
-X            }else if(cur_step == 2){
-N                opc3 = SET_Current;
-X                Run_Control[36] = Run_Control[2];
-N            }
+N//             if(cur_step == step1)
+N//             {
+N//                 opc1 = SET_Current;
+N//             }else if(cur_step == step2){
+N//                 opc2 = SET_Current;
+N//             }else if(cur_step == step3){
+N//                 opc3 = SET_Current;
+N//             }
 N            
 N            hItem = WM_GetDialogItem(hWincdc, ID_TEXT_51);
 X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x70));
@@ -54327,6 +54407,7 @@ N            set_sw = set_27;
 X            set_sw = 26;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }
 N        case set_28:
@@ -54369,22 +54450,32 @@ X            TEXT_SetBkColor(hItem,0xFFFFFFF);
 N            TEXT_SetTextColor(hItem, GUI_WHITE);
 X            TEXT_SetTextColor(hItem, 0x00FFFFFF);
 N            
-N            sprintf(buf,"%.2f",dis_c_cutoff_v);
-N            TEXT_SetText(hItem,buf);
 N            if(coffv_step == step1)
 X            if(coffv_step == 0)
 N            {
-N                cov1 = dis_c_cutoff_v;
-X                coff[0] = dis_c_cutoff_v;
+N                dis_c_cutoff_v = (float)cov1/100;
+X                dis_c_cutoff_v = (float)coff[0]/100;
 N            }else if(coffv_step == step2){
 X            }else if(coffv_step == 1){
-N                cov2 = dis_c_cutoff_v;
-X                coff[1] = dis_c_cutoff_v;
+N                dis_c_cutoff_v = (float)cov2/100;;
+X                dis_c_cutoff_v = (float)coff[1]/100;;
 N            }else if(coffv_step == step3){
 X            }else if(coffv_step == 2){
-N                cov3 = dis_c_cutoff_v;
-X                coff[2] = dis_c_cutoff_v;
+N                dis_c_cutoff_v = (float)cov3/100;;
+X                dis_c_cutoff_v = (float)coff[2]/100;;
 N            }
+N            
+N            
+N            sprintf(buf,"%.2f",dis_c_cutoff_v);
+N            TEXT_SetText(hItem,buf);
+N//             if(coffv_step == step1)
+N//             {
+N//                 cov1 = dis_c_cutoff_v;
+N//             }else if(coffv_step == step2){
+N//                 cov2 = dis_c_cutoff_v;
+N//             }else if(coffv_step == step3){
+N//                 cov3 = dis_c_cutoff_v;
+N//             }
 N            
 N            hItem = WM_GetDialogItem(hWincdc, ID_TEXT_58);
 X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x77));
@@ -54396,6 +54487,7 @@ N            set_sw = set_28;
 X            set_sw = 27;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }
 N        case set_29:
@@ -54438,22 +54530,31 @@ X            TEXT_SetBkColor(hItem,0xFFFFFFF);
 N            TEXT_SetTextColor(hItem, GUI_WHITE);
 X            TEXT_SetTextColor(hItem, 0x00FFFFFF);
 N            
-N            sprintf(buf,"%.3f",dis_c_cutoff_c);
-N            TEXT_SetText(hItem,buf);
 N            if(coffc_step == step1)
 X            if(coffc_step == 0)
 N            {
-N                coc1 = dis_c_cutoff_c;
-X                coff[3] = dis_c_cutoff_c;
+N                dis_c_cutoff_c = (float)coc1/1000;
+X                dis_c_cutoff_c = (float)coff[3]/1000;
 N            }else if(coffc_step == step2){
 X            }else if(coffc_step == 1){
-N                coc2 = dis_c_cutoff_c;
-X                coff[4] = dis_c_cutoff_c;
+N                dis_c_cutoff_c = (float)coc2/1000;
+X                dis_c_cutoff_c = (float)coff[4]/1000;
 N            }else if(coffc_step == step3){
 X            }else if(coffc_step == 2){
-N                coc3 = dis_c_cutoff_c;
-X                coff[5] = dis_c_cutoff_c;
-N            }   
+N                dis_c_cutoff_c = (float)coc3/1000;
+X                dis_c_cutoff_c = (float)coff[5]/1000;
+N            } 
+N            
+N            sprintf(buf,"%.3f",dis_c_cutoff_c);
+N            TEXT_SetText(hItem,buf);
+N//             if(coffc_step == step1)
+N//             {
+N//                 coc1 = dis_c_cutoff_c;
+N//             }else if(coffc_step == step2){
+N//                 coc2 = dis_c_cutoff_c;
+N//             }else if(coffc_step == step3){
+N//                 coc3 = dis_c_cutoff_c;
+N//             }   
 N            hItem = WM_GetDialogItem(hWincdc, ID_TEXT_59);
 X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x78));
 N            TEXT_SetBkColor(hItem,0x00BFFFFF);//选项背景色设为米色
@@ -54464,6 +54565,7 @@ N            set_sw = set_29;
 X            set_sw = 28;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }
 N        case set_35:
@@ -54519,6 +54621,7 @@ N            set_sw = set_35;
 X            set_sw = 34;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }
 N        case set_36:
@@ -54615,6 +54718,8 @@ N            TEXT_SetBkColor(hItem,GUI_INVALID_COLOR);//选项背景色设为透
 X            TEXT_SetBkColor(hItem,0xFFFFFFF);
 N            TEXT_SetTextColor(hItem, GUI_WHITE);
 X            TEXT_SetTextColor(hItem, 0x00FFFFFF);
+N            SET_Current_Laod = cdc_dc;
+X            Run_Control[4] = Run_Control[39];
 N            if(SET_Current_Laod > 60000){
 X            if(Run_Control[4] > 60000){
 N                SET_Current_Laod = 0;
@@ -54635,6 +54740,7 @@ N            set_sw = set_34;
 X            set_sw = 33;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }
 N        case set_37:
@@ -54683,15 +54789,15 @@ N            set_sw = set_37;
 X            set_sw = 36;
 N            bit = 1;
 N            dot_flag = 0;
+N            Write_Limits();
 N            break;
 N        }        
 N        default: break;
 N    }
-W "..\APP\c_dc.c" 1693 1 missing return statement at end of non-void function "CDC_SET"
 N}
 N
 N//充放电界面数字键盘输入
-Nvoid INPUT_CDC(char* num);            
+N           
 Nvoid INPUT_CDC(char* num){
 N    char loop_count[2];
 N    switch(set_sw){
@@ -54706,8 +54812,21 @@ X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x73));
 N            switch(bit){
 N                case 1:
 N                {
-N                    SET_Voltage = atoi(num) * 100;
-X                    Run_Control[1] = atoi(num) * 100;
+N                    if(pow_step == step1)
+X                    if(pow_step == 0)
+N                    {
+N                        opv1 = atoi(num) * 100;
+X                        Run_Control[31] = atoi(num) * 100;
+N                    }else if(pow_step == step2){
+X                    }else if(pow_step == 1){
+N                        opv2 = atoi(num) * 100;
+X                        Run_Control[32] = atoi(num) * 100;
+N                    }else if(pow_step == step3){
+X                    }else if(pow_step == 2){
+N                        opv3 = atoi(num) * 100;
+X                        Run_Control[33] = atoi(num) * 100;
+N                    }
+N//                    SET_Voltage = atoi(num) * 100;
 N                    strcat(set_limit,num);            
 N                    TEXT_SetText(hItem,set_limit);
 N                    bit = 2;
@@ -54721,8 +54840,22 @@ N                    if(set_limit[1] == 0x2e)//判断输入是否为小数点
 N                    {
 N                        dot_flag = 1;
 N                    }else{
-N                        SET_Voltage = SET_Voltage * 10 + atoi(num) * 100;
-X                        Run_Control[1] = Run_Control[1] * 10 + atoi(num) * 100;
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                        {
+N                            opv1 = opv1 * 10 + atoi(num) * 100;
+X                            Run_Control[31] = Run_Control[31] * 10 + atoi(num) * 100;
+N                        }else if(pow_step == step2){
+X                        }else if(pow_step == 1){
+N                            opv2 = opv2 * 10 + atoi(num) * 100;
+X                            Run_Control[32] = Run_Control[32] * 10 + atoi(num) * 100;
+N                        }else if(pow_step == step3){
+X                        }else if(pow_step == 2){
+N                           opv3 = opv3 * 10 + atoi(num) * 100;
+X                           Run_Control[33] = Run_Control[33] * 10 + atoi(num) * 100;
+N                        }
+N                        
+N//                        SET_Voltage = SET_Voltage * 10 + atoi(num) * 100;
 N                    }
 N                    bit = 3;
 N                    break;
@@ -54737,12 +54870,38 @@ N                        if(set_limit[2] == 0x2e)//判断输入是否为小数�
 N                        {                            
 N                            dot_flag = 2;
 N                        }else{
-N                            SET_Voltage = /*3000*/ 6200;
-X                            Run_Control[1] =   6200;
+N                            if(pow_step == step1)
+X                            if(pow_step == 0)
+N                            {
+N                               opv1 = /*3000*/ 6200;
+X                               Run_Control[31] =   6200;
+N                            }else if(pow_step == step2){
+X                            }else if(pow_step == 1){
+N                                opv2 = /*3000*/ 6200;
+X                                Run_Control[32] =   6200;
+N                            }else if(pow_step == step3){
+X                            }else if(pow_step == 2){
+N                               opv3 =  /*3000*/ 6200;
+X                               Run_Control[33] =    6200;
+N                            }
+N//                            SET_Voltage = /*3000*/ 6200;
 N                        }
 N                    }else{
-N                        SET_Voltage = SET_Voltage + atoi(num) * 10;
-X                        Run_Control[1] = Run_Control[1] + atoi(num) * 10;
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                        {
+N                           opv1 = opv1 + atoi(num) * 10;
+X                           Run_Control[31] = Run_Control[31] + atoi(num) * 10;
+N                        }else if(pow_step == step2){
+X                        }else if(pow_step == 1){
+N                            opv2 = opv2 + atoi(num) * 10;
+X                            Run_Control[32] = Run_Control[32] + atoi(num) * 10;
+N                        }else if(pow_step == step3){
+X                        }else if(pow_step == 2){
+N                           opv3 = opv3 + atoi(num) * 10;
+X                           Run_Control[33] = Run_Control[33] + atoi(num) * 10;
+N                        }
+N//                        SET_Voltage = SET_Voltage + atoi(num) * 10;
 N                    }
 N                                       
 N                    bit = 4;
@@ -54754,14 +54913,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Voltage = /*3000*/ 6200;
-X                        Run_Control[1] =   6200;
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                        {
+N                           opv1 = /*3000*/ 6200;
+X                           Run_Control[31] =   6200;
+N                        }else if(pow_step == step2){
+X                        }else if(pow_step == 1){
+N                            opv2 = /*3000*/ 6200;
+X                            Run_Control[32] =   6200;
+N                        }else if(pow_step == step3){
+X                        }else if(pow_step == 2){
+N                           opv3 =  /*3000*/ 6200;
+X                           Run_Control[33] =    6200;
+N                        }
+N//                        SET_Voltage = /*3000*/ 6200;
 N                    }else if(dot_flag == 2){
-N                        SET_Voltage = SET_Voltage + atoi(num) * 10;
-X                        Run_Control[1] = Run_Control[1] + atoi(num) * 10;
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                        {
+N                           opv1 = opv1 + atoi(num) * 10;
+X                           Run_Control[31] = Run_Control[31] + atoi(num) * 10;
+N                        }else if(pow_step == step2){
+X                        }else if(pow_step == 1){
+N                            opv2 = opv2 + atoi(num) * 10;
+X                            Run_Control[32] = Run_Control[32] + atoi(num) * 10;
+N                        }else if(pow_step == step3){
+X                        }else if(pow_step == 2){
+N                           opv3 = opv3 + atoi(num) * 10;
+X                           Run_Control[33] = Run_Control[33] + atoi(num) * 10;
+N                        }
+N//                        SET_Voltage = SET_Voltage + atoi(num) * 10;
 N                    }else{
-N                        SET_Voltage = SET_Voltage + atoi(num);
-X                        Run_Control[1] = Run_Control[1] + atoi(num);
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                        {
+N                           opv1 = opv1 + atoi(num);
+X                           Run_Control[31] = Run_Control[31] + atoi(num);
+N                        }else if(pow_step == step2){
+X                        }else if(pow_step == 1){
+N                            opv2 = opv2 + atoi(num);
+X                            Run_Control[32] = Run_Control[32] + atoi(num);
+N                        }else if(pow_step == step3){
+X                        }else if(pow_step == 2){
+N                           opv3 = opv3 + atoi(num);
+X                           Run_Control[33] = Run_Control[33] + atoi(num);
+N                        }
+N //                       SET_Voltage = SET_Voltage + atoi(num);
 N                    }
 N                                       
 N                    bit = 5;
@@ -54773,14 +54971,52 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Voltage = /*3000*/ 6200;
-X                        Run_Control[1] =   6200;
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                            {
+N                               opv1 = /*3000*/ 6200;
+X                               Run_Control[31] =   6200;
+N                            }else if(pow_step == step2){
+X                            }else if(pow_step == 1){
+N                                opv2 = /*3000*/ 6200;
+X                                Run_Control[32] =   6200;
+N                            }else if(pow_step == step3){
+X                            }else if(pow_step == 2){
+N                               opv3 =  /*3000*/ 6200;
+X                               Run_Control[33] =    6200;
+N                            }
 N                    }else if(dot_flag == 1){
-N                        SET_Voltage = SET_Voltage;
-X                        Run_Control[1] = Run_Control[1];
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                            {
+N                               opv1 = opv1;
+X                               Run_Control[31] = Run_Control[31];
+N                            }else if(pow_step == step2){
+X                            }else if(pow_step == 1){
+N                                opv2 =opv2;
+X                                Run_Control[32] =Run_Control[32];
+N                            }else if(pow_step == step3){
+X                            }else if(pow_step == 2){
+N                               opv3 =  opv3;
+X                               Run_Control[33] =  Run_Control[33];
+N                            }
+N//                        cdc_cv = cdc_cv;
 N                    }else{
-N                        SET_Voltage = SET_Voltage + atoi(num);
-X                        Run_Control[1] = Run_Control[1] + atoi(num);
+N                        if(pow_step == step1)
+X                        if(pow_step == 0)
+N                            {
+N                               opv1 = opv1 + atoi(num);
+X                               Run_Control[31] = Run_Control[31] + atoi(num);
+N                            }else if(pow_step == step2){
+X                            }else if(pow_step == 1){
+N                                opv2 = opv2 + atoi(num);
+X                                Run_Control[32] = Run_Control[32] + atoi(num);
+N                            }else if(pow_step == step3){
+X                            }else if(pow_step == 2){
+N                               opv3 = opv3 + atoi(num);
+X                               Run_Control[33] = Run_Control[33] + atoi(num);
+N                            }
+N//                        cdc_cv = cdc_cv + atoi(num);
 N                    }
 N                                       
 N                    bit = 1;
@@ -54800,8 +55036,20 @@ X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x74));
 N            switch(bit){
 N                case 1:
 N                {
-N                    SET_Current = atoi(num) * 1000;
-X                    Run_Control[2] = atoi(num) * 1000;
+N                    if(cur_step == step1)
+X                    if(cur_step == 0)
+N                    {
+N                        opc1 = atoi(num) * 1000;
+X                        Run_Control[34] = atoi(num) * 1000;
+N                    }else if(cur_step == step2){
+X                    }else if(cur_step == 1){
+N                        opc2 = atoi(num) * 1000;
+X                        Run_Control[35] = atoi(num) * 1000;
+N                    }else if(cur_step == step3){
+X                    }else if(cur_step == 2){
+N                        opc3 = atoi(num) * 1000;
+X                        Run_Control[36] = atoi(num) * 1000;
+N                    }
 N                    strcat(set_limit,num);            
 N                    TEXT_SetText(hItem,set_limit);
 N                    bit = 2;
@@ -54815,8 +55063,21 @@ N                    if(set_limit[1] == 0x2e)//判断输入是否为小数点
 N                    {
 N                        dot_flag = 1;
 N                    }else{
-N                        SET_Current = SET_Current * 10 + atoi(num) * 1000;
-X                        Run_Control[2] = Run_Control[2] * 10 + atoi(num) * 1000;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 * 10 + atoi(num) * 1000;
+X                            Run_Control[34] = Run_Control[34] * 10 + atoi(num) * 1000;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 * 10 + atoi(num) * 1000;
+X                            Run_Control[35] = Run_Control[35] * 10 + atoi(num) * 1000;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc2 = opc2 * 10 + atoi(num) * 1000;
+X                            Run_Control[35] = Run_Control[35] * 10 + atoi(num) * 1000;
+N                        }
+N//                        SET_Current = SET_Current * 10 + atoi(num) * 1000;
 N                    }
 N                    bit = 3;
 N                    break;
@@ -54831,12 +55092,38 @@ N                        if(set_limit[2] == 0x2e)//判断输入是否为小数�
 N                        {                            
 N                            dot_flag = 2;
 N                        }else{
-N                            SET_Current = 15000;
-X                            Run_Control[2] = 15000;
+N                            if(cur_step == step1)
+X                            if(cur_step == 0)
+N                            {
+N                                opc1 = 5000;
+X                                Run_Control[34] = 5000;
+N                            }else if(cur_step == step2){
+X                            }else if(cur_step == 1){
+N                                opc2 = 5000;
+X                                Run_Control[35] = 5000;
+N                            }else if(cur_step == step3){
+X                            }else if(cur_step == 2){
+N                                opc3 = 5000;
+X                                Run_Control[36] = 5000;
+N                            }
+N//                            SET_Current = 15000;
 N                        }
 N                    }else{
-N                        SET_Current = SET_Current + atoi(num) * 100;
-X                        Run_Control[2] = Run_Control[2] + atoi(num) * 100;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 + atoi(num) * 100;
+X                            Run_Control[34] = Run_Control[34] + atoi(num) * 100;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 + atoi(num) * 100;
+X                            Run_Control[35] = Run_Control[35] + atoi(num) * 100;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = opc3 + atoi(num) * 100;
+X                            Run_Control[36] = Run_Control[36] + atoi(num) * 100;
+N                        }
+N//                        SET_Current = SET_Current + atoi(num) * 100;
 N                    }
 N                                       
 N                    bit = 4;
@@ -54848,14 +55135,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Current = 15000;
-X                        Run_Control[2] = 15000;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = 5000;
+X                            Run_Control[34] = 5000;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = 5000;
+X                            Run_Control[35] = 5000;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = 5000;
+X                            Run_Control[36] = 5000;
+N                        }
+N//                        SET_Current = 15000;
 N                    }else if(dot_flag == 2){
-N                        SET_Current = SET_Current + atoi(num) * 100;
-X                        Run_Control[2] = Run_Control[2] + atoi(num) * 100;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 + atoi(num) * 100;
+X                            Run_Control[34] = Run_Control[34] + atoi(num) * 100;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 + atoi(num) * 100;
+X                            Run_Control[35] = Run_Control[35] + atoi(num) * 100;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = opc3 + atoi(num) * 100;
+X                            Run_Control[36] = Run_Control[36] + atoi(num) * 100;
+N                        }
+N//                        SET_Current = SET_Current + atoi(num) * 100;
 N                    }else{
-N                        SET_Current = SET_Current + atoi(num) * 10;
-X                        Run_Control[2] = Run_Control[2] + atoi(num) * 10;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 + atoi(num) * 10;
+X                            Run_Control[34] = Run_Control[34] + atoi(num) * 10;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 + atoi(num) * 10;
+X                            Run_Control[35] = Run_Control[35] + atoi(num) * 10;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = opc3 + atoi(num) * 10;
+X                            Run_Control[36] = Run_Control[36] + atoi(num) * 10;
+N                        }
+N//                        SET_Current = SET_Current + atoi(num) * 10;
 N                    }
 N                                       
 N                    bit = 5;
@@ -54867,14 +55193,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Current = 15000;
-X                        Run_Control[2] = 15000;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = 5000;
+X                            Run_Control[34] = 5000;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = 5000;
+X                            Run_Control[35] = 5000;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = 5000;
+X                            Run_Control[36] = 5000;
+N                        }
+N//                        SET_Current = 15000;
 N                    }else if(dot_flag == 1){
-N                        SET_Current = SET_Current + atoi(num);
-X                        Run_Control[2] = Run_Control[2] + atoi(num);
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 + atoi(num);
+X                            Run_Control[34] = Run_Control[34] + atoi(num);
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 + atoi(num);
+X                            Run_Control[35] = Run_Control[35] + atoi(num);
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = opc3 + atoi(num);
+X                            Run_Control[36] = Run_Control[36] + atoi(num);
+N                        }
+N//                        SET_Current = SET_Current + atoi(num);
 N                    }else{
-N                        SET_Current = SET_Current + atoi(num) * 10;
-X                        Run_Control[2] = Run_Control[2] + atoi(num) * 10;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 + atoi(num) * 10;
+X                            Run_Control[34] = Run_Control[34] + atoi(num) * 10;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 + atoi(num) * 10;
+X                            Run_Control[35] = Run_Control[35] + atoi(num) * 10;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = opc3 + atoi(num) * 10;
+X                            Run_Control[36] = Run_Control[36] + atoi(num) * 10;
+N                        }
+N//                        SET_Current = SET_Current + atoi(num) * 10;
 N                    }
 N                                       
 N                    bit = 6;
@@ -54886,11 +55251,37 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Current = 0;
-X                        Run_Control[2] = 0;
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = 15000;
+X                            Run_Control[34] = 15000;
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = 15000;
+X                            Run_Control[35] = 15000;
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = 15000;
+X                            Run_Control[36] = 15000;
+N                        }
+N//                        SET_Current = 0;
 N                    }else if(dot_flag == 2){
-N                        SET_Current = SET_Current + atoi(num);
-X                        Run_Control[2] = Run_Control[2] + atoi(num);
+N                        if(cur_step == step1)
+X                        if(cur_step == 0)
+N                        {
+N                            opc1 = opc1 + atoi(num);
+X                            Run_Control[34] = Run_Control[34] + atoi(num);
+N                        }else if(cur_step == step2){
+X                        }else if(cur_step == 1){
+N                            opc2 = opc2 + atoi(num);
+X                            Run_Control[35] = Run_Control[35] + atoi(num);
+N                        }else if(cur_step == step3){
+X                        }else if(cur_step == 2){
+N                            opc3 = opc3 + atoi(num);
+X                            Run_Control[36] = Run_Control[36] + atoi(num);
+N                        }
+N//                        SET_Current = SET_Current + atoi(num);
 N                    }                 
 N                    bit = 1;
 N                    break;
@@ -54909,8 +55300,9 @@ X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x75));
 N            switch(bit){
 N                case 1:
 N                {
-N                    SET_Current_Laod = atoi(num) * 1000;
-X                    Run_Control[4] = atoi(num) * 1000;
+N                    cdc_dc = atoi(num) * 1000;
+X                    Run_Control[39] = atoi(num) * 1000;
+N//                    SET_Current_Laod = atoi(num) * 1000;
 N                    strcat(set_limit,num);            
 N                    TEXT_SetText(hItem,set_limit);
 N
@@ -54926,8 +55318,9 @@ N                    if(set_limit[1] == 0x2e)//判断输入是否为小数点
 N                    {
 N                        dot_flag = 1;
 N                    }else{
-N                        SET_Current_Laod = SET_Current_Laod * 10 + atoi(num) * 1000;
-X                        Run_Control[4] = Run_Control[4] * 10 + atoi(num) * 1000;
+N                        cdc_dc = cdc_dc * 10 + atoi(num) * 1000;
+X                        Run_Control[39] = Run_Control[39] * 10 + atoi(num) * 1000;
+N//                        SET_Current_Laod = SET_Current_Laod * 10 + atoi(num) * 1000;
 N                    }
 N                    bit = 3;
 N                    break;
@@ -54942,12 +55335,12 @@ N                        if(set_limit[2] == 0x2e)//判断输入是否为小数�
 N                        {                            
 N                            dot_flag = 2;
 N                        }else{
-N                            SET_Current_Laod = 0;
-X                            Run_Control[4] = 0;
+N                            cdc_dc = 0;
+X                            Run_Control[39] = 0;
 N                        }
 N                    }else{
-N                        SET_Current_Laod = SET_Current_Laod + atoi(num) * 100;
-X                        Run_Control[4] = Run_Control[4] + atoi(num) * 100;
+N                        cdc_dc = cdc_dc + atoi(num) * 100;
+X                        Run_Control[39] = Run_Control[39] + atoi(num) * 100;
 N                    }                  
 N                    bit = 4;
 N                    break;
@@ -54958,14 +55351,14 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Current_Laod = 0;
-X                        Run_Control[4] = 0;
+N                        cdc_dc = 0;
+X                        Run_Control[39] = 0;
 N                    }else if(dot_flag == 2){
-N                        SET_Current_Laod = SET_Current_Laod + atoi(num) * 100;
-X                        Run_Control[4] = Run_Control[4] + atoi(num) * 100;
+N                        cdc_dc = cdc_dc + atoi(num) * 100;
+X                        Run_Control[39] = Run_Control[39] + atoi(num) * 100;
 N                    }else{
-N                        SET_Current_Laod = SET_Current_Laod + atoi(num) * 10;
-X                        Run_Control[4] = Run_Control[4] + atoi(num) * 10;
+N                        cdc_dc = cdc_dc + atoi(num) * 10;
+X                        Run_Control[39] = Run_Control[39] + atoi(num) * 10;
 N                    }                  
 N                    bit = 5;
 N                    break;
@@ -54976,14 +55369,14 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Current_Laod = 0;
-X                        Run_Control[4] = 0;
+N                        cdc_dc = 0;
+X                        Run_Control[39] = 0;
 N                    }else if(dot_flag == 1){
-N                        SET_Current_Laod = SET_Current_Laod + atoi(num);
-X                        Run_Control[4] = Run_Control[4] + atoi(num);
+N                        cdc_dc = cdc_dc + atoi(num);
+X                        Run_Control[39] = Run_Control[39] + atoi(num);
 N                    }else{
-N                        SET_Current_Laod = SET_Current_Laod + atoi(num) * 10;
-X                        Run_Control[4] = Run_Control[4] + atoi(num) * 10;
+N                        cdc_dc = cdc_dc + atoi(num) * 10;
+X                        Run_Control[39] = Run_Control[39] + atoi(num) * 10;
 N                    }                 
 N                    bit = 6;
 N                    break;
@@ -54994,11 +55387,11 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        SET_Current_Laod = 0;
-X                        Run_Control[4] = 0;
+N                        cdc_dc = 0;
+X                        Run_Control[39] = 0;
 N                    }else if(dot_flag == 2){
-N                        SET_Current_Laod = SET_Current_Laod + atoi(num);
-X                        Run_Control[4] = Run_Control[4] + atoi(num);
+N                        cdc_dc = cdc_dc + atoi(num);
+X                        Run_Control[39] = Run_Control[39] + atoi(num);
 N                    }                 
 N                    bit = 1;
 N                    break;
@@ -55045,8 +55438,22 @@ X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x7B));
 N            switch(bit){
 N                case 1:
 N                {
-N                    set_c_cutoff_v = atoi(num) * 100;
-X                    Run_Control[25] = atoi(num) * 100;
+N                    if(coffv_step == step1)
+X                    if(coffv_step == 0)
+N                    {
+N                        cov1 = atoi(num) * 100;
+X                        coff[0] = atoi(num) * 100;
+N                    }else if(coffv_step == step2){
+X                    }else if(coffv_step == 1){
+N                        cov2 = atoi(num) * 100;
+X                        coff[1] = atoi(num) * 100;
+N                    }else if(coffv_step == step3){
+X                    }else if(coffv_step == 2){
+N                        cov3 = atoi(num) * 100;
+X                        coff[2] = atoi(num) * 100;
+N                    }
+N                    
+N//                    set_c_cutoff_v = atoi(num) * 100;
 N                    strcat(set_limit,num);            
 N                    TEXT_SetText(hItem,set_limit);
 N                    bit = 2;
@@ -55060,8 +55467,21 @@ N                    if(set_limit[1] == 0x2e)//判断输入是否为小数点
 N                    {
 N                        dot_flag = 1;
 N                    }else{
-N                        set_c_cutoff_v = set_c_cutoff_v * 10 + atoi(num) * 100;
-X                        Run_Control[25] = Run_Control[25] * 10 + atoi(num) * 100;
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 = cov1 * 10 + atoi(num) * 100;
+X                            coff[0] = coff[0] * 10 + atoi(num) * 100;
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = cov2 * 10 + atoi(num) * 100;
+X                            coff[1] = coff[1] * 10 + atoi(num) * 100;
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = cov3 * 10 + atoi(num) * 100;
+X                            coff[2] = coff[2] * 10 + atoi(num) * 100;
+N                        }
+N//                        set_c_cutoff_v = set_c_cutoff_v * 10 + atoi(num) * 100;
 N                    }
 N                    bit = 3;
 N                    break;
@@ -55076,12 +55496,38 @@ N                        if(set_limit[2] == 0x2e)//判断输入是否为小数�
 N                        {                            
 N                            dot_flag = 2;
 N                        }else{
-N                            set_c_cutoff_v = 6200;
-X                            Run_Control[25] = 6200;
+N                            if(coffv_step == step1)
+X                            if(coffv_step == 0)
+N                            {
+N                                cov1 =6200;
+X                                coff[0] =6200;
+N                            }else if(coffv_step == step2){
+X                            }else if(coffv_step == 1){
+N                                cov2 = 6200;
+X                                coff[1] = 6200;
+N                            }else if(coffv_step == step3){
+X                            }else if(coffv_step == 2){
+N                                cov3 = 6200;
+X                                coff[2] = 6200;
+N                            }
+N//                            set_c_cutoff_v = 6200;
 N                        }
 N                    }else{
-N                        set_c_cutoff_v = set_c_cutoff_v + atoi(num) * 10;
-X                        Run_Control[25] = Run_Control[25] + atoi(num) * 10;
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 = cov1 + atoi(num) * 10;
+X                            coff[0] = coff[0] + atoi(num) * 10;
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = cov2 + atoi(num) * 10;
+X                            coff[1] = coff[1] + atoi(num) * 10;
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = cov3 + atoi(num) * 10;
+X                            coff[2] = coff[2] + atoi(num) * 10;
+N                        }
+N//                        set_c_cutoff_v = set_c_cutoff_v + atoi(num) * 10;
 N                    }
 N                                       
 N                    bit = 4;
@@ -55093,14 +55539,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        set_c_cutoff_v = 6200;
-X                        Run_Control[25] = 6200;
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 =6200;
+X                            coff[0] =6200;
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = 6200;
+X                            coff[1] = 6200;
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = 6200;
+X                            coff[2] = 6200;
+N                        }
+N//                        set_c_cutoff_v = 6200;
 N                    }else if(dot_flag == 2){
-N                        set_c_cutoff_v = set_c_cutoff_v + atoi(num) * 10;
-X                        Run_Control[25] = Run_Control[25] + atoi(num) * 10;
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 = cov1 + atoi(num) * 10;
+X                            coff[0] = coff[0] + atoi(num) * 10;
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = cov2 + atoi(num) * 10;
+X                            coff[1] = coff[1] + atoi(num) * 10;
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = cov3 + atoi(num) * 10;
+X                            coff[2] = coff[2] + atoi(num) * 10;
+N                        }
+N//                        set_c_cutoff_v = set_c_cutoff_v + atoi(num) * 10;
 N                    }else{
-N                        set_c_cutoff_v = set_c_cutoff_v + atoi(num);
-X                        Run_Control[25] = Run_Control[25] + atoi(num);
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 = cov1 + atoi(num) * 10;
+X                            coff[0] = coff[0] + atoi(num) * 10;
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = cov2 + atoi(num) * 10;
+X                            coff[1] = coff[1] + atoi(num) * 10;
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = cov3 + atoi(num) * 10;
+X                            coff[2] = coff[2] + atoi(num) * 10;
+N                        }
+N//                        set_c_cutoff_v = set_c_cutoff_v + atoi(num);
 N                    }
 N                                       
 N                    bit = 5;
@@ -55112,14 +55597,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        set_c_cutoff_v = 6200;
-X                        Run_Control[25] = 6200;
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 =6200;
+X                            coff[0] =6200;
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = 6200;
+X                            coff[1] = 6200;
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = 6200;
+X                            coff[2] = 6200;
+N                        }
+N//                        set_c_cutoff_v = 6200;
 N                    }else if(dot_flag == 1){
-N                        set_c_cutoff_v = set_c_cutoff_v;
-X                        Run_Control[25] = Run_Control[25];
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 =cov1;
+X                            coff[0] =coff[0];
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = cov2;
+X                            coff[1] = coff[1];
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = cov3;
+X                            coff[2] = coff[2];
+N                        }
+N//                        set_c_cutoff_v = set_c_cutoff_v;
 N                    }else{
-N                        set_c_cutoff_v = set_c_cutoff_v + atoi(num);
-X                        Run_Control[25] = Run_Control[25] + atoi(num);
+N                        if(coffv_step == step1)
+X                        if(coffv_step == 0)
+N                        {
+N                            cov1 = cov1 + atoi(num);
+X                            coff[0] = coff[0] + atoi(num);
+N                        }else if(coffv_step == step2){
+X                        }else if(coffv_step == 1){
+N                            cov2 = cov2 + atoi(num);
+X                            coff[1] = coff[1] + atoi(num);
+N                        }else if(coffv_step == step3){
+X                        }else if(coffv_step == 2){
+N                            cov3 = cov3 + atoi(num);
+X                            coff[2] = coff[2] + atoi(num);
+N                        }
+N//                        set_c_cutoff_v = set_c_cutoff_v + atoi(num);
 N                    }
 N                                       
 N                    bit = 1;
@@ -55139,8 +55663,21 @@ X            hItem = WM_GetDialogItem(hWincdc, (0x800 + 0x7C));
 N            switch(bit){
 N                case 1:
 N                {
-N                    set_c_cutoff_c = atoi(num) * 1000;
-X                    Run_Control[26] = atoi(num) * 1000;
+N                    if(coffc_step == step1)
+X                    if(coffc_step == 0)
+N                    {
+N                        coc1 = atoi(num) * 1000;
+X                        coff[3] = atoi(num) * 1000;
+N                    }else if(coffc_step == step2){
+X                    }else if(coffc_step == 1){
+N                        coc2 = atoi(num) * 1000;
+X                        coff[4] = atoi(num) * 1000;
+N                    }else if(coffc_step == step3){
+X                    }else if(coffc_step == 2){
+N                        coc3 = atoi(num) * 1000;
+X                        coff[5] = atoi(num) * 1000;
+N                    }
+N//                    set_c_cutoff_c = atoi(num) * 1000;
 N                    strcat(set_limit,num);            
 N                    TEXT_SetText(hItem,set_limit);
 N                    bit = 2;
@@ -55154,8 +55691,21 @@ N                    if(set_limit[1] == 0x2e)//判断输入是否为小数点
 N                    {
 N                        dot_flag = 1;
 N                    }else{
-N                        set_c_cutoff_c = set_c_cutoff_c * 10 + atoi(num) * 1000;
-X                        Run_Control[26] = Run_Control[26] * 10 + atoi(num) * 1000;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1 * 10 + atoi(num) * 1000;
+X                            coff[3] = coff[3] * 10 + atoi(num) * 1000;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2 * 10 + atoi(num) * 1000;
+X                            coff[4] = coff[4] * 10 + atoi(num) * 1000;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3 * 10 + atoi(num) * 1000;
+X                            coff[5] = coff[5] * 10 + atoi(num) * 1000;
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c * 10 + atoi(num) * 1000;
 N                    }
 N                    bit = 3;
 N                    break;
@@ -55170,12 +55720,38 @@ N                        if(set_limit[2] == 0x2e)//判断输入是否为小数�
 N                        {                            
 N                            dot_flag = 2;
 N                        }else{
-N                            set_c_cutoff_c = 5000;
-X                            Run_Control[26] = 5000;
+N                            if(coffc_step == step1)
+X                            if(coffc_step == 0)
+N                            {
+N                                coc1 =5000;
+X                                coff[3] =5000;
+N                            }else if(coffc_step == step2){
+X                            }else if(coffc_step == 1){
+N                                coc2 = 5000;
+X                                coff[4] = 5000;
+N                            }else if(coffc_step == step3){
+X                            }else if(coffc_step == 2){
+N                                coc3 = 5000;
+X                                coff[5] = 5000;
+N                            } 
+N//                            set_c_cutoff_c = 5000;
 N                        }
 N                    }else{
-N                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 100;
-X                        Run_Control[26] = Run_Control[26] + atoi(num) * 100;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1 + atoi(num) * 100;
+X                            coff[3] = coff[3] + atoi(num) * 100;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2 + atoi(num) * 100;
+X                            coff[4] = coff[4] + atoi(num) * 100;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3 + atoi(num) * 100;
+X                            coff[5] = coff[5] + atoi(num) * 100;
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 100;
 N                    }
 N                                       
 N                    bit = 4;
@@ -55187,14 +55763,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        set_c_cutoff_c = 500;
-X                        Run_Control[26] = 500;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 =5000;
+X                            coff[3] =5000;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = 5000;
+X                            coff[4] = 5000;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = 5000;
+X                            coff[5] = 5000;
+N                        } 
+N//                        set_c_cutoff_c = 500;
 N                    }else if(dot_flag == 2){
-N                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 100;
-X                        Run_Control[26] = Run_Control[26] + atoi(num) * 100;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1 + atoi(num) * 100;
+X                            coff[3] = coff[3] + atoi(num) * 100;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2 + atoi(num) * 100;
+X                            coff[4] = coff[4] + atoi(num) * 100;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3 + atoi(num) * 100;
+X                            coff[5] = coff[5] + atoi(num) * 100;
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 100;
 N                    }else{
-N                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 10;
-X                        Run_Control[26] = Run_Control[26] + atoi(num) * 10;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1 + atoi(num) * 10;
+X                            coff[3] = coff[3] + atoi(num) * 10;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2 + atoi(num) * 10;
+X                            coff[4] = coff[4] + atoi(num) * 10;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3 + atoi(num) * 10;
+X                            coff[5] = coff[5] + atoi(num) * 10;
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 10;
 N                    }
 N                                       
 N                    bit = 5;
@@ -55206,14 +55821,53 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        set_c_cutoff_c = 500;
-X                        Run_Control[26] = 500;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = 5000;
+X                            coff[3] = 5000;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = 5000;
+X                            coff[4] = 5000;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = 5000;
+X                            coff[5] = 5000;
+N                        }
+N//                        set_c_cutoff_c = 500;
 N                    }else if(dot_flag == 1){
-N                        set_c_cutoff_c = set_c_cutoff_c + atoi(num);
-X                        Run_Control[26] = Run_Control[26] + atoi(num);
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1;
+X                            coff[3] = coff[3];
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2;
+X                            coff[4] = coff[4];
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3;
+X                            coff[5] = coff[5];
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c + atoi(num);
 N                    }else{
-N                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 10;
-X                        Run_Control[26] = Run_Control[26] + atoi(num) * 10;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1 + atoi(num) * 10;
+X                            coff[3] = coff[3] + atoi(num) * 10;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2 + atoi(num) * 10;
+X                            coff[4] = coff[4] + atoi(num) * 10;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3 + atoi(num) * 10;
+X                            coff[5] = coff[5] + atoi(num) * 10;
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c + atoi(num) * 10;
 N                    }
 N                                       
 N                    bit = 6;
@@ -55225,11 +55879,37 @@ N                    strcat(set_limit,num);
 N                    TEXT_SetText(hItem,set_limit);
 N                    if(dot_flag == 0)
 N                    {
-N                        set_c_cutoff_c = 0;
-X                        Run_Control[26] = 0;
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = 5000;
+X                            coff[3] = 5000;
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = 5000;
+X                            coff[4] = 5000;
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = 5000;
+X                            coff[5] = 5000;
+N                        }
+N//                        set_c_cutoff_c = 0;
 N                    }else if(dot_flag == 2){
-N                        set_c_cutoff_c = set_c_cutoff_c + atoi(num);
-X                        Run_Control[26] = Run_Control[26] + atoi(num);
+N                        if(coffc_step == step1)
+X                        if(coffc_step == 0)
+N                        {
+N                            coc1 = coc1 + atoi(num);
+X                            coff[3] = coff[3] + atoi(num);
+N                        }else if(coffc_step == step2){
+X                        }else if(coffc_step == 1){
+N                            coc2 = coc2 + atoi(num);
+X                            coff[4] = coff[4] + atoi(num);
+N                        }else if(coffc_step == step3){
+X                        }else if(coffc_step == 2){
+N                            coc3 = coc3 + atoi(num);
+X                            coff[5] = coff[5] + atoi(num);
+N                        }
+N//                        set_c_cutoff_c = set_c_cutoff_c + atoi(num);
 N                    }                 
 N                    bit = 1;
 N                    break;

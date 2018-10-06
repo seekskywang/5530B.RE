@@ -778,6 +778,31 @@
               <FileType>1</FileType>
               <FilePath>..\APP\load_Face.c</FilePath>
             </File>
+            <File>
+              <FileName>settings.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\settings.c</FilePath>
+            </File>
+            <File>
+              <FileName>STARTER.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\STARTER.c</FilePath>
+            </File>
+            <File>
+              <FileName>sysinfo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\sysinfo.c</FilePath>
+            </File>
+            <File>
+              <FileName>c_dc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\c_dc.c</FilePath>
+            </File>
+            <File>
+              <FileName>graph.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\graph.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
