@@ -386,7 +386,7 @@ extern vu16 coff[6];
 extern vu16 Contr_Voltage;//
 extern vu16 Contr_Current;//
 extern vu16 Contr_Laod;//
-extern vu32 Correct_Parametet[11];
+extern vu32 Correct_Parametet[12];
 #define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 #define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 #define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -400,6 +400,7 @@ extern vu32 Correct_Parametet[11];
 #define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 #define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 #define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 
 
 
@@ -411,7 +412,7 @@ extern vu8  correct_por[6];
 #define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 #define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 
-extern vu32 Correct_Strong[11];//校准系数
+extern vu32 Correct_Strong[12];//校准系数
 #define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 #define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 #define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -425,6 +426,7 @@ extern vu32 Correct_Strong[11];//校准系数
 #define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 #define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 #define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 
 //---------------------------
 extern vu16 ADC_NTC_Filt[50];

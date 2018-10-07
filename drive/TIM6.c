@@ -61,11 +61,12 @@ void TIM4_IRQHandler(void)
         
                 if(page_sw != face_starter)
         {
-             if(resetflag == 1 && resdone != 1)
+             if(resetflag == 1)
              {
-                 if(resetcount == 200)
+                 if(resetcount == 3000)
                  {
-                     LCD_Initializtion();
+//                     sLCD_GPIO_Config();
+                     sLCD_Init();
 //                     sLCD_WR_REG(0xf1);
                      GUI_Init();
                      if(page_sw == face_menu)
@@ -82,7 +83,7 @@ void TIM4_IRQHandler(void)
                      }else if(page_sw == face_set){
                          ResetSET();
                      }
-                     resdone = 1;
+//                     resdone = 1;
 //                     resetflag = 0;
                      resetcount = 0;
                  }else{

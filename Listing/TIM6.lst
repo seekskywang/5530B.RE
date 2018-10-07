@@ -35088,7 +35088,7 @@ N
 Nextern vu16 Contr_Voltage;//
 Nextern vu16 Contr_Current;//
 Nextern vu16 Contr_Laod;//
-Nextern vu32 Correct_Parametet[11];
+Nextern vu32 Correct_Parametet[12];
 N#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 N#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 N#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35102,6 +35102,7 @@ N#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 N#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 N#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+N#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 N
 N
 N
@@ -35113,7 +35114,7 @@ N#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 N#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 N#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 N
-Nextern vu32 Correct_Strong[11];//校准系数
+Nextern vu32 Correct_Strong[12];//校准系数
 N#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 N#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 N#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35127,6 +35128,7 @@ N#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 N#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 N#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+N#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 N
 N//---------------------------
 Nextern vu16 ADC_NTC_Filt[50];
@@ -49395,7 +49397,7 @@ S
 Sextern vu16 Contr_Voltage;//
 Sextern vu16 Contr_Current;//
 Sextern vu16 Contr_Laod;//
-Sextern vu32 Correct_Parametet[11];
+Sextern vu32 Correct_Parametet[12];
 S#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 S#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 S#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -49409,6 +49411,7 @@ S#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 S#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 S#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+S#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 S
 S
 S
@@ -49420,7 +49423,7 @@ S#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 S#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 S#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 S
-Sextern vu32 Correct_Strong[11];//校准系数
+Sextern vu32 Correct_Strong[12];//校准系数
 S#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 S#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 S#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -49434,6 +49437,7 @@ S#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 S#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 S#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+S#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 S
 S//---------------------------
 Sextern vu16 ADC_NTC_Filt[50];
@@ -49526,40 +49530,42 @@ N
 N                if(page_sw != face_starter)
 X                if(page_sw != 6)
 N        {
-N             if(resetflag == 1 && resdone != 1)
+N             if(resetflag == 1)
 N             {
-N                 if(resetcount == 200)
+N                 if(resetcount == 3000)
 N                 {
-N                     LCD_Initializtion();
+N//                     sLCD_GPIO_Config();
+W "..\drive\TIM6.c" 69 22 function "sLCD_Init" declared implicitly
+N                     sLCD_Init();
 N//                     sLCD_WR_REG(0xf1);
 N                     GUI_Init();
 N                     if(page_sw == face_menu)
 X                     if(page_sw == 2)
 N                     {
-W "..\drive\TIM6.c" 73 26 function "ResetPow" declared implicitly
+W "..\drive\TIM6.c" 74 26 function "ResetPow" declared implicitly
 N                         ResetPow();
 N                     }else if(page_sw == face_cdc){
 X                     }else if(page_sw == 1){
-W "..\drive\TIM6.c" 75 26 function "ResetCDC" declared implicitly
+W "..\drive\TIM6.c" 76 26 function "ResetCDC" declared implicitly
 N                         ResetCDC();
 N                     }else if(page_sw == face_r){
 X                     }else if(page_sw == 3){
-W "..\drive\TIM6.c" 77 26 function "ResetR" declared implicitly
+W "..\drive\TIM6.c" 78 26 function "ResetR" declared implicitly
 N                         ResetR();
 N                     }else if(page_sw == face_load){
 X                     }else if(page_sw == 4){
-W "..\drive\TIM6.c" 79 26 function "ResetLoad" declared implicitly
+W "..\drive\TIM6.c" 80 26 function "ResetLoad" declared implicitly
 N                         ResetLoad();
 N                     }else if(page_sw == face_graph){
 X                     }else if(page_sw == 0){
-W "..\drive\TIM6.c" 81 26 function "ResetG" declared implicitly
+W "..\drive\TIM6.c" 82 26 function "ResetG" declared implicitly
 N                         ResetG();
 N                     }else if(page_sw == face_set){
 X                     }else if(page_sw == 5){
-W "..\drive\TIM6.c" 83 26 function "ResetSET" declared implicitly
+W "..\drive\TIM6.c" 84 26 function "ResetSET" declared implicitly
 N                         ResetSET();
 N                     }
-N                     resdone = 1;
+N//                     resdone = 1;
 N//                     resetflag = 0;
 N                     resetcount = 0;
 N                 }else{

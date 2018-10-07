@@ -48927,7 +48927,7 @@ N
 Nextern vu16 Contr_Voltage;//
 Nextern vu16 Contr_Current;//
 Nextern vu16 Contr_Laod;//
-Nextern vu32 Correct_Parametet[11];
+Nextern vu32 Correct_Parametet[12];
 N#define  REG_CorrectionV   Correct_Parametet[0]//ÄÚ×èµçÑ¹²âÁ¿²ÎÊı
 N#define  REG_Load_A			   Correct_Parametet[1]//¸ºÔØCCÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
 N#define  SET_LoadA			   Correct_Parametet[2]//¸ºÔØCCÄ£Ê½¿ØÖÆµçÁ÷²ÎÊı
@@ -48941,6 +48941,7 @@ N#define  SET_POWERA			   Correct_Parametet[7]//µçÔ´CCÄ£Ê½µçÁ÷¿ØÖÆ²âÁ¿²ÎÊı
 N#define  REG_POWERV			   Correct_Parametet[8]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿²ÎÊı
 N#define  SET_POWERV				 Correct_Parametet[9]//µçÔ´CVÄ£Ê½µçÑ¹¿ØÖÆ²ÎÊı
 N#define  CON_POWERA				 Correct_Parametet[10]//µçÔ´CVÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
+N#define  REG_CorrectionRL    Correct_Parametet[11]//ÄÚ×è²âÁ¿²ÎÊı
 N
 N
 N
@@ -48952,7 +48953,7 @@ N#define  Polar3						 correct_por[3]//ÄÚ×è²âÁ¿ºÍµçÔ´CVÄ£Ê½µçÁ÷²âÁ¿
 N#define  Polar4						 correct_por[4]//µçÔ´CCÄ£Ê½µçÁ÷²âÁ¿ºÍ¿ØÖÆ
 N#define  Polar5						 correct_por[5]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿ºÍ¿ØÖÆ
 N
-Nextern vu32 Correct_Strong[11];//Ğ£×¼ÏµÊı
+Nextern vu32 Correct_Strong[12];//Ğ£×¼ÏµÊı
 N#define  REG_ReadV_Offset   Correct_Strong[0]//ÄÚ×èµçÑ¹²âÁ¿²ÎÊı
 N#define  REG_LoadA_Offset   Correct_Strong[1]//¸ºÔØCCÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
 N#define  SET_LoadA_Offset   Correct_Strong[2]//¸ºÔØCCÄ£Ê½¿ØÖÆµçÁ÷²ÎÊı
@@ -48966,6 +48967,7 @@ N#define  SET_POWERA_Offset  Correct_Strong[7]//µçÔ´CCÄ£Ê½µçÁ÷¿ØÖÆ²âÁ¿²ÎÊı
 N#define  REG_POWERV_Offset  Correct_Strong[8]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿²ÎÊı
 N#define  SET_POWERV_Offset	Correct_Strong[9]//µçÔ´CVÄ£Ê½µçÑ¹¿ØÖÆ²ÎÊı
 N#define  CON_POWERA_Offset	Correct_Strong[10]//µçÔ´CVÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
+N#define  REG_ReadRL_Offset   Correct_Strong[11]//ÄÚ×è²âÁ¿²ÎÊı
 N
 N//---------------------------
 Nextern vu16 ADC_NTC_Filt[50];
@@ -49376,7 +49378,7 @@ S
 Sextern vu16 Contr_Voltage;//
 Sextern vu16 Contr_Current;//
 Sextern vu16 Contr_Laod;//
-Sextern vu32 Correct_Parametet[11];
+Sextern vu32 Correct_Parametet[12];
 S#define  REG_CorrectionV   Correct_Parametet[0]//ÄÚ×èµçÑ¹²âÁ¿²ÎÊı
 S#define  REG_Load_A			   Correct_Parametet[1]//¸ºÔØCCÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
 S#define  SET_LoadA			   Correct_Parametet[2]//¸ºÔØCCÄ£Ê½¿ØÖÆµçÁ÷²ÎÊı
@@ -49390,6 +49392,7 @@ S#define  SET_POWERA			   Correct_Parametet[7]//µçÔ´CCÄ£Ê½µçÁ÷¿ØÖÆ²âÁ¿²ÎÊı
 S#define  REG_POWERV			   Correct_Parametet[8]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿²ÎÊı
 S#define  SET_POWERV				 Correct_Parametet[9]//µçÔ´CVÄ£Ê½µçÑ¹¿ØÖÆ²ÎÊı
 S#define  CON_POWERA				 Correct_Parametet[10]//µçÔ´CVÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
+S#define  REG_CorrectionRL    Correct_Parametet[11]//ÄÚ×è²âÁ¿²ÎÊı
 S
 S
 S
@@ -49401,7 +49404,7 @@ S#define  Polar3						 correct_por[3]//ÄÚ×è²âÁ¿ºÍµçÔ´CVÄ£Ê½µçÁ÷²âÁ¿
 S#define  Polar4						 correct_por[4]//µçÔ´CCÄ£Ê½µçÁ÷²âÁ¿ºÍ¿ØÖÆ
 S#define  Polar5						 correct_por[5]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿ºÍ¿ØÖÆ
 S
-Sextern vu32 Correct_Strong[11];//Ğ£×¼ÏµÊı
+Sextern vu32 Correct_Strong[12];//Ğ£×¼ÏµÊı
 S#define  REG_ReadV_Offset   Correct_Strong[0]//ÄÚ×èµçÑ¹²âÁ¿²ÎÊı
 S#define  REG_LoadA_Offset   Correct_Strong[1]//¸ºÔØCCÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
 S#define  SET_LoadA_Offset   Correct_Strong[2]//¸ºÔØCCÄ£Ê½¿ØÖÆµçÁ÷²ÎÊı
@@ -49415,6 +49418,7 @@ S#define  SET_POWERA_Offset  Correct_Strong[7]//µçÔ´CCÄ£Ê½µçÁ÷¿ØÖÆ²âÁ¿²ÎÊı
 S#define  REG_POWERV_Offset  Correct_Strong[8]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿²ÎÊı
 S#define  SET_POWERV_Offset	Correct_Strong[9]//µçÔ´CVÄ£Ê½µçÑ¹¿ØÖÆ²ÎÊı
 S#define  CON_POWERA_Offset	Correct_Strong[10]//µçÔ´CVÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
+S#define  REG_ReadRL_Offset   Correct_Strong[11]//ÄÚ×è²âÁ¿²ÎÊı
 S
 S//---------------------------
 Sextern vu16 ADC_NTC_Filt[50];
@@ -51811,7 +51815,7 @@ S
 Sextern vu16 Contr_Voltage;//
 Sextern vu16 Contr_Current;//
 Sextern vu16 Contr_Laod;//
-Sextern vu32 Correct_Parametet[11];
+Sextern vu32 Correct_Parametet[12];
 S#define  REG_CorrectionV   Correct_Parametet[0]//ÄÚ×èµçÑ¹²âÁ¿²ÎÊı
 S#define  REG_Load_A			   Correct_Parametet[1]//¸ºÔØCCÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
 S#define  SET_LoadA			   Correct_Parametet[2]//¸ºÔØCCÄ£Ê½¿ØÖÆµçÁ÷²ÎÊı
@@ -51825,6 +51829,7 @@ S#define  SET_POWERA			   Correct_Parametet[7]//µçÔ´CCÄ£Ê½µçÁ÷¿ØÖÆ²âÁ¿²ÎÊı
 S#define  REG_POWERV			   Correct_Parametet[8]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿²ÎÊı
 S#define  SET_POWERV				 Correct_Parametet[9]//µçÔ´CVÄ£Ê½µçÑ¹¿ØÖÆ²ÎÊı
 S#define  CON_POWERA				 Correct_Parametet[10]//µçÔ´CVÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
+S#define  REG_CorrectionRL    Correct_Parametet[11]//ÄÚ×è²âÁ¿²ÎÊı
 S
 S
 S
@@ -51836,7 +51841,7 @@ S#define  Polar3						 correct_por[3]//ÄÚ×è²âÁ¿ºÍµçÔ´CVÄ£Ê½µçÁ÷²âÁ¿
 S#define  Polar4						 correct_por[4]//µçÔ´CCÄ£Ê½µçÁ÷²âÁ¿ºÍ¿ØÖÆ
 S#define  Polar5						 correct_por[5]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿ºÍ¿ØÖÆ
 S
-Sextern vu32 Correct_Strong[11];//Ğ£×¼ÏµÊı
+Sextern vu32 Correct_Strong[12];//Ğ£×¼ÏµÊı
 S#define  REG_ReadV_Offset   Correct_Strong[0]//ÄÚ×èµçÑ¹²âÁ¿²ÎÊı
 S#define  REG_LoadA_Offset   Correct_Strong[1]//¸ºÔØCCÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
 S#define  SET_LoadA_Offset   Correct_Strong[2]//¸ºÔØCCÄ£Ê½¿ØÖÆµçÁ÷²ÎÊı
@@ -51850,6 +51855,7 @@ S#define  SET_POWERA_Offset  Correct_Strong[7]//µçÔ´CCÄ£Ê½µçÁ÷¿ØÖÆ²âÁ¿²ÎÊı
 S#define  REG_POWERV_Offset  Correct_Strong[8]//µçÔ´CVÄ£Ê½µçÑ¹²âÁ¿²ÎÊı
 S#define  SET_POWERV_Offset	Correct_Strong[9]//µçÔ´CVÄ£Ê½µçÑ¹¿ØÖÆ²ÎÊı
 S#define  CON_POWERA_Offset	Correct_Strong[10]//µçÔ´CVÄ£Ê½µçÁ÷²âÁ¿²ÎÊı
+S#define  REG_ReadRL_Offset   Correct_Strong[11]//ÄÚ×è²âÁ¿²ÎÊı
 S
 S//---------------------------
 Sextern vu16 ADC_NTC_Filt[50];
@@ -52838,6 +52844,8 @@ N                        start_time = GUI_GetTime()/500;//è®°å½•å¼€å§‹æ—¶é—´
 X                        Run_Control[29] = GUI_GetTime()/500;
 N                    }
 N                    cutoff_flag = 0;
+N                    USART_SendData(USART3,0);//å…³é—­ç”µæº
+X                    USART_SendData(((USART_TypeDef *) (((uint32_t)0x40000000) + 0x4800)),0);
 N                    GPIO_ResetBits(GPIOC,GPIO_Pin_1);//å…³é—­ç”µæºè¾“å‡º
 X                    GPIO_ResetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0800)),((uint16_t)0x0002));
 N//                     Mode_SW_CONT(0x02);//åˆ‡æ¢è‡³è´Ÿè½½æ¨¡å¼
@@ -52874,6 +52882,8 @@ N                        start_time = GUI_GetTime()/500;//è®°å½•å¼€å§‹æ—¶é—´
 X                        Run_Control[29] = GUI_GetTime()/500;
 N                    }
 N                    cutoff_flag = 0;
+N                    USART_SendData(USART3,0);//å…³é—­ç”µæº
+X                    USART_SendData(((USART_TypeDef *) (((uint32_t)0x40000000) + 0x4800)),0);
 N                    GPIO_ResetBits(GPIOC,GPIO_Pin_1);//å…³é—­ç”µæºè¾“å‡º
 X                    GPIO_ResetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0800)),((uint16_t)0x0002));
 N//                     Mode_SW_CONT(0x02);//åˆ‡æ¢è‡³è´Ÿè½½æ¨¡å¼
@@ -52919,6 +52929,8 @@ N                        start_time = GUI_GetTime()/500;//è®°å½•å¼€å§‹æ—¶é—´
 X                        Run_Control[29] = GUI_GetTime()/500;
 N                    }
 N                    cutoff_flag = 0;
+N                    USART_SendData(USART3,0);//å…³é—­ç”µæº
+X                    USART_SendData(((USART_TypeDef *) (((uint32_t)0x40000000) + 0x4800)),0);
 N                    GPIO_ResetBits(GPIOC,GPIO_Pin_1);//å…³é—­ç”µæºè¾“å‡º
 X                    GPIO_ResetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0800)),((uint16_t)0x0002));
 N//                     Mode_SW_CONT(0x02);//åˆ‡æ¢è‡³è´Ÿè½½æ¨¡å¼
@@ -53139,6 +53151,8 @@ N                     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_68);
 X                     hItem = WM_GetDialogItem(pMsg->hWin, (0x800 + 0x81));
 N                     sprintf(buf,"%05d",battery_c);
 N                     TEXT_SetText(hItem,buf);
+N                    USART_SendData(USART3,1);//è¿æ¥ç”µæº
+X                    USART_SendData(((USART_TypeDef *) (((uint32_t)0x40000000) + 0x4800)),1);
 N                    GPIO_SetBits(GPIOC,GPIO_Pin_1);//æ‰“å¼€ç”µæºè¾“å‡º
 X                    GPIO_SetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0800)),((uint16_t)0x0002));
 N//                    GPIO_SetBits(GPIOB,GPIO_Pin_13);//æ‰“å¼€ç¨³å‹ç”µæºè¾“å‡º
@@ -53553,6 +53567,10 @@ X  track = 1;
 N  TM1650_SET_LED(0x68,0x70);
 N  GPIO_ResetBits(GPIOD,GPIO_Pin_12);//Ä°Ö†
 X  GPIO_ResetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0C00)),((uint16_t)0x1000));
+N  GPIO_ResetBits(GPIOC,GPIO_Pin_1);//å…³é—­ç”µæºè¾“å‡º
+X  GPIO_ResetBits(((GPIO_TypeDef *) ((((uint32_t)0x40000000) + 0x00020000) + 0x0800)),((uint16_t)0x0002));
+N  USART_SendData(USART3,0);//å…³é—­ç”µæº
+X  USART_SendData(((USART_TypeDef *) (((uint32_t)0x40000000) + 0x4800)),0);
 N//  double_sw = face_cdc;
 N  hWincdc = GUI_CreateDialogBox(_aDialogCreate4, GUI_COUNTOF(_aDialogCreate4), _cbDialog, WM_HBKWIN, 0, 0);
 X  hWincdc = GUI_CreateDialogBox(_aDialogCreate4, (sizeof(_aDialogCreate4) / sizeof(_aDialogCreate4[0])), _cbDialog, WM_GetDesktopWindow(), 0, 0);

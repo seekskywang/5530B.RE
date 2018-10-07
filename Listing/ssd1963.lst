@@ -35093,7 +35093,7 @@ N
 Nextern vu16 Contr_Voltage;//
 Nextern vu16 Contr_Current;//
 Nextern vu16 Contr_Laod;//
-Nextern vu32 Correct_Parametet[11];
+Nextern vu32 Correct_Parametet[12];
 N#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 N#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 N#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35107,6 +35107,7 @@ N#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 N#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 N#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+N#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 N
 N
 N
@@ -35118,7 +35119,7 @@ N#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 N#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 N#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 N
-Nextern vu32 Correct_Strong[11];//校准系数
+Nextern vu32 Correct_Strong[12];//校准系数
 N#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 N#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 N#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35132,6 +35133,7 @@ N#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 N#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 N#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+N#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 N
 N//---------------------------
 Nextern vu16 ADC_NTC_Filt[50];
@@ -35557,7 +35559,7 @@ S
 Sextern vu16 Contr_Voltage;//
 Sextern vu16 Contr_Current;//
 Sextern vu16 Contr_Laod;//
-Sextern vu32 Correct_Parametet[11];
+Sextern vu32 Correct_Parametet[12];
 S#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 S#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 S#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35571,6 +35573,7 @@ S#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 S#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 S#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+S#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 S
 S
 S
@@ -35582,7 +35585,7 @@ S#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 S#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 S#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 S
-Sextern vu32 Correct_Strong[11];//校准系数
+Sextern vu32 Correct_Strong[12];//校准系数
 S#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 S#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 S#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35596,6 +35599,7 @@ S#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 S#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 S#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+S#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 S
 S//---------------------------
 Sextern vu16 ADC_NTC_Filt[50];
@@ -35897,7 +35901,7 @@ N		}
 N	}
 N}
 N
-Nstatic void sLCD_Init(void)
+Nvoid sLCD_Init(void)
 N{
 N    vu16 DeviceCode;
 N    sLCD_WR_REG(0xa1);

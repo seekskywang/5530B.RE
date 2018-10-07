@@ -35089,7 +35089,7 @@ N
 Nextern vu16 Contr_Voltage;//
 Nextern vu16 Contr_Current;//
 Nextern vu16 Contr_Laod;//
-Nextern vu32 Correct_Parametet[11];
+Nextern vu32 Correct_Parametet[12];
 N#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 N#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 N#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35103,6 +35103,7 @@ N#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 N#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 N#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+N#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 N
 N
 N
@@ -35114,7 +35115,7 @@ N#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 N#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 N#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 N
-Nextern vu32 Correct_Strong[11];//校准系数
+Nextern vu32 Correct_Strong[12];//校准系数
 N#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 N#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 N#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35128,6 +35129,7 @@ N#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 N#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 N#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+N#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 N
 N//---------------------------
 Nextern vu16 ADC_NTC_Filt[50];
@@ -35583,7 +35585,7 @@ S
 Sextern vu16 Contr_Voltage;//
 Sextern vu16 Contr_Current;//
 Sextern vu16 Contr_Laod;//
-Sextern vu32 Correct_Parametet[11];
+Sextern vu32 Correct_Parametet[12];
 S#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 S#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 S#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35597,6 +35599,7 @@ S#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 S#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 S#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+S#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 S
 S
 S
@@ -35608,7 +35611,7 @@ S#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 S#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 S#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 S
-Sextern vu32 Correct_Strong[11];//校准系数
+Sextern vu32 Correct_Strong[12];//校准系数
 S#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 S#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 S#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35622,6 +35625,7 @@ S#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 S#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 S#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+S#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 S
 S//---------------------------
 Sextern vu16 ADC_NTC_Filt[50];
@@ -35691,8 +35695,8 @@ N
 Nvu32 Modify_B_READ;
 Nvu32 Modify_D_READ;
 Nvu32 Modify_B_ACT;
-Nvu32 Correct_Parametet[11];//校准参数
-Nvu32 Correct_Strong[11];//校准系数
+Nvu32 Correct_Parametet[12];//校准参数
+Nvu32 Correct_Strong[12];//校准系数
 Nvu8  correct_por[6];
 N/*************************变量定义***********************************/
 Nvu32 Run_Control[41];
@@ -36054,30 +36058,58 @@ N				var32a = var32a - Modify_A_ACT;
 N				var32a = var32a << 12;
 N				var16 = Modify_B_READ - Modify_A_READ;
 N				var32a = var32a / var16;
-N				REG_CorrectionR = var32a;
-X				Correct_Parametet[5] = var32a;
-N				var32a=0;
-N				var32a = Modify_B_ACT;
-N				var32a = var32a << 12;
-N				var32b = Modify_B_READ;
-N				var32b = var32b * REG_CorrectionR;
-X				var32b = var32b * Correct_Parametet[5];
-N				if (var32a < var32b)
-N				{
-N					var32b = var32b - var32a;
-N					REG_ReadR_Offset = var32b;
-X					Correct_Strong[5] = var32b;
-N					Polar3 |= 0x01;
-X					correct_por[3] |= 0x01;
-N				}
-N				else 
-N				{
-N					var32a = var32a - var32b;
-N					REG_ReadR_Offset = var32a;
-X					Correct_Strong[5] = var32a;
-N					Polar3 &= ~0x01;
-X					correct_por[3] &= ~0x01;
-N				}
+N                if(r_raly == 1)
+N                {
+N                    REG_CorrectionR = var32a;
+X                    Correct_Parametet[5] = var32a;
+N                    var32a=0;
+N                    var32a = Modify_B_ACT;
+N                    var32a = var32a << 12;
+N                    var32b = Modify_B_READ;
+N                    var32b = var32b * REG_CorrectionR;
+X                    var32b = var32b * Correct_Parametet[5];
+N                    if (var32a < var32b)
+N                    {
+N                        var32b = var32b - var32a;
+N                        REG_ReadR_Offset = var32b;
+X                        Correct_Strong[5] = var32b;
+N                        Polar3 |= 0x01;
+X                        correct_por[3] |= 0x01;
+N                    }
+N                    else 
+N                    {
+N                        var32a = var32a - var32b;
+N                        REG_ReadR_Offset = var32a;
+X                        Correct_Strong[5] = var32a;
+N                        Polar3 &= ~0x01;
+X                        correct_por[3] &= ~0x01;
+N                    }
+N                }else{
+N                    REG_CorrectionRL = var32a;
+X                    Correct_Parametet[11] = var32a;
+N                    var32a=0;
+N                    var32a = Modify_B_ACT;
+N                    var32a = var32a << 12;
+N                    var32b = Modify_B_READ;
+N                    var32b = var32b * REG_CorrectionRL;
+X                    var32b = var32b * Correct_Parametet[11];
+N                    if (var32a < var32b)
+N                    {
+N                        var32b = var32b - var32a;
+N                        REG_ReadRL_Offset = var32b;
+X                        Correct_Strong[11] = var32b;
+N                        Polar3 |= 0x01;
+X                        correct_por[3] |= 0x01;
+N                    }
+N                    else 
+N                    {
+N                        var32a = var32a - var32b;
+N                        REG_ReadR_Offset = var32a;
+X                        Correct_Strong[5] = var32a;
+N                        Polar3 &= ~0x01;
+X                        correct_por[3] &= ~0x01;
+N                    }
+N                }
 N	//---------------------------------------------------------------------------------------//
 N				Flash_Write_all();	//参数写进FLASH
 N				flag_OverV=0;
@@ -36447,29 +36479,56 @@ N		var32 = 0;
 N	}
 N/*****************************内阻值转换*******************************************/
 N	var32 = Rmon_value;
-N	var32 = var32 * REG_CorrectionR;  
-X	var32 = var32 * Correct_Parametet[5];  
-N	if ((Polar3 & 0x01) == 0x01)		  
-X	if ((correct_por[3] & 0x01) == 0x01)		  
-N	{
-N		if (var32 < REG_ReadR_Offset) 
-X		if (var32 < Correct_Strong[5]) 
-N		{
-N			var32 = 0;
-N		}
-N		else var32 = var32 - REG_ReadR_Offset;
-X		else var32 = var32 - Correct_Strong[5];
-N	}
-N	else var32 = var32 + REG_ReadR_Offset;
-X	else var32 = var32 + Correct_Strong[5];
-N	var32 = var32 >> 12;
-N	if (var32 < 1)
-N	{
-N		var32 = 0;				  //清零
-N	}
-N	R_VLUE = var32;
-X	Run_Control[13] = var32;
-N	var32 = 0;	
+N    if(r_raly == 1)
+N    {
+N        var32 = var32 * REG_CorrectionR;  
+X        var32 = var32 * Correct_Parametet[5];  
+N        if ((Polar3 & 0x01) == 0x01)		  
+X        if ((correct_por[3] & 0x01) == 0x01)		  
+N        {
+N            if (var32 < REG_ReadR_Offset) 
+X            if (var32 < Correct_Strong[5]) 
+N            {
+N                var32 = 0;
+N            }
+N            else var32 = var32 - REG_ReadR_Offset;
+X            else var32 = var32 - Correct_Strong[5];
+N        }
+N        else var32 = var32 + REG_ReadR_Offset;
+X        else var32 = var32 + Correct_Strong[5];
+N        var32 = var32 >> 12;
+N        if (var32 < 1)
+N        {
+N            var32 = 0;				  //清零
+N        }
+N        R_VLUE = var32;
+X        Run_Control[13] = var32;
+N        var32 = 0;
+N    }else{
+N        var32 = var32 * REG_CorrectionRL;  
+X        var32 = var32 * Correct_Parametet[11];  
+N        if ((Polar3 & 0x01) == 0x01)		  
+X        if ((correct_por[3] & 0x01) == 0x01)		  
+N        {
+N            if (var32 < REG_ReadRL_Offset) 
+X            if (var32 < Correct_Strong[11]) 
+N            {
+N                var32 = 0;
+N            }
+N            else var32 = var32 - REG_ReadRL_Offset;
+X            else var32 = var32 - Correct_Strong[11];
+N        }
+N        else var32 = var32 + REG_ReadRL_Offset;
+X        else var32 = var32 + Correct_Strong[11];
+N        var32 = var32 >> 12;
+N        if (var32 < 1)
+N        {
+N            var32 = 0;				  //清零
+N        }
+N        R_VLUE = var32;
+X        Run_Control[13] = var32;
+N        var32 = 0;
+N    }  
 N	/*****************************稳压电源测量电压转换*******************************************/
 N	var32 = Vmon_value;
 N	var32 = var32 * REG_POWERV;  

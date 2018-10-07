@@ -79,7 +79,7 @@ void MainTask(void)
 //         {
             if(page_sw != face_starter)
             {
-                if(scancount == 9 && resdone == 0)
+                if(scancount == 9)
                 {
                     sLCD_WR_REG(0xf1);
                     ee_Delay(30);
@@ -88,6 +88,12 @@ void MainTask(void)
                 }else{
                     scancount++;
                 }
+//                 if(resdone == 1)
+//                 {
+//                     sLCD_WR_REG(0xf1);
+//                     ee_Delay(30);
+//                     read1963 =sLCD_Read_Data();
+//                 }
                  if(read1963 != 0x03)
                  {
                      resetflag = 1;               

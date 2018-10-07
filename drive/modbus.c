@@ -33,8 +33,8 @@ vu32 Modify_A_ACT;
 vu32 Modify_B_READ;
 vu32 Modify_D_READ;
 vu32 Modify_B_ACT;
-vu32 Correct_Parametet[11];//校准参数
-vu32 Correct_Strong[11];//校准系数
+vu32 Correct_Parametet[12];//校准参数
+vu32 Correct_Strong[12];//校准系数
 vu8  correct_por[6];
 /*************************变量定义***********************************/
 vu32 Run_Control[41];
@@ -354,24 +354,46 @@ void UART_Action(void)
 				var32a = var32a << 12;
 				var16 = Modify_B_READ - Modify_A_READ;
 				var32a = var32a / var16;
-				REG_CorrectionR = var32a;
-				var32a=0;
-				var32a = Modify_B_ACT;
-				var32a = var32a << 12;
-				var32b = Modify_B_READ;
-				var32b = var32b * REG_CorrectionR;
-				if (var32a < var32b)
-				{
-					var32b = var32b - var32a;
-					REG_ReadR_Offset = var32b;
-					Polar3 |= 0x01;
-				}
-				else 
-				{
-					var32a = var32a - var32b;
-					REG_ReadR_Offset = var32a;
-					Polar3 &= ~0x01;
-				}
+                if(r_raly == 1)
+                {
+                    REG_CorrectionR = var32a;
+                    var32a=0;
+                    var32a = Modify_B_ACT;
+                    var32a = var32a << 12;
+                    var32b = Modify_B_READ;
+                    var32b = var32b * REG_CorrectionR;
+                    if (var32a < var32b)
+                    {
+                        var32b = var32b - var32a;
+                        REG_ReadR_Offset = var32b;
+                        Polar3 |= 0x01;
+                    }
+                    else 
+                    {
+                        var32a = var32a - var32b;
+                        REG_ReadR_Offset = var32a;
+                        Polar3 &= ~0x01;
+                    }
+                }else{
+                    REG_CorrectionRL = var32a;
+                    var32a=0;
+                    var32a = Modify_B_ACT;
+                    var32a = var32a << 12;
+                    var32b = Modify_B_READ;
+                    var32b = var32b * REG_CorrectionRL;
+                    if (var32a < var32b)
+                    {
+                        var32b = var32b - var32a;
+                        REG_ReadRL_Offset = var32b;
+                        Polar3 |= 0x01;
+                    }
+                    else 
+                    {
+                        var32a = var32a - var32b;
+                        REG_ReadR_Offset = var32a;
+                        Polar3 &= ~0x01;
+                    }
+                }
 	//---------------------------------------------------------------------------------------//
 				Flash_Write_all();	//参数写进FLASH
 				flag_OverV=0;
@@ -669,23 +691,44 @@ void Transformation_ADC(void)
 	}
 /*****************************内阻值转换*******************************************/
 	var32 = Rmon_value;
-	var32 = var32 * REG_CorrectionR;  
-	if ((Polar3 & 0x01) == 0x01)		  
-	{
-		if (var32 < REG_ReadR_Offset) 
-		{
-			var32 = 0;
-		}
-		else var32 = var32 - REG_ReadR_Offset;
-	}
-	else var32 = var32 + REG_ReadR_Offset;
-	var32 = var32 >> 12;
-	if (var32 < 1)
-	{
-		var32 = 0;				  //清零
-	}
-	R_VLUE = var32;
-	var32 = 0;	
+    if(r_raly == 1)
+    {
+        var32 = var32 * REG_CorrectionR;  
+        if ((Polar3 & 0x01) == 0x01)		  
+        {
+            if (var32 < REG_ReadR_Offset) 
+            {
+                var32 = 0;
+            }
+            else var32 = var32 - REG_ReadR_Offset;
+        }
+        else var32 = var32 + REG_ReadR_Offset;
+        var32 = var32 >> 12;
+        if (var32 < 1)
+        {
+            var32 = 0;				  //清零
+        }
+        R_VLUE = var32;
+        var32 = 0;
+    }else{
+        var32 = var32 * REG_CorrectionRL;  
+        if ((Polar3 & 0x01) == 0x01)		  
+        {
+            if (var32 < REG_ReadRL_Offset) 
+            {
+                var32 = 0;
+            }
+            else var32 = var32 - REG_ReadRL_Offset;
+        }
+        else var32 = var32 + REG_ReadRL_Offset;
+        var32 = var32 >> 12;
+        if (var32 < 1)
+        {
+            var32 = 0;				  //清零
+        }
+        R_VLUE = var32;
+        var32 = 0;
+    }  
 	/*****************************稳压电源测量电压转换*******************************************/
 	var32 = Vmon_value;
 	var32 = var32 * REG_POWERV;  

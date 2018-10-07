@@ -427,11 +427,11 @@ WM_HWIN CreateWindow(void) {
   page_sw = face_menu;
   track = face_menu;
   set_sw = set_10;
-    SET_Voltage = pow_v;
+  SET_Voltage = pow_v;
   SET_Current = pow_c;
   pass = 0;
   mode_sw = mode_pow;
-  USART_SendData(USART3,1);//打开电源
+//  USART_SendData(USART3,1);//连接电源
   TM1650_SET_LED(0x68,0x70);
   GPIO_ResetBits(GPIOD,GPIO_Pin_12);//灭灯
   hWinWind = GUI_CreateDialogBox(_aDialogCreate1, GUI_COUNTOF(_aDialogCreate1), _cbDialog, WM_HBKWIN, 0, 0);

@@ -822,9 +822,9 @@ void Key_Funtion(void)
 			
 			case KEY_ESC :
 			{
-                sLCD_WR_REG(0x01);
+//                sLCD_WR_REG(0x01);
 //                main();
-				timer_sw = 0;
+//				timer_sw = 0;
 				KeyCounter = 0;
 //				BEEP_Tiggr();//瑙﹀彂铚傞福鍣
 			}
@@ -1261,11 +1261,14 @@ void Key_Funtion(void)
 //                           Mode_SW_CONT(0x03);
                            
                            charge_step = 1;
+                            USART_SendData(USART3,1);//连接电源
                            GPIO_SetBits(GPIOC,GPIO_Pin_1);//打开电源输出
                            mode_sw = mode_pow;
                            cdc_sw = cdc_on;
                         }else{
+                           
                            GPIO_ResetBits(GPIOC,GPIO_Pin_1);//关闭电源输出
+                           USART_SendData(USART3,0);//关闭电源
                            cdc_sw = cdc_off;
                            paused = 0;
                            mode_sw = 0;

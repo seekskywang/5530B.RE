@@ -142,6 +142,23 @@ void Flash_Write_all (void)
 	data_8bit = REG_ReadR_Offset >> 8;
 	EEPROM_WriteByte(0x2F, data_8bit);
 	EEPROM_WriteByte(0x30, REG_ReadR_Offset);//内阻
+    
+    data_8bit = REG_CorrectionRL >> 24;
+	EEPROM_WriteByte(0xAB, data_8bit);
+	data_8bit = REG_CorrectionRL >> 16;
+	EEPROM_WriteByte(0xAC, data_8bit);
+	data_8bit = REG_CorrectionRL >> 8;
+	EEPROM_WriteByte(0xAD, data_8bit);
+	EEPROM_WriteByte(0xAE, REG_CorrectionRL);//内阻
+	
+    
+    data_8bit = REG_ReadRL_Offset >> 24;
+	EEPROM_WriteByte(0xAF, data_8bit);
+	data_8bit = REG_ReadRL_Offset >> 16;
+	EEPROM_WriteByte(0xB0, data_8bit);
+	data_8bit = REG_ReadRL_Offset >> 8;
+	EEPROM_WriteByte(0xB1, data_8bit);
+	EEPROM_WriteByte(0xB2, REG_ReadRL_Offset);//内阻
 	
 /************稳压电源*****************************/
 	data_8bit = REG_POWERA >> 24;
@@ -336,6 +353,22 @@ void EEPROM_READ_Coeff(void)
 	REG_ReadR_Offset=REG_ReadR_Offset+EEPROM_READ_Byte(0x2F);
 	REG_ReadR_Offset=REG_ReadR_Offset<<8;
 	REG_ReadR_Offset=REG_ReadR_Offset+EEPROM_READ_Byte(0x30);
+    
+    REG_CorrectionRL=EEPROM_READ_Byte(0xAB);
+	REG_CorrectionRL=REG_CorrectionRL<<8;
+	REG_CorrectionRL=REG_CorrectionRL+EEPROM_READ_Byte(0xAC);
+	REG_CorrectionRL=REG_CorrectionRL<<8;
+	REG_CorrectionRL=REG_CorrectionRL+EEPROM_READ_Byte(0xAD);
+	REG_CorrectionRL=REG_CorrectionRL<<8;
+	REG_CorrectionRL=REG_CorrectionRL+EEPROM_READ_Byte(0xAE);
+	
+	REG_ReadRL_Offset=EEPROM_READ_Byte(0xAF);
+	REG_ReadRL_Offset=REG_ReadRL_Offset<<8;
+	REG_ReadRL_Offset=REG_ReadRL_Offset+EEPROM_READ_Byte(0xB0);
+	REG_ReadRL_Offset=REG_ReadRL_Offset<<8;
+	REG_ReadRL_Offset=REG_ReadRL_Offset+EEPROM_READ_Byte(0xB1);
+	REG_ReadRL_Offset=REG_ReadRL_Offset<<8;
+	REG_ReadRL_Offset=REG_ReadRL_Offset+EEPROM_READ_Byte(0xB2);
 	
 	
 /*******************稳压电源****************************/

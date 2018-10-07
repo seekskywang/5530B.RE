@@ -9,81 +9,76 @@
 ;;;426    WM_HWIN CreateWindow(void) {
 000000  b51c              PUSH     {r2-r4,lr}
 ;;;427      page_sw = face_menu;
-000002  4917              LDR      r1,|L1.96|
+000002  4915              LDR      r1,|L1.88|
 000004  2002              MOVS     r0,#2
 000006  7008              STRB     r0,[r1,#0]
 ;;;428      track = face_menu;
-000008  4916              LDR      r1,|L1.100|
+000008  4914              LDR      r1,|L1.92|
 00000a  7008              STRB     r0,[r1,#0]
 ;;;429      set_sw = set_10;
-00000c  4916              LDR      r1,|L1.104|
+00000c  4914              LDR      r1,|L1.96|
 00000e  2009              MOVS     r0,#9
 000010  7008              STRB     r0,[r1,#0]
-;;;430        SET_Voltage = pow_v;
-000012  4816              LDR      r0,|L1.108|
+;;;430      SET_Voltage = pow_v;
+000012  4814              LDR      r0,|L1.100|
 000014  f8d01098          LDR      r1,[r0,#0x98]  ; Run_Control
 000018  6041              STR      r1,[r0,#4]  ; Run_Control
 ;;;431      SET_Current = pow_c;
 00001a  f8d010a0          LDR      r1,[r0,#0xa0]  ; Run_Control
 00001e  6081              STR      r1,[r0,#8]  ; Run_Control
 ;;;432      pass = 0;
-000020  4813              LDR      r0,|L1.112|
+000020  4811              LDR      r0,|L1.104|
 000022  2400              MOVS     r4,#0
 000024  7004              STRB     r4,[r0,#0]
 ;;;433      mode_sw = mode_pow;
-000026  4913              LDR      r1,|L1.116|
+000026  4911              LDR      r1,|L1.108|
 000028  2003              MOVS     r0,#3
 00002a  7008              STRB     r0,[r1,#0]
-;;;434      USART_SendData(USART3,1);//打开电源
-00002c  2101              MOVS     r1,#1
-00002e  4812              LDR      r0,|L1.120|
-000030  f7fffffe          BL       USART_SendData
+;;;434    //  USART_SendData(USART3,1);//连接电源
 ;;;435      TM1650_SET_LED(0x68,0x70);
-000034  2170              MOVS     r1,#0x70
-000036  2068              MOVS     r0,#0x68
-000038  f7fffffe          BL       TM1650_SET_LED
+00002c  2170              MOVS     r1,#0x70
+00002e  2068              MOVS     r0,#0x68
+000030  f7fffffe          BL       TM1650_SET_LED
 ;;;436      GPIO_ResetBits(GPIOD,GPIO_Pin_12);//灭灯
-00003c  f44f5180          MOV      r1,#0x1000
-000040  480e              LDR      r0,|L1.124|
-000042  f7fffffe          BL       GPIO_ResetBits
+000034  f44f5180          MOV      r1,#0x1000
+000038  480d              LDR      r0,|L1.112|
+00003a  f7fffffe          BL       GPIO_ResetBits
 ;;;437      hWinWind = GUI_CreateDialogBox(_aDialogCreate1, GUI_COUNTOF(_aDialogCreate1), _cbDialog, WM_HBKWIN, 0, 0);
-000046  f7fffffe          BL       WM_GetDesktopWindow
-00004a  4603              MOV      r3,r0
-00004c  9400              STR      r4,[sp,#0]
-00004e  4a0c              LDR      r2,|L1.128|
-000050  2113              MOVS     r1,#0x13
-000052  480c              LDR      r0,|L1.132|
-000054  9401              STR      r4,[sp,#4]
-000056  f7fffffe          BL       GUI_CreateDialogBox
-00005a  490b              LDR      r1,|L1.136|
-00005c  6048              STR      r0,[r1,#4]  ; hWinWind
+00003e  f7fffffe          BL       WM_GetDesktopWindow
+000042  4603              MOV      r3,r0
+000044  9400              STR      r4,[sp,#0]
+000046  4a0b              LDR      r2,|L1.116|
+000048  2113              MOVS     r1,#0x13
+00004a  480b              LDR      r0,|L1.120|
+00004c  9401              STR      r4,[sp,#4]
+00004e  f7fffffe          BL       GUI_CreateDialogBox
+000052  490a              LDR      r1,|L1.124|
+000054  6048              STR      r0,[r1,#4]  ; hWinWind
 ;;;438      return hWinWind;
 ;;;439    }
-00005e  bd1c              POP      {r2-r4,pc}
+000056  bd1c              POP      {r2-r4,pc}
 ;;;440    
                           ENDP
 
-                  |L1.96|
+                  |L1.88|
                           DCD      page_sw
-                  |L1.100|
+                  |L1.92|
                           DCD      track
-                  |L1.104|
+                  |L1.96|
                           DCD      set_sw
-                  |L1.108|
+                  |L1.100|
                           DCD      Run_Control
-                  |L1.112|
+                  |L1.104|
                           DCD      pass
-                  |L1.116|
+                  |L1.108|
                           DCD      mode_sw
-                  |L1.120|
-                          DCD      0x40004800
-                  |L1.124|
+                  |L1.112|
                           DCD      0x40020c00
-                  |L1.128|
+                  |L1.116|
                           DCD      _cbDialog
-                  |L1.132|
+                  |L1.120|
                           DCD      ||.constdata||
-                  |L1.136|
+                  |L1.124|
                           DCD      ||.data||
 
                           AREA ||i.INPUT_POW||, CODE, READONLY, ALIGN=2

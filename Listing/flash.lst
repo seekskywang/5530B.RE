@@ -35089,7 +35089,7 @@ N
 Nextern vu16 Contr_Voltage;//
 Nextern vu16 Contr_Current;//
 Nextern vu16 Contr_Laod;//
-Nextern vu32 Correct_Parametet[11];
+Nextern vu32 Correct_Parametet[12];
 N#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 N#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 N#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35103,6 +35103,7 @@ N#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 N#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 N#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+N#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 N
 N
 N
@@ -35114,7 +35115,7 @@ N#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 N#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 N#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 N
-Nextern vu32 Correct_Strong[11];//校准系数
+Nextern vu32 Correct_Strong[12];//校准系数
 N#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 N#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 N#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35128,6 +35129,7 @@ N#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 N#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 N#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 N#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+N#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 N
 N//---------------------------
 Nextern vu16 ADC_NTC_Filt[50];
@@ -35537,7 +35539,7 @@ S
 Sextern vu16 Contr_Voltage;//
 Sextern vu16 Contr_Current;//
 Sextern vu16 Contr_Laod;//
-Sextern vu32 Correct_Parametet[11];
+Sextern vu32 Correct_Parametet[12];
 S#define  REG_CorrectionV   Correct_Parametet[0]//内阻电压测量参数
 S#define  REG_Load_A			   Correct_Parametet[1]//负载CC模式电流测量参数
 S#define  SET_LoadA			   Correct_Parametet[2]//负载CC模式控制电流参数
@@ -35551,6 +35553,7 @@ S#define  SET_POWERA			   Correct_Parametet[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV			   Correct_Parametet[8]//电源CV模式电压测量参数
 S#define  SET_POWERV				 Correct_Parametet[9]//电源CV模式电压控制参数
 S#define  CON_POWERA				 Correct_Parametet[10]//电源CV模式电流测量参数
+S#define  REG_CorrectionRL    Correct_Parametet[11]//内阻测量参数
 S
 S
 S
@@ -35562,7 +35565,7 @@ S#define  Polar3						 correct_por[3]//内阻测量和电源CV模式电流测量
 S#define  Polar4						 correct_por[4]//电源CC模式电流测量和控制
 S#define  Polar5						 correct_por[5]//电源CV模式电压测量和控制
 S
-Sextern vu32 Correct_Strong[11];//校准系数
+Sextern vu32 Correct_Strong[12];//校准系数
 S#define  REG_ReadV_Offset   Correct_Strong[0]//内阻电压测量参数
 S#define  REG_LoadA_Offset   Correct_Strong[1]//负载CC模式电流测量参数
 S#define  SET_LoadA_Offset   Correct_Strong[2]//负载CC模式控制电流参数
@@ -35576,6 +35579,7 @@ S#define  SET_POWERA_Offset  Correct_Strong[7]//电源CC模式电流控制测量参数
 S#define  REG_POWERV_Offset  Correct_Strong[8]//电源CV模式电压测量参数
 S#define  SET_POWERV_Offset	Correct_Strong[9]//电源CV模式电压控制参数
 S#define  CON_POWERA_Offset	Correct_Strong[10]//电源CV模式电流测量参数
+S#define  REG_ReadRL_Offset   Correct_Strong[11]//内阻测量参数
 S
 S//---------------------------
 Sextern vu16 ADC_NTC_Filt[50];
@@ -35802,6 +35806,31 @@ X	data_8bit = Correct_Strong[5] >> 8;
 N	EEPROM_WriteByte(0x2F, data_8bit);
 N	EEPROM_WriteByte(0x30, REG_ReadR_Offset);//内阻
 X	EEPROM_WriteByte(0x30, Correct_Strong[5]);
+N    
+N    data_8bit = REG_CorrectionRL >> 24;
+X    data_8bit = Correct_Parametet[11] >> 24;
+N	EEPROM_WriteByte(0xAB, data_8bit);
+N	data_8bit = REG_CorrectionRL >> 16;
+X	data_8bit = Correct_Parametet[11] >> 16;
+N	EEPROM_WriteByte(0xAC, data_8bit);
+N	data_8bit = REG_CorrectionRL >> 8;
+X	data_8bit = Correct_Parametet[11] >> 8;
+N	EEPROM_WriteByte(0xAD, data_8bit);
+N	EEPROM_WriteByte(0xAE, REG_CorrectionRL);//内阻
+X	EEPROM_WriteByte(0xAE, Correct_Parametet[11]);
+N	
+N    
+N    data_8bit = REG_ReadRL_Offset >> 24;
+X    data_8bit = Correct_Strong[11] >> 24;
+N	EEPROM_WriteByte(0xAF, data_8bit);
+N	data_8bit = REG_ReadRL_Offset >> 16;
+X	data_8bit = Correct_Strong[11] >> 16;
+N	EEPROM_WriteByte(0xB0, data_8bit);
+N	data_8bit = REG_ReadRL_Offset >> 8;
+X	data_8bit = Correct_Strong[11] >> 8;
+N	EEPROM_WriteByte(0xB1, data_8bit);
+N	EEPROM_WriteByte(0xB2, REG_ReadRL_Offset);//内阻
+X	EEPROM_WriteByte(0xB2, Correct_Strong[11]);
 N	
 N/************稳压电源*****************************/
 N	data_8bit = REG_POWERA >> 24;
@@ -36127,6 +36156,36 @@ N	REG_ReadR_Offset=REG_ReadR_Offset<<8;
 X	Correct_Strong[5]=Correct_Strong[5]<<8;
 N	REG_ReadR_Offset=REG_ReadR_Offset+EEPROM_READ_Byte(0x30);
 X	Correct_Strong[5]=Correct_Strong[5]+EEPROM_READ_Byte(0x30);
+N    
+N    REG_CorrectionRL=EEPROM_READ_Byte(0xAB);
+X    Correct_Parametet[11]=EEPROM_READ_Byte(0xAB);
+N	REG_CorrectionRL=REG_CorrectionRL<<8;
+X	Correct_Parametet[11]=Correct_Parametet[11]<<8;
+N	REG_CorrectionRL=REG_CorrectionRL+EEPROM_READ_Byte(0xAC);
+X	Correct_Parametet[11]=Correct_Parametet[11]+EEPROM_READ_Byte(0xAC);
+N	REG_CorrectionRL=REG_CorrectionRL<<8;
+X	Correct_Parametet[11]=Correct_Parametet[11]<<8;
+N	REG_CorrectionRL=REG_CorrectionRL+EEPROM_READ_Byte(0xAD);
+X	Correct_Parametet[11]=Correct_Parametet[11]+EEPROM_READ_Byte(0xAD);
+N	REG_CorrectionRL=REG_CorrectionRL<<8;
+X	Correct_Parametet[11]=Correct_Parametet[11]<<8;
+N	REG_CorrectionRL=REG_CorrectionRL+EEPROM_READ_Byte(0xAE);
+X	Correct_Parametet[11]=Correct_Parametet[11]+EEPROM_READ_Byte(0xAE);
+N	
+N	REG_ReadRL_Offset=EEPROM_READ_Byte(0xAF);
+X	Correct_Strong[11]=EEPROM_READ_Byte(0xAF);
+N	REG_ReadRL_Offset=REG_ReadRL_Offset<<8;
+X	Correct_Strong[11]=Correct_Strong[11]<<8;
+N	REG_ReadRL_Offset=REG_ReadRL_Offset+EEPROM_READ_Byte(0xB0);
+X	Correct_Strong[11]=Correct_Strong[11]+EEPROM_READ_Byte(0xB0);
+N	REG_ReadRL_Offset=REG_ReadRL_Offset<<8;
+X	Correct_Strong[11]=Correct_Strong[11]<<8;
+N	REG_ReadRL_Offset=REG_ReadRL_Offset+EEPROM_READ_Byte(0xB1);
+X	Correct_Strong[11]=Correct_Strong[11]+EEPROM_READ_Byte(0xB1);
+N	REG_ReadRL_Offset=REG_ReadRL_Offset<<8;
+X	Correct_Strong[11]=Correct_Strong[11]<<8;
+N	REG_ReadRL_Offset=REG_ReadRL_Offset+EEPROM_READ_Byte(0xB2);
+X	Correct_Strong[11]=Correct_Strong[11]+EEPROM_READ_Byte(0xB2);
 N	
 N	
 N/*******************稳压电源****************************/

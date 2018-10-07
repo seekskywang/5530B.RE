@@ -319,6 +319,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
                         start_time = GUI_GetTime()/500;//记录开始时间
                     }
                     cutoff_flag = 0;
+                    USART_SendData(USART3,0);//关闭电源
                     GPIO_ResetBits(GPIOC,GPIO_Pin_1);//关闭电源输出
 //                     Mode_SW_CONT(0x02);//切换至负载模式
 //                     GPIO_ResetBits(GPIOC,GPIO_Pin_1);//开启负载
@@ -343,6 +344,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
                         start_time = GUI_GetTime()/500;//记录开始时间
                     }
                     cutoff_flag = 0;
+                    USART_SendData(USART3,0);//关闭电源
                     GPIO_ResetBits(GPIOC,GPIO_Pin_1);//关闭电源输出
 //                     Mode_SW_CONT(0x02);//切换至负载模式
 //                     GPIO_ResetBits(GPIOC,GPIO_Pin_1);//开启负载
@@ -373,6 +375,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
                         start_time = GUI_GetTime()/500;//记录开始时间
                     }
                     cutoff_flag = 0;
+                    USART_SendData(USART3,0);//关闭电源
                     GPIO_ResetBits(GPIOC,GPIO_Pin_1);//关闭电源输出
 //                     Mode_SW_CONT(0x02);//切换至负载模式
 //                     GPIO_ResetBits(GPIOC,GPIO_Pin_1);//开启负载
@@ -544,6 +547,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
                      hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_68);
                      sprintf(buf,"%05d",battery_c);
                      TEXT_SetText(hItem,buf);
+                    USART_SendData(USART3,1);//连接电源
                     GPIO_SetBits(GPIOC,GPIO_Pin_1);//打开电源输出
 //                    GPIO_SetBits(GPIOB,GPIO_Pin_13);//打开稳压电源输出
                     mode_sw = mode_pow;
@@ -866,6 +870,8 @@ WM_HWIN CreateCDC(void) {
   track = face_cdc;
   TM1650_SET_LED(0x68,0x70);
   GPIO_ResetBits(GPIOD,GPIO_Pin_12);//İֆ
+  GPIO_ResetBits(GPIOC,GPIO_Pin_1);//关闭电源输出
+  USART_SendData(USART3,0);//关闭电源
 //  double_sw = face_cdc;
   hWincdc = GUI_CreateDialogBox(_aDialogCreate4, GUI_COUNTOF(_aDialogCreate4), _cbDialog, WM_HBKWIN, 0, 0);
   return hWincdc;
